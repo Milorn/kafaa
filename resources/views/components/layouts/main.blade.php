@@ -12,5 +12,6 @@
     @isset($main)
     {{$main}}
     @endisset
+    <x-ui.footer/>
 </body>
 </html>

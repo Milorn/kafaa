@@ -2,5 +2,5 @@
 
 return [
     'app.name' => 'Kafaa',
-    'welcome' => 'Bienvenue'
+    'welcome' => 'Bienvenue',
 ];
