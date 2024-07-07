@@ -13,7 +13,7 @@
 
 @layer components {
     .btn {
-        @apply rounded-md font-bold py-3 px-6 flex
+        @apply rounded-md font-bold py-3 px-6
     }
     
     .btn-primary {
@@ -22,5 +22,9 @@
 
     .btn-secondary {
         @apply btn bg-secondary text-primary
+    }
+
+    .btn-icon {
+        @apply flex items-center gap-2
     }
 }

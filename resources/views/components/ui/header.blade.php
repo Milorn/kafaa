@@ -12,7 +12,7 @@
             <li class="inline-block mx-2 font-medium text-trivial">Ressources</li>
             <li class="inline-block ml-12">
                 <div class="flex flex-col gap-2">
-                    <button class="btn-primary gap-2 items-center">S'enregistrer <x-heroicon-o-arrow-right class="size-5 text-white stroke-2"/> </button>
+                    <button class="btn-primary btn-icon">S'enregistrer <x-heroicon-o-arrow-right class="size-5 text-white stroke-2"/> </button>
                     <p class="text-trivial text-xs text-right">Déja inscrit ? <span class="text-primary underline decoration-primary">se connecter</span></p>
                 </div>
             </li>
