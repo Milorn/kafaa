@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply font-medium
+    }
+}
+
+
+@layer components {
+    .btn {
+        @apply rounded-md font-bold py-3 px-6 flex
+    }
+    
+    .btn-primary {
+        @apply btn bg-primary text-white
+    }
+
+    .btn-secondary {
+        @apply btn bg-secondary text-primary
+    }
+}
