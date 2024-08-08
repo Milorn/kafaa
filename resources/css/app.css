@@ -28,3 +28,9 @@
         @apply flex items-center gap-2
     }
 }
+
+
+.link-active {
+    @apply  font-bold text-primary border-b-2 border-primary
+}
+

@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kafaa @isset($title) - {{$title}} @endisset</title>
     @vite('resources/css/app.css')
+    @isset($head)
+    {{$head}}
+    @endisset
 </head>
 <body>
     <x-ui.header/>
