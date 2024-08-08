@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,5 +25,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('general', function (string $value) {
             return "<?php echo __('general.' . $value) ?>";
         });
+
+        if(Str::startsWith(url('/'), 'https')) {
+            URL::forceScheme('https');
+        }
     }
 }
