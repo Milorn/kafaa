@@ -13,4 +13,14 @@ class PagesController extends Controller
     {
         return view('pages/about-us');
     }
+
+    public function pro()
+    {
+        return view('pages/pro');
+    }
+
+    public function resources()
+    {
+        return view('pages/resources');
+    }
 }

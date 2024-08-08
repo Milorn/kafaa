@@ -10,7 +10,7 @@ export default {
       colors: {
         primary: "#066938",
         secondary: "#FFD600",
-        trivial: "#9B9B9B",
+        trivial: "#939393",
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif']

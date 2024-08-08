@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="bg-primary mt-[-180px] pt-56 pb-20">
+        <div class="bg-primary mt-[-180px] pt-56 pb-20 relative">
             <div class="max-w-screen-xl mx-auto flex flex-col items-center gap-5">
                 <h1 class="font-bold text-6xl text-white">Les labels</h1>
                 <p class="text-center text-white text-xl opacity-60 max-w-screen-lg">
@@ -57,8 +57,7 @@
                 <div class="max-w-2xl grid grid-cols-2 gap-8 mt-10">
                     <div class="flex flex-col items-center">
                         <div class="bg-white py-10 px-16 flex justify-center rounded-lg">
-                            <img class="h-52 object-contain" src="{{ asset('images/label_pv_logo.png') }}"
-                                alt="Logo Label EPE">
+                            <img class="h-52" src="{{ asset('images/label_pv_logo.png') }}" alt="Logo Label EPE">
                         </div>
                         <h2 class="text-center text-white font-bold text-3xl mt-10 mb-2">Kafa'a PV</h2>
                         <p class="text-center text-lg text-white">

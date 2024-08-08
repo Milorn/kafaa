@@ -8,8 +8,8 @@
         <ul>
             <li class="inline-block mx-2 pb-3 @if(request()->routeIs('home')) link-active @else font-medium text-trivial @endif"><a href="/">Acceuil</a></li>
             <li class="inline-block mx-2 pb-3 @if(request()->routeIs('about-us')) link-active @else font-medium text-trivial @endif"><a href="/about-us">Qui sommes nous ?</a></li>
-            <li class="inline-block mx-2 pb-3 @if(request()->routeIs('pro')) link-active @else font-medium text-trivial @endif">Devenir pro</li>
-            <li class="inline-block mx-2 pb-3 @if(request()->routeIs('resources')) link-active @else font-medium text-trivial @endif">Ressources</li>
+            <li class="inline-block mx-2 pb-3 @if(request()->routeIs('pro')) link-active @else font-medium text-trivial @endif"><a href="/pro">Devenir pro</a></li>
+            <li class="inline-block mx-2 pb-3 @if(request()->routeIs('resources')) link-active @else font-medium text-trivial @endif"><a href="/resources">Ressources</a></li>
             <li class="inline-block ml-12">
                 <div class="flex flex-col gap-2">
                     <button class="btn-primary btn-icon">S'enregistrer <x-heroicon-o-arrow-right class="size-5 text-white stroke-2"/> </button>
