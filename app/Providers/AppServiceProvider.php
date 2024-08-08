@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo __('general.' . $value) ?>";
         });
 
-        if(Str::startsWith(url('/'), 'https')) {
+        if(env('FORCE_HTTPS')) {
             URL::forceScheme('https');
         }
     }
