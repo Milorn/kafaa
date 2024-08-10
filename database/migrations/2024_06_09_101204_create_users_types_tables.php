@@ -11,21 +11,36 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->timestamps();
-        });
 
         Schema::create('experts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('diploma')->nullable();
+            $table->unsignedInteger('years_of_experience')->nullable();
+            $table->unsignedInteger('number_of_projects')->nullable();
+            $table->unsignedInteger('number_of_metric')->nullable();
+            $table->string('professional_status');
+            $table->string('resume')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('companies', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('activity_area');
+            $table->string('register');
+            $table->string('website')->nullable();
             $table->timestamps();
         });
 
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('activity_area');
+            $table->string('register');
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
