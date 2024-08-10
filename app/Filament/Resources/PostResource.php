@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use SolutionForest\FilamentTranslateField\Forms\Component\Translate;
 
@@ -65,7 +66,14 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')
+                    ->label('Titre')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->label('Date')
+                    ->datetime()
+                    ->badge(),
             ])
             ->filters([
                 //

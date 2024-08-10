@@ -17,7 +17,7 @@ class Expert extends Model
     ];
 
     protected $casts = [
-        'professional_status' => ProfessionalStatus::class
+        'professional_status' => ProfessionalStatus::class,
     ];
 
     public function user()

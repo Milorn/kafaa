@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+use App\Models\Company;
+use App\Models\Expert;
+use App\Models\Post;
+use App\Models\Provider;
 use Illuminate\Console\Command;
 
 class SeedFakeData extends Command
@@ -26,7 +29,16 @@ class SeedFakeData extends Command
      */
     public function handle()
     {
-        User::factory(20)
+        Expert::factory(5)
+            ->create();
+
+        Company::factory(5)
+            ->create();
+
+        Provider::factory(5)
+            ->create();
+
+        Post::factory(10)
             ->create();
     }
 }

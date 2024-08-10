@@ -35,7 +35,7 @@ class User extends Authenticatable
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn($value, $attributes) => $attributes['fname'] . " " . $attributes['lname']
+            get: fn ($value, $attributes) => $attributes['fname'].' '.$attributes['lname']
         );
     }
 }

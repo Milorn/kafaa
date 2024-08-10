@@ -28,7 +28,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
-            $table->string('activity_area');
+            $table->foreignId('activity_area_id')->nullable()->constrained('activity_areas')->nullOnDelete();
             $table->string('register');
             $table->string('website')->nullable();
             $table->timestamps();
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
-            $table->string('activity_area');
+            $table->foreignId('activity_area_id')->nullable()->constrained('activity_areas')->nullOnDelete();
             $table->string('register');
             $table->string('website')->nullable();
             $table->timestamps();
