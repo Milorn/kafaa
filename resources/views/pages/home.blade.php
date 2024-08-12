@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <img class="h-[946px] w-full" src="{{ asset('images/home/hero.png') }}">
+            <img class="objet-cover w-full" src="{{ asset('images/home/hero.png') }}">
         </div>
 
         <div

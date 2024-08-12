@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $guarded = [
         'id',
         'created_at',
-        'updated',
+        'updated_at',
     ];
 
     protected $hidden = [

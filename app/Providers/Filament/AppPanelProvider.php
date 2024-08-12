@@ -2,7 +2,7 @@
 
 namespace App\Providers\Filament;
 
-use App\Livewire\ProfileInfoComponent;
+use App\Livewire\UpdatePersonalInfo;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
@@ -12,7 +12,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\MenuItem;
 use Filament\Notifications\Notification;
 use Filament\Pages;
 use Filament\Panel;
@@ -28,7 +27,6 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
-use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
 use SolutionForest\FilamentTranslateField\FilamentTranslateFieldPlugin;
 
 class AppPanelProvider extends PanelProvider
@@ -129,8 +127,8 @@ class AppPanelProvider extends PanelProvider
                 ->myProfile()
                 ->enableTwoFactorAuthentication()
                 ->myProfileComponents([
-                    'personal_info' => ProfileInfoComponent::class
-                ])
+                    'personal_info' => UpdatePersonalInfo::class,
+                ]),
         ];
     }
 }
