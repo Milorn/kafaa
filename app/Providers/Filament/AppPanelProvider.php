@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationGroup;
 use Filament\Notifications\Notification;
 use Filament\Pages;
 use Filament\Panel;
@@ -66,7 +67,9 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])->plugins($this->getPlugins());
+            ])
+            ->navigationGroups($this->getNavigationGroups())
+            ->plugins($this->getPlugins());
     }
 
     public function boot(): void
@@ -108,6 +111,14 @@ class AppPanelProvider extends PanelProvider
         RichEditor::configureUsing(function (RichEditor $editor) {
             $editor->disableToolbarButtons(['attachFiles', 'codeBlock']);
         });
+    }
+
+    private function getNavigationGroups(): array
+    {
+        return [
+            NavigationGroup::make('users')
+                ->label('Utilisateurs'),
+        ];
     }
 
     private function getPlugins(): array
