@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
+    public function canImpersonate()
+    {
+        return $this->type == UserType::Admin;
+    }
+
     protected function name(): Attribute
     {
         return Attribute::make(

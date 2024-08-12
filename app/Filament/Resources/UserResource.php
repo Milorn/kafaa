@@ -64,7 +64,8 @@ class UserResource extends Resource
                 Impersonate::make()
                     ->link()
                     ->label('Imiter')
-                    ->color('info'),
+                    ->color('info')
+                    ->redirectTo(route('filament.app.pages.my-profile')),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
