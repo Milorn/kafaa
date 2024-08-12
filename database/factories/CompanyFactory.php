@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\UserType;
 use App\Models\ActivityArea;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +18,6 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => (new UserFactory())->type(UserType::Company),
             'name' => fake()->company(),
             'activity_area_id' => ActivityArea::pluck('id')->random(),
             'website' => fake()->optional()->url(),

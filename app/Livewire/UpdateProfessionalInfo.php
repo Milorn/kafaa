@@ -9,6 +9,7 @@ use App\Models\ActivityArea;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -20,7 +21,7 @@ class UpdateProfessionalInfo extends MyProfileComponent
 {
     protected $view = 'livewire.update-professional-info';
 
-    public mixed $userData;
+    public mixed $userable;
 
     public mixed $type;
 
@@ -30,13 +31,8 @@ class UpdateProfessionalInfo extends MyProfileComponent
     {
         $user = Auth::user();
         $this->type = $user->type;
-        $this->userData = match ($user->type) {
-            UserType::Expert => $user->expert,
-            UserType::Company => $user->company,
-            UserType::Provider => $user->provider,
-            default => null
-        };
-        $this->form->fill($this->userData?->toArray());
+        $this->userable = $user->userable;
+        $this->form->fill($user->userable?->toArray());
     }
 
     public function form(Form $form): Form
@@ -65,7 +61,7 @@ class UpdateProfessionalInfo extends MyProfileComponent
                     Select::make('professional_status')
                         ->label('Statut professionnel')
                         ->options(ProfessionalStatus::class),
-                    Grid::make(1)
+                    Group::make()
                         ->relationship('file', condition: fn (?array $state): bool => filled($state['path']))
                         ->schema([
                             FileUpload::make('path')
@@ -134,7 +130,7 @@ class UpdateProfessionalInfo extends MyProfileComponent
                 default => []
             })
             ->statePath('data')
-            ->model($this->userData);
+            ->model($this->userable);
     }
 
     protected function getCreateFormAction(): Action
@@ -147,7 +143,7 @@ class UpdateProfessionalInfo extends MyProfileComponent
     public function submit(): void
     {
         $data = $this->form->getState();
-        $this->userData->update($data);
+        $this->userable->update($data);
         Notification::make()
             ->success()
             ->title('Profil mis à jour')

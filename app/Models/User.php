@@ -26,22 +26,17 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'expert',
-        'company',
-        'provider',
+        'userable',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'password' => 'hashed',
-            'type' => UserType::class,
-        ];
-    }
+    protected $casts = [
+        'password' => 'hashed',
+        'type' => UserType::class,
+    ];
 
-    public function userData()
+    public function userable()
     {
-
+        return $this->morphTo();
     }
 
     protected function name(): Attribute
@@ -49,20 +44,5 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn ($value, $attributes) => $attributes['fname'].' '.$attributes['lname']
         );
-    }
-
-    public function expert()
-    {
-        return $this->hasOne(Expert::class);
-    }
-
-    public function company()
-    {
-        return $this->hasOne(Company::class);
-    }
-
-    public function provider()
-    {
-        return $this->hasOne(Provider::class);
     }
 }

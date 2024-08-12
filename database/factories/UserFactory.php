@@ -22,7 +22,6 @@ class UserFactory extends Factory
             'address' => fake()->optional()->address(),
             'phone' => fake()->optional()->phoneNumber(),
             'job' => fake()->optional()->jobTitle(),
-            'type' => fake()->randomElement(UserType::class),
             'remember_token' => Str::random(10),
         ];
     }

@@ -30,6 +30,8 @@ class FileController extends Controller
     private function verfiyPermission($file): bool
     {
         $user = Auth::user();
+        $userId = $user->id;
+        $userableId = $user->userable?->id;
 
         if ($user->type == UserType::Admin) {
             return true;
@@ -37,15 +39,15 @@ class FileController extends Controller
 
         if ($file->fileable_type == Company::class) {
             if ($user->type == UserType::Company) {
-                return $user->company->id == $file->fileable_id;
+                return $userableId == $file->fileable_id;
             }
         } elseif ($file->fileable_type == Provider::class) {
             if ($user->type == UserType::Provider) {
-                return $user->provider->id == $file->fileable_id;
+                return $userableId == $file->fileable_id;
             }
         } elseif ($file->fileable_type == Expert::class) {
             if ($user->type == UserType::Expert) {
-                return $user->expert->id == $file->fileable_id;
+                return $userableId == $file->fileable_id;
             }
         }
 

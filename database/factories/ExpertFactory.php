@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Enums\LabelType;
 use App\Enums\ProfessionalStatus;
-use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +19,6 @@ class ExpertFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => (new UserFactory())->type(UserType::Expert),
             'type' => fake()->randomElement(LabelType::class),
             'diploma' => fake()->optional()->sentence(),
             'years_of_experience' => fake()->optional()->numberBetween(0, 20),

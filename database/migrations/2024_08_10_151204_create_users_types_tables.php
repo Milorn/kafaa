@@ -14,7 +14,6 @@ return new class extends Migration
 
         Schema::create('experts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('type');
             $table->string('diploma')->nullable();
             $table->unsignedInteger('years_of_experience')->nullable();
@@ -27,7 +26,6 @@ return new class extends Migration
 
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
             $table->foreignId('activity_area_id')->nullable()->constrained('activity_areas')->nullOnDelete();
             $table->string('website')->nullable();
@@ -36,7 +34,6 @@ return new class extends Migration
 
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
             $table->foreignId('activity_area_id')->nullable()->constrained('activity_areas')->nullOnDelete();
             $table->string('website')->nullable();

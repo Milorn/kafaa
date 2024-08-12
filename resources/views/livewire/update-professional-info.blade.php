@@ -1,7 +1,7 @@
 <x-filament-breezy::grid-section md=2 title="Informations professionnelles"
     description="Gérez vos informations professionnelles">
     <x-filament::card>
-        @if ($this->userData)
+        @if ($this->userable)
             <form wire:submit.prevent="submit" class="space-y-6">
 
                 {{ $this->form }}

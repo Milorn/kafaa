@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('job')->nullable();
             $table->string('type');
+            $table->nullableMorphs('userable');
             $table->rememberToken();
             $table->timestamps();
         });
