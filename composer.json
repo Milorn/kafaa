@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.2",
         "blade-ui-kit/blade-icons": "^1.6",
+        "cesargb/laravel-cascade-delete": "^1.8",
         "dutchcodingcompany/filament-developer-logins": "^1.2",
         "filament/filament": "^3.2",
         "jeffgreco13/filament-breezy": "^2.4",

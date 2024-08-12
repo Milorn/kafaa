@@ -7,6 +7,8 @@ use App\Models\Provider;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class ProviderResource extends Resource
@@ -35,13 +37,38 @@ class ProviderResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->label('Nom')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('activityArea.name')
+                    ->label('Secteur d\'activité')
+                    ->sortable()
+                    ->badge(),
+                TextColumn::make('created_at')
+                    ->label('Créé le')
+                    ->datetime()
+                    ->badge()
+                    ->color('gray')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->label('Modifié le')
+                    ->datetime()
+                    ->badge()
+                    ->color('gray')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('activity_area_id')
+                    ->label('Secteur d\'activité')
+                    ->relationship('activityArea', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->multiple(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -45,6 +45,18 @@ class CompanyResource extends Resource
                     ->label('Secteur d\'activité')
                     ->sortable()
                     ->badge(),
+                TextColumn::make('created_at')
+                    ->label('Créé le')
+                    ->datetime()
+                    ->badge()
+                    ->color('gray')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->label('Modifié le')
+                    ->datetime()
+                    ->badge()
+                    ->color('gray')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 SelectFilter::make('activity_area_id')
@@ -63,13 +75,6 @@ class CompanyResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array
