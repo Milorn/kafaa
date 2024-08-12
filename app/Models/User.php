@@ -25,6 +25,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $with = [
+        'expert',
+        'company',
+        'provider',
+    ];
+
     protected function casts(): array
     {
         return [
@@ -33,10 +39,30 @@ class User extends Authenticatable
         ];
     }
 
+    public function userData()
+    {
+
+    }
+
     protected function name(): Attribute
     {
         return Attribute::make(
             get: fn ($value, $attributes) => $attributes['fname'].' '.$attributes['lname']
         );
+    }
+
+    public function expert()
+    {
+        return $this->hasOne(Expert::class);
+    }
+
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
+    public function provider()
+    {
+        return $this->hasOne(Provider::class);
     }
 }

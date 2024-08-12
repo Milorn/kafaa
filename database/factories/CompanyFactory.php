@@ -22,7 +22,6 @@ class CompanyFactory extends Factory
             'user_id' => (new UserFactory())->type(UserType::Company),
             'name' => fake()->company(),
             'activity_area_id' => ActivityArea::pluck('id')->random(),
-            'register' => fake()->filePath(),
             'website' => fake()->optional()->url(),
         ];
     }

@@ -2,25 +2,24 @@
 
 namespace App\Livewire;
 
-use Filament\Facades\Filament;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Jeffgreco13\FilamentBreezy\Livewire\MyProfileComponent;
 
 class UpdatePersonalInfo extends MyProfileComponent
 {
-    public $view = 'livewire.update-personal-info';
+    protected $view = 'livewire.update-personal-info';
 
     public array $data;
 
-    public $user;
+    public mixed $user;
 
     public function mount()
     {
-        $this->user = Filament::getCurrentPanel()->auth()->user();
-
+        $this->user = Auth::user();
         $this->form->fill($this->user->toArray());
     }
 
@@ -71,7 +70,7 @@ class UpdatePersonalInfo extends MyProfileComponent
         $this->user->update($data);
         Notification::make()
             ->success()
-            ->title('Updated successfully')
+            ->title('Profil mis à jour')
             ->send();
     }
 }

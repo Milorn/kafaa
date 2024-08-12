@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -11,3 +12,5 @@ Route::controller(PagesController::class)->group(function () {
     Route::get('/pro', 'pro')->name('pro');
     Route::get('/resources', 'resources')->name('resources');
 });
+
+Route::get('/files/private/{path}', [FileController::class, 'getFile'])->where('path', '.*')->middleware('auth')->name('files');
