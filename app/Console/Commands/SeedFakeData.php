@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Enums\UserType;
 use App\Models\Company;
+use App\Models\Equipment;
 use App\Models\Expert;
 use App\Models\Post;
 use App\Models\Provider;
@@ -44,6 +45,9 @@ class SeedFakeData extends Command
             ->create();
 
         Post::factory(10)
+            ->create();
+
+        Equipment::factory(20)
             ->create();
     }
 }
