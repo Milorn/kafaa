@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\LabelType;
 use App\Enums\ProfessionalStatus;
+use App\Enums\UserType;
 use App\Filament\Resources\ExpertResource\Pages;
 use App\Models\Expert;
 use Filament\Forms\Components\Actions\Action;
@@ -42,7 +43,7 @@ class ExpertResource extends Resource
                 Section::make('Informations personnelles')
                     ->relationship('user')
                     ->mutateRelationshipDataBeforeCreateUsing(function ($data) {
-                        $data['type'] = UserType::Company;
+                        $data['type'] = UserType::Expert;
 
                         return $data;
                     })

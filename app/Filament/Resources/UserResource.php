@@ -5,12 +5,19 @@ namespace App\Filament\Resources;
 use App\Enums\UserType;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Rawilk\FilamentPasswordInput\Password;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class UserResource extends Resource
@@ -33,7 +40,50 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make('Informations personnelles')
+                    ->columns(2)
+                    ->schema([
+                        Group::make([
+                            Select::make('type')
+                                ->label('Type')
+                                ->options(UserType::class)
+                                ->required(),
+                        ])->columns(2)
+                            ->columnSpanFull(),
+                        TextInput::make('lname')
+                            ->label('Nom')
+                            ->placeholder('Nom')
+                            ->required(),
+                        TextInput::make('fname')
+                            ->label('Prénom')
+                            ->placeholder('Prénom')
+                            ->required(),
+                        TextInput::make('email')
+                            ->label('Email')
+                            ->email()
+                            ->placeholder('example@email.com')
+                            ->unique(ignorable: fn ($record) => $record)
+                            ->required(),
+                        Password::make('password')
+                            ->label('Mot de passe')
+                            ->placeholder('*******')
+                            ->copyable()
+                            ->hintAction(fn ($set) => Action::make('generate')
+                                ->label('Genérer')
+                                ->action(fn () => $set('password', Str::password(12))))
+                            ->required(fn ($context) => $context == 'create'),
+                        TextInput::make('phone')
+                            ->label('Téléphone')
+                            ->placeholder('+213 555 555 555')
+                            ->tel(),
+                        TextInput::make('job')
+                            ->label('Poste')
+                            ->placeholder('Poste'),
+                        TextInput::make('address')
+                            ->label('Adresse')
+                            ->placeholder('Adresse')
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 
