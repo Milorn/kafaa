@@ -2,14 +2,24 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\UserType;
 use App\Filament\Resources\CompanyResource\Pages;
+use App\Models\ActivityArea;
 use App\Models\Company;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use Rawilk\FilamentPasswordInput\Password;
 
 class CompanyResource extends Resource
 {
@@ -29,7 +39,77 @@ class CompanyResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Section::make('Informations personnelles')
+                    ->relationship('user')
+                    ->mutateRelationshipDataBeforeCreateUsing(function ($data) {
+                        $data['type'] = UserType::Company;
+
+                        return $data;
+                    })
+                    ->columns(2)
+                    ->schema([
+                        TextInput::make('lname')
+                            ->label('Nom')
+                            ->placeholder('Nom')
+                            ->required(),
+                        TextInput::make('fname')
+                            ->label('Prénom')
+                            ->placeholder('Prénom')
+                            ->required(),
+                        TextInput::make('email')
+                            ->label('Email')
+                            ->email()
+                            ->placeholder('example@email.com')
+                            ->unique(ignorable: fn ($record) => $record)
+                            ->required(),
+                        Password::make('password')
+                            ->label('Mot de passe')
+                            ->placeholder('*******')
+                            ->copyable()
+                            ->hintAction(fn ($set) => Action::make('generate')
+                                ->label('Genérer')
+                                ->action(fn () => $set('password', Str::password(12))))
+                            ->required(fn ($context) => $context == 'create'),
+                        TextInput::make('phone')
+                            ->label('Téléphone')
+                            ->placeholder('+213 555 555 555')
+                            ->tel(),
+                        TextInput::make('job')
+                            ->label('Poste')
+                            ->placeholder('Poste'),
+                        TextInput::make('address')
+                            ->label('Adresse')
+                            ->placeholder('Adresse')
+                            ->columnSpanFull(),
+                    ]),
+                Section::make('Informations professionnelles')
+                    ->columns(2)
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Nom')
+                            ->placeholder('Nom')
+                            ->required(),
+                        Select::make('activity_area_id')
+                            ->label('Secteur d\'activité')
+                            ->options(ActivityArea::all()->pluck('name', 'id')),
+                        TextInput::make('website')
+                            ->label('Site web')
+                            ->url()
+                            ->placeholder('https://example.com'),
+                        Grid::make(1)
+                            ->relationship('file', condition: fn (?array $state): bool => filled($state['path']))
+                            ->schema([
+                                FileUpload::make('path')
+                                    ->storeFileNamesIn('name')
+                                    ->label('Registre de commerce')
+                                    ->disk('private')
+                                    ->directory('companies/registers')
+                                    ->downloadable()
+                                    ->previewable(false)
+                                    ->acceptedFileTypes(['application/pdf', 'image/*'])
+                                    ->maxSize(1024 * 12), // 12mb
+                            ]),
+                    ]),
             ]);
     }
 
