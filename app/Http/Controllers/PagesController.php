@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PostType;
+use App\Models\Post;
+
 class PagesController extends Controller
 {
     public function home()
@@ -19,8 +22,17 @@ class PagesController extends Controller
         return view('pages/pro');
     }
 
-    public function resources()
+    public function blog()
     {
-        return view('pages/resources');
+        $posts = Post::where('type', '!=', PostType::Documents)->paginate(9);
+
+        return view('pages/blog')->with('posts', $posts);
+    }
+
+    public function singleBlog($slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+
+        return view('pages/blog-single')->with('post', $post);
     }
 }

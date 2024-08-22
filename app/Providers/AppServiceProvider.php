@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('general', function (string $value) {
             return "<?php echo __('general.' . $value) ?>";
         });
+
+        Carbon::setLocale('fr');
 
         if (env('FORCE_HTTPS')) {
             URL::forceScheme('https');

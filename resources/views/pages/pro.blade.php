@@ -1,7 +1,7 @@
 <x-layouts.main>
     <x-slot:head>
         <style>
-            .about-us-hero {
+            .hero {
                 background: url('{{ asset('/images/pro/hero.png') }}');
                 background-size: cover;
                 background-position: bottom center;
@@ -9,7 +9,7 @@
         </style>
     </x-slot:head>
     <x-slot:main>
-        <div class="relative w-screen h-[700px] about-us-hero flex justify-center items-center">
+        <div class="relative w-screen h-[570px] hero flex justify-center items-center">
             <h1 class="text-white text-7xl font-bold">Devenir pro</h1>
         </div>
         <div class="flex flex-col items-center my-16 max-w-3xl mx-auto">

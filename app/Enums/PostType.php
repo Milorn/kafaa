@@ -8,7 +8,7 @@ enum PostType: string implements HasLabel
 {
     case Article = 'article';
     case Guide = 'guide';
-    case Resource = 'resource';
+    case Documents = 'documents';
     case BestPractices = 'best_practices';
     case StandardsPV = 'standards_pv';
     case StandardsEpe = 'standards_epe';
@@ -18,7 +18,7 @@ enum PostType: string implements HasLabel
         return match ($this) {
             self::Article => 'Article',
             self::Guide => 'Guide',
-            self::Resource => 'Ressource',
+            self::Documents => 'Documents',
             self::BestPractices => 'Bonne pratique',
             self::StandardsPV => 'Standard PV',
             self::StandardsEpe => 'Standard EPE',

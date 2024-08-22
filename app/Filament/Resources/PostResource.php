@@ -6,6 +6,7 @@ use App\Enums\PostType;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -39,6 +40,7 @@ class PostResource extends Resource
                         Select::make('type')
                             ->label('Type')
                             ->options(PostType::class)
+                            ->live(true)
                             ->required(),
                         FileUpload::make('thumbnail')
                             ->label('Image')
@@ -47,7 +49,24 @@ class PostResource extends Resource
                             ->image()
                             ->imageEditor()
                             ->required()
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->visible(fn ($get) => $get('type') != PostType::Documents->value),
+                        Group::make()
+                            ->columnSpanFull()
+                            ->relationship('file', condition: fn (?array $state): bool => filled($state['path']))
+                            ->visible(fn ($get) => $get('type') == PostType::Documents->value)
+                            ->schema([
+                                FileUpload::make('path')
+                                    ->storeFileNamesIn('name')
+                                    ->label('Document')
+                                    ->helperText('Pour plusieurs fichiers veuillez télécharger un fichier .rar')
+                                    ->hint('pdf, images, office, rar')
+                                    ->disk('public')
+                                    ->directory('posts/documents')
+                                    ->downloadable()
+                                    ->previewable(false)
+                                    ->maxSize(1024 * 50), // 50mb
+                            ]),
                     ]),
                 Translate::make()
                     ->schema([

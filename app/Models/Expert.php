@@ -12,7 +12,7 @@ class Expert extends Model
 {
     use CascadeDelete, HasFactory;
 
-    protected $cascadeDeleteMorph = ['user'];
+    protected $cascadeDeleteMorph = ['user', 'file'];
 
     protected $guarded = [
         'id',
