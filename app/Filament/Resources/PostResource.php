@@ -65,7 +65,8 @@ class PostResource extends Resource
                                     ->directory('posts/documents')
                                     ->downloadable()
                                     ->previewable(false)
-                                    ->maxSize(1024 * 50), // 50mb
+                                    ->maxSize(1024 * 50) // 50mb
+                                    ->required(),
                             ]),
                     ]),
                 Translate::make()

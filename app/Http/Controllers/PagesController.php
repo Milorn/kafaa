@@ -35,4 +35,14 @@ class PagesController extends Controller
 
         return view('pages/blog-single')->with('post', $post);
     }
+
+    public function documents()
+    {
+        $documents = Post::query()
+            ->with('file')
+            ->where('type', PostType::Documents)
+            ->paginate(9);
+
+        return view('pages/documents')->with('documents', $documents);
+    }
 }
