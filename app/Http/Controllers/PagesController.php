@@ -33,7 +33,11 @@ class PagesController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 
-        return view('pages/blog-single')->with('post', $post);
+        $relatedPosts = Post::where('slug', '!=', $slug)->latest()->limit(2)->get();
+
+        return view('pages/blog-single')
+            ->with('post', $post)
+            ->with('relatedPosts', $relatedPosts);
     }
 
     public function documents()

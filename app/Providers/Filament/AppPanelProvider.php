@@ -8,7 +8,6 @@ use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -84,10 +83,6 @@ class AppPanelProvider extends PanelProvider
 
         TextInput::configureUsing(function (TextInput $input) {
             $input->maxLength(200);
-        });
-
-        Textarea::configureUsing(function (Textarea $textArea) {
-            $textArea->maxLength(1000);
         });
 
         Select::configureUsing(function (Select $select) {
