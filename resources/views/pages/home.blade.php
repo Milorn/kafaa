@@ -20,31 +20,34 @@
             </div>
 
             <img class="objet-cover w-full" src="{{ asset('images/home/hero.png') }}">
-        </div>
 
-        <div
-            class="bg-[#45AC4C] max-w-screen-xl mx-auto py-8 px-4 rounded-xl shadow-[0px_9px_11px_0px_#149455] mt-[-220px] sticky top-[121px] z-50">
-            <div class="flex flex-col gap-3 text-center">
-                <h1 class="text-white font-bold text-3xl">Trouvez un installateur labellisé</h1>
-                <p class="text-xl text-white opacity-60">
-                    Kafaa is simply dummy text of the printing and typesetting
-                    industry. <br> Lorem Ipsum has been
-                </p>
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="bg-white flex justify-center items-center gap-2 py-5 px-8 rounded-md">
-                        <span class="text-trivial">Type d'installation</span>
-                        <x-heroicon-o-chevron-down class="size-5 text-trivial" />
-                    </div>
+            <div class="relative max-w-screen-xl mx-auto flex justify-center">
+                <div
+                class="bg-[#45AC4C]  py-8 px-4 rounded-xl shadow-[0px_9px_11px_0px_#149455] absolute -top-48 z-10">
+                <div class="flex flex-col gap-3 text-center">
+                    <h1 class="text-white font-bold text-3xl">Trouvez un installateur labellisé</h1>
+                    <p class="text-xl text-white opacity-60">
+                        Kafaa is simply dummy text of the printing and typesetting
+                        industry. <br> Lorem Ipsum has been
+                    </p>
+                    <div class="grid grid-cols-3 gap-6">
+                        <div class="bg-white flex justify-center items-center gap-2 py-5 px-8 rounded-md">
+                            <span class="text-trivial">Type d'installation</span>
+                            <x-heroicon-o-chevron-down class="size-5 text-trivial" />
+                        </div>
 
-                    <div class="bg-white py-5 px-8 rounded-md">
-                        <span class="text-trivial">Veuillez saisir adresse, ville, code postal</span>
+                        <div class="bg-white py-5 px-8 rounded-md">
+                            <span class="text-trivial">Veuillez saisir adresse, ville, code postal</span>
+                        </div>
+                        <button class="btn-secondary text-xl">Rechercher</button>
                     </div>
-                    <button class="btn-secondary text-xl">Rechercher</button>
                 </div>
             </div>
+            </div>
+
         </div>
 
-        <div class="bg-primary mt-[-180px] pt-56 pb-20 relative">
+        <div class="bg-primary pt-20 pb-20 relative">
             <div class="max-w-screen-xl mx-auto flex flex-col items-center gap-5">
                 <h1 class="font-bold text-6xl text-white">Les labels</h1>
                 <p class="text-center text-white text-xl opacity-60 max-w-screen-lg">

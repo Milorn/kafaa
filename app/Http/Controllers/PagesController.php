@@ -49,4 +49,9 @@ class PagesController extends Controller
 
         return view('pages/documents')->with('documents', $documents);
     }
+
+    public function register()
+    {
+        return view('pages/register');
+    }
 }

@@ -49,8 +49,7 @@ class PostResource extends Resource
                             ->image()
                             ->imageEditor()
                             ->required()
-                            ->columnSpanFull()
-                            ->visible(fn ($get) => $get('type') != PostType::Documents->value),
+                            ->columnSpanFull(),
                         Group::make()
                             ->columnSpanFull()
                             ->relationship('file', condition: fn (?array $state): bool => filled($state['path']))
