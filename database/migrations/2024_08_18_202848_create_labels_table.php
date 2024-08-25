@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('labels', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('expert_id')->constrained('experts')->cascadeOnDelete();
+            $table->timestamp('expires_on');
+            $table->string('type');
+            $table->string('status');
             $table->timestamps();
         });
     }

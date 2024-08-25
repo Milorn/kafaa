@@ -6,6 +6,7 @@ use App\Enums\UserType;
 use App\Models\Company;
 use App\Models\Equipment;
 use App\Models\Expert;
+use App\Models\Label;
 use App\Models\Post;
 use App\Models\Provider;
 use App\Models\User;
@@ -34,6 +35,7 @@ class SeedFakeData extends Command
     {
         Expert::factory(5)
             ->has(User::factory()->type(UserType::Expert))
+            ->has(Label::factory())
             ->create();
 
         Company::factory(5)
