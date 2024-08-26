@@ -46,4 +46,14 @@ class Expert extends Model
     {
         return $this->hasOne(Label::class);
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+    
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

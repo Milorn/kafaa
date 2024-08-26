@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Enums\UserType;
 use App\Filament\Resources\CompanyResource\Pages;
+use App\Filament\Resources\CompanyResource\RelationManagers\ExpertsRelationManager;
 use App\Models\ActivityArea;
 use App\Models\Company;
 use Filament\Forms\Components\Actions\Action;
@@ -155,6 +156,13 @@ class CompanyResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            ExpertsRelationManager::class
+        ];
     }
 
     public static function getPages(): array

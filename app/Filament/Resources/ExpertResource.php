@@ -87,7 +87,7 @@ class ExpertResource extends Resource
                     ->columns(2)
                     ->schema([
                         Select::make('type')
-                            ->label('Type')
+                            ->label('Type du label')
                             ->options(LabelType::class)
                             ->required()
                             ->live()

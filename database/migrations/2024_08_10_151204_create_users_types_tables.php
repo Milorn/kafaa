@@ -11,19 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('experts', function (Blueprint $table) {
-            $table->id();
-            $table->string('type');
-            $table->string('diploma')->nullable();
-            $table->unsignedInteger('years_of_experience')->nullable();
-            $table->unsignedInteger('number_of_projects')->nullable();
-            $table->unsignedInteger('number_of_metric')->nullable();
-            $table->string('professional_status');
-            $table->string('resume')->nullable();
-            $table->timestamps();
-        });
-
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -39,6 +26,19 @@ return new class extends Migration
             $table->string('website')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('experts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('company_id')->nullable()->constrained('companies')->nullOnDelete();
+            $table->string('type');
+            $table->string('diploma')->nullable();
+            $table->unsignedInteger('years_of_experience')->nullable();
+            $table->unsignedInteger('number_of_projects')->nullable();
+            $table->unsignedInteger('number_of_metric')->nullable();
+            $table->string('professional_status');
+            $table->string('resume')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -47,7 +47,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('companies');
-        Schema::dropIfExists('experts');
         Schema::dropIfExists('providers');
+        Schema::dropIfExists('experts');
     }
 };

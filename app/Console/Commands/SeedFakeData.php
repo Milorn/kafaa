@@ -8,9 +8,12 @@ use App\Models\Equipment;
 use App\Models\Expert;
 use App\Models\Label;
 use App\Models\Post;
+use App\Models\Project;
 use App\Models\Provider;
 use App\Models\User;
+use Database\Factories\ExpertFactory;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class SeedFakeData extends Command
 {
@@ -19,7 +22,7 @@ class SeedFakeData extends Command
      *
      * @var string
      */
-    protected $signature = 'app:seed-fake-data';
+    protected $signature = 'app:seed-fake-data {--M|migrate}';
 
     /**
      * The console command description.
@@ -33,13 +36,21 @@ class SeedFakeData extends Command
      */
     public function handle()
     {
+        if($this->option('migrate')) {
+            $this->info('Migrating...');
+            Artisan::call('migrate:fresh --seed');
+        }
+
+        $this->info('Seeding...');
         Expert::factory(5)
             ->has(User::factory()->type(UserType::Expert))
             ->has(Label::factory())
+            ->has(Project::factory(2))
             ->create();
 
         Company::factory(5)
             ->has(User::factory()->type(UserType::Company))
+            ->has(Expert::factory(2)->has(User::factory()->type(UserType::Expert)))
             ->create();
 
         Provider::factory(5)

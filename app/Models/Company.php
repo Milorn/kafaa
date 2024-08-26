@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use CascadeDelete, HasFactory;
-
-    protected $cascadeDeleteMorph = ['user', 'file'];
-
+    
     protected $guarded = [
         'id',
         'created_at',
         'updated_at',
     ];
+    
+    protected $cascadeDeleteMorph = ['user', 'file'];
 
     protected static function booted(): void
     {
@@ -38,5 +38,10 @@ class Company extends Model
     public function file()
     {
         return $this->morphOne(File::class, 'fileable');
+    }
+
+    public function experts()
+    {
+        return $this->hasMany(Expert::class);
     }
 }
