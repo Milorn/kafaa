@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
             'name' => fake()->word(),
             'started_on' => fake()->dateTimeBetween('-5 years', '+5 years'),
             'finished_on' => fake()->dateTimeBetween('-1 years', '+5 years'),
-            'description' => fake()->optional()->text()
+            'description' => fake()->optional()->text(),
         ];
     }
 }

@@ -161,7 +161,7 @@ class CompanyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ExpertsRelationManager::class
+            ExpertsRelationManager::class,
         ];
     }
 

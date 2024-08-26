@@ -2,37 +2,24 @@
 
 namespace App\Models;
 
-use Cesargb\Database\Support\CascadeDelete;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Project extends Model
+class Project extends Model implements HasMedia
 {
-    use HasFactory, CascadeDelete;
+    use HasFactory, InteractsWithMedia;
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    protected $cascadeDeleteMorph = ['attachments'];
-
     protected $casts = [
         'started_on' => 'date',
-        'finished_on' => 'date'
+        'finished_on' => 'date',
     ];
-
-    protected static function booted(): void
-    {
-        static::deleted(function ($model) {
-            $model->deleteMorphResidual();
-        });
-    }
 
     public function expert()
     {
         return $this->belongsTo(Expert::class);
-    }
-
-    public function attachments()
-    {
-        return $this->morphMany(File::class, 'fileable');
     }
 }

@@ -11,7 +11,6 @@ use App\Models\Post;
 use App\Models\Project;
 use App\Models\Provider;
 use App\Models\User;
-use Database\Factories\ExpertFactory;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -36,7 +35,7 @@ class SeedFakeData extends Command
      */
     public function handle()
     {
-        if($this->option('migrate')) {
+        if ($this->option('migrate')) {
             $this->info('Migrating...');
             Artisan::call('migrate:fresh --seed');
         }

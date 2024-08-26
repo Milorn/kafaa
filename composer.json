@@ -13,6 +13,7 @@
         "cesargb/laravel-cascade-delete": "^1.8",
         "dutchcodingcompany/filament-developer-logins": "^1.2",
         "filament/filament": "^3.2",
+        "filament/spatie-laravel-media-library-plugin": "^3.2",
         "jeffgreco13/filament-breezy": "^2.4",
         "joaopaulolndev/filament-edit-profile": "^1.0",
         "laravel/framework": "^11.9",
