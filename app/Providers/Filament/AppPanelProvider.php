@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\RegisterPage;
 use App\Livewire\UpdatePersonalInfo;
 use App\Livewire\UpdateProfessionalInfo;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
@@ -39,7 +40,7 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
-            ->registration()
+            ->registration(RegisterPage::class)
             ->colors([
                 'primary' => '#066938',
             ])
