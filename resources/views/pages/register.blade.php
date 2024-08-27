@@ -1,5 +1,6 @@
-<x-layouts.main>
-    <x-slot:main>
+<x-layouts.filament>
+    <livewire:register-form/>
+    {{-- <x-slot:main>
         <div class="mt-32 max-w-3xl mx-auto">
             <div class="text-center">
                 <h1 class="text-primary font-bold text-4xl mb-7">Demandez votre labélisation</h1>
@@ -10,5 +11,5 @@
                 </p>
             </div>
         </div>
-    </x-slot:main>
-</x-layouts.main>
+    </x-slot:main> --}}
+</x-layouts.filament>
