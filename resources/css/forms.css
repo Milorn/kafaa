@@ -1,0 +1,25 @@
+@import url(./app.css);
+
+@layer base {
+    input {
+        @apply field
+    }
+
+    select {
+        @apply bg-white appearance-none border-[#BBBBBB] rounded-lg px-3 py-2 focus:outline-none text-[#333]
+    }
+
+    label {
+        @apply text-sm font-semibold text-[#333333]
+    }
+}
+
+@layer components {
+    .fieldset {
+        @apply flex flex-col gap-2
+    }
+
+    .field {
+        @apply bg-white border border-[#BBBBBB] rounded-lg px-3 py-1.5 focus:outline-none placeholder:text-[#BBB] placeholder:text-sm text-[#333]
+    }
+}
