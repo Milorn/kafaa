@@ -5,8 +5,7 @@ export default {
   presets: [preset],
   content: [
     "./resources/**/*.blade.php",
-    "./resources/**/*.js",
-    "./resources/**/*.vue",
+    "./resources/**/*.jsx",
   ],
   theme: {
     extend: {

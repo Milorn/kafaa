@@ -5,7 +5,6 @@ namespace App\Filament\Pages;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Concerns\InteractsWithFormActions;
-use Filament\Pages\Page;
 use Filament\Pages\SimplePage;
 
 class RegisterPage extends SimplePage
@@ -23,10 +22,9 @@ class RegisterPage extends SimplePage
     {
         return $form
             ->schema([
-                TextInput::make('name')
+                TextInput::make('name'),
             ])->columns(2);
     }
-
 
     protected function hasFullWidthFormActions(): bool
     {

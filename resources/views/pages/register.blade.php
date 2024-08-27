@@ -1,7 +1,11 @@
-<x-layouts.filament>
-    <livewire:register-form/>
-    {{-- <x-slot:main>
-        <div class="mt-32 max-w-3xl mx-auto">
+<x-layouts.main>
+    <x-slot:head>
+        @viteReactRefresh
+        @vite('resources/js/register.jsx')
+    </x-slot:head>
+
+    <x-slot:main>
+        <div class="my-32 max-w-3xl mx-auto">
             <div class="text-center">
                 <h1 class="text-primary font-bold text-4xl mb-7">Demandez votre labélisation</h1>
                 <p class="text-trivial text-lg mb-7">The standard chunk of Lorem Ipsum used since the 1500s is reproduced
@@ -10,6 +14,8 @@
                     their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                 </p>
             </div>
+            <div id="register-form"></div>
         </div>
-    </x-slot:main> --}}
-</x-layouts.filament>
+    </x-slot:main>
+
+</x-layouts.main>
