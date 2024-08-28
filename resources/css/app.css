@@ -38,3 +38,6 @@
     @apply  font-bold text-primary border-b-2 border-primary
 }
 
+.resource-link-active {
+    @apply font-bold text-primary
+}
