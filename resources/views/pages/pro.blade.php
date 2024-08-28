@@ -33,22 +33,35 @@
             </div>
         </div>
 
-        <div class="bg-primary p-24 flex flex-col justify-center items-center">
-            <h1 class="text-white font-extrabold text-5xl mb-9">Témoignages</h1>
-            <div class="flex justify-center gap-16  max-w-screen-sm">
-                <div class="flex flex-col justify-center items-center gap-5 w-full">
-                    <img class="rounded-full" src="{{ asset('images/placeholder.webp') }}"
-                        alt="Avatar placeholder">
-                    <p class="text-white text-lg font-bold">Nom Prénom</p>
+
+        <div class="bg-primary p-24">
+            <h1 class="text-white font-extrabold text-5xl mb-9 text-center">Témoignages</h1>
+
+            <!-- Slider main container -->
+            <div class="swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide">
+                        <x-ui.testimony/>
+                    </div>
+                    <div class="swiper-slide">
+                        <x-ui.testimony/>
+                    </div>
+                    <div class="swiper-slide">
+                        <x-ui.testimony/>
+                    </div>
                 </div>
-                <p class="text-white text-lg text-justify">
-                    The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-                    Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
-                    their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-                </p>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev !text-white"></div>
+                <div class="swiper-button-next !text-white"></div>
             </div>
         </div>
 
 
+        <x-slot:end>
+            @vite('resources/js/pro.js')
+        </x-slot:end>
     </x-slot:main>
 </x-layouts.main>
