@@ -5,8 +5,8 @@ import RegisterCompany from "./RegisterCompany";
 import RegisterProvider from "./RegisterProvider";
 
 export default function RegisterForm() {
-    const [type, setType] = useState('expert');
-    const [label, setLabel] = useState('epe');
+    const [type, setType] = useState('company');
+    const [label, setLabel] = useState('');
     const [submitting, setSubmitting] = useState(false);
 
     const submit = (e) => {
@@ -66,11 +66,11 @@ export default function RegisterForm() {
 
                 <div className="flex flex-col gap-y-5">
                     <div className="flex items-center gap-3">
-                        <input id="charter" type="checkbox" className="size-4" />
+                        <input id="charter" type="checkbox" />
                         <label htmlFor="charter">Je m'engage au respect de la charte du label</label>
                     </div>
-                    <div className="flex gap-3">
-                        <input id="conditions" type="checkbox" className="size-4" />
+                    <div className="flex items-start gap-3">
+                        <input id="conditions" type="checkbox" className="mt-0.5" />
                         <div className="flex flex-col gap-2">
                             <label htmlFor="conditions">Déclaration d'engagement au respect de la charte du label</label>
                             <p className="text-trivial text-sm">
@@ -79,6 +79,14 @@ export default function RegisterForm() {
                         </div>
                     </div>
                 </div>
+                <p className="mt-7">
+                    En soumettant ce formulaire, vous vous inscrivez à la formation de label {label}. Un représentant du label vous contactera pour confirmer votre inscription et vous fournir les informations relatives au paiement et au déroulement de la formation.
+                </p>
+               <div className="flex justify-center">
+               <button className="mt-11 btn btn-primary px-28 py-2.5">
+                    Valider
+                </button>
+               </div>
             </form>
         </>
     )

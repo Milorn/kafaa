@@ -21,12 +21,12 @@ export default function RegisterExpert({ label }) {
 
                     <div className="fieldset">
                         <label htmlFor="phone">Téléphone</label>
-                        <input id="phone" type="text" placeholder="0555555555" />
+                        <input id="phone" type="tel" placeholder="0555555555" />
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="email">Email</label>
-                        <input id="email" type="text" placeholder="test@email.com" />
+                        <input id="email" type="email" placeholder="test@example.com" />
                     </div>
 
                     <div className="fieldset">

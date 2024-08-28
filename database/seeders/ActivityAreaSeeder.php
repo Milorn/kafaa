@@ -19,7 +19,6 @@ class ActivityAreaSeeder extends Seeder
             ['name' => 'Energies'],
             ['name' => 'Dispositifs Médicaux'],
             ['name' => 'Textile'],
-            ['name' => 'Industrie divers'],
             ['name' => 'Caoutchouc, Plastique'],
             ['name' => 'Mécanique'],
             ['name' => 'Bois, Papier, Emballage'],
@@ -27,6 +26,7 @@ class ActivityAreaSeeder extends Seeder
             ['name' => 'Recyclage'],
             ['name' => 'Chimie, Pharmacie'],
             ['name' => 'Transformation du verre'],
+            ['name' => 'Autre'],
         ];
 
         ActivityArea::insert($data);
