@@ -8,11 +8,19 @@ export default function RegisterForm() {
     const [type, setType] = useState('company');
     const [label, setLabel] = useState('');
     const [submitting, setSubmitting] = useState(false);
+    const [expert, setExpert] = useState({
+        fname: "", lname: "", address: "", phone: "", email: "", diploma: "",
+        number_of_years: "", number_of_projects: "", number_of_metrics: "",
+        professional_status: "", resumee: ""
+    });
+    const [company, setCompany] = useState({});
+    const [provider, setProvider] = useState({});
 
     const submit = (e) => {
         e.preventDefault();
-        setSubmitting(true);
-        alert(type);
+
+        const data = type == 'expert' ? expert : type == 'company' ? company : provider;
+        console.log(data);
     };
 
     return (
@@ -55,9 +63,9 @@ export default function RegisterForm() {
                     type &&
                     <div className="mt-10">
                         {
-                            type == 'company' ? <RegisterCompany />
-                                : type == 'provider' ? <RegisterProvider />
-                                    : type == 'expert' && label && <RegisterExpert label={label} />
+                            type == 'company' ? <RegisterCompany company={company} setCompany={setCompany} />
+                                : type == 'provider' ? <RegisterProvider provider={provider} setProvider={setProvider} />
+                                    : type == 'expert' && label && <RegisterExpert label={label} expert={expert} setExpert={setExpert} />
                         }
                     </div>
                 }
@@ -82,11 +90,11 @@ export default function RegisterForm() {
                 <p className="mt-7">
                     En soumettant ce formulaire, vous vous inscrivez à la formation de label {label}. Un représentant du label vous contactera pour confirmer votre inscription et vous fournir les informations relatives au paiement et au déroulement de la formation.
                 </p>
-               <div className="flex justify-center">
-               <button className="mt-11 btn btn-primary px-28 py-2.5">
-                    Valider
-                </button>
-               </div>
+                <div className="flex justify-center">
+                    <button className="mt-11 btn btn-primary px-28 py-2.5">
+                        Valider
+                    </button>
+                </div>
             </form>
         </>
     )

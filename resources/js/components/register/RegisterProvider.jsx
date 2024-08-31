@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 
 export default function RegisterProvider() {
     const [activityAreas, setActivityAreas] = useState([]);
-    const [employees, setEmployees] = useState([]);
     useEffect(() => {
         axios.get('/data/activity-areas')
             .then(({ data }) => setActivityAreas(data));
