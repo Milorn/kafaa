@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react"
+import RegisterEmployee from "./RegisterEmployee";
+import { TrashIcon } from "@heroicons/react/16/solid";
 
 export default function RegisterCompany() {
     const [activityAreas, setActivityAreas] = useState([]);
+    const [employees, setEmployees] = useState([]);
     useEffect(() => {
         axios.get('/data/activity-areas')
             .then(({ data }) => setActivityAreas(data));
     }, []);
+
+    const removeEmployee = (index) => {
+        const arr = [...employees];
+        arr.splice(index, 1);
+        setEmployees(arr);
+    }
+    
     return (
         <>
             <h3 className="text-center text-2xl text-[#6A6A6A] mb-14">Inscription pour les entreprises</h3>
@@ -48,9 +58,9 @@ export default function RegisterCompany() {
                     </div>
 
                     <div className="fieldset">
-                        <label htmlFor="label">Domaine d'activité</label>
+                        <label htmlFor="activity-area">Domaine d'activité</label>
                         <div className="relative">
-                            <select id="label" className="w-full field" defaultValue="">
+                            <select id="activity-area" className="w-full field" defaultValue="">
                                 <option value="" disabled>Please select</option>
                                 {
                                     activityAreas.map((area) => (
@@ -65,7 +75,7 @@ export default function RegisterCompany() {
                     </div>
 
                     <div className="fieldset">
-                        <label>Joindre le CV en format PDF</label>
+                        <label>Joindre le registre de commerce en format PDF</label>
                         <p className="text-xs text-trivial">
                             Veuillez fournir une copie de votre registre du commerce attestant de l'existence légale de votre entreprise
                         </p>
@@ -74,6 +84,26 @@ export default function RegisterCompany() {
 
                     </div>
                 </div>
+
+            </div>
+            <h3 className="mt-16 mb-8 text-black text-lg">Les employés souhaitant labeliser</h3>
+            <div className="flex flex-col gap-4 mb-8">
+                {
+                    employees.map((employee, index) => (
+                        <div key={index}>
+                            <div className="flex justify-end">
+                                <button type="button" onClick={() => removeEmployee(index)}>
+                                    <TrashIcon className="size-5 fill-red-500"/>
+                                </button>
+                            </div>
+                            <RegisterEmployee index={index} />
+                            <hr className="mt-4"/>
+                        </div>
+                    ))
+                }
+            </div>
+            <div className="flex justify-center">
+                <button type="button" onClick={() => setEmployees([...employees, {}])} className="btn btn-primary text-center py-2 hover:cursor-pointer text-sm font-semibold">Ajouter un employé</button>
 
             </div>
         </>

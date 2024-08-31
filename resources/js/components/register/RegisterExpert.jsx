@@ -57,8 +57,8 @@ export default function RegisterExpert({ label }) {
                         <div className="relative">
                             <select id="label" className="w-full field text-[#BBB]" defaultValue="">
                                 <option value="" disabled>Please select</option>
-                                <option value="epe">Employé</option>
-                                <option value="pv">Chômeur</option>
+                                <option value="employed">Employé</option>
+                                <option value="unemployed">Chômeur</option>
                             </select>
                             <svg className="pointer-events-none absolute top-0 right-0 mt-3 mr-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
