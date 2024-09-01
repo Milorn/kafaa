@@ -1,11 +1,12 @@
 
-export default function RegisterExpert({ label, expert, setExpert }) {
+export default function RegisterExpert({ label, expert, setExpert, errors, clearErrors }) {
 
     const change = (e) => {
         setExpert({
             ...expert,
             [e.target.name]: e.target.value
         });
+        clearErrors('expert', e.target.name);
     };
 
     const handleFile = (e) => {
@@ -24,7 +25,10 @@ export default function RegisterExpert({ label, expert, setExpert }) {
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor="lname">Nom</label>
-                        <input id="lname" name="lname" type="text" placeholder="Nom" value={expert.lname} onChange={change} />
+
+                        <input id="lname" name="lname" type="text" className={errors.lname && "border border-red-500"} placeholder="Nom" value={expert.lname} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.lname}</p>
+
                     </div>
                     <div className="fieldset">
                         <label htmlFor="fname">Prénom</label>
@@ -89,9 +93,9 @@ export default function RegisterExpert({ label, expert, setExpert }) {
 
                     <div className="fieldset">
                         <label htmlFor="resumee" className="btn btn-primary text-center py-2.5 hover:cursor-pointer">
-                            Choisir un fichier 
+                            Choisir un fichier
                             {expert.resumee && <span className="text-xs font-base overflow-hidden">: 1 fichier choisi</span>}
-                            </label>
+                        </label>
                         <input id="resumee" name="resumee" type="file" className="hidden" onChange={handleFile} />
 
                     </div>

@@ -5,9 +5,12 @@ import RegisterCompany from "./RegisterCompany";
 import RegisterProvider from "./RegisterProvider";
 
 export default function RegisterForm() {
-    const [type, setType] = useState('company');
-    const [label, setLabel] = useState('');
+    const [type, setType] = useState('expert');
+    const [label, setLabel] = useState('pv');
     const [submitting, setSubmitting] = useState(false);
+    const [charter, setCharter] = useState(false);
+    const [conditions, setConditions] = useState(false);
+
     const [expert, setExpert] = useState({
         fname: "", lname: "", address: "", phone: "", email: "", diploma: "",
         number_of_years: "", number_of_projects: "", number_of_metrics: "",
@@ -18,7 +21,18 @@ export default function RegisterForm() {
         responsible_name: "", responsible_job: "", activityArea: "", registry: "",
         employees: []
     });
-    const [provider, setProvider] = useState({});
+    const [provider, setProvider] = useState({
+        provider_name: "", address: "", phone: "", email: "", website: "",
+        responsible_name: "", responsible_job: "", activityArea: "", registry: "",
+    });
+
+    const [errors, setErrors] = useState({ expert: { lname: "This field is required" }, company: {}, provider: {} });
+
+    const clearErrors = (type, name) => {
+        const obj = { ...errors };
+        obj[type][name] = null;
+        setErrors(obj);
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -67,9 +81,9 @@ export default function RegisterForm() {
                     type &&
                     <div className="mt-10">
                         {
-                            type == 'company' ? <RegisterCompany company={company} setCompany={setCompany} />
-                                : type == 'provider' ? <RegisterProvider provider={provider} setProvider={setProvider} />
-                                    : type == 'expert' && label && <RegisterExpert label={label} expert={expert} setExpert={setExpert} />
+                            type == 'company' ? <RegisterCompany company={company} setCompany={setCompany} errors={errors.company} clearErrors={clearErrors} />
+                                : type == 'provider' ? <RegisterProvider provider={provider} setProvider={setProvider} errors={errors.provider} clearErrors={clearErrors}/>
+                                    : type == 'expert' && label && <RegisterExpert label={label} expert={expert} setExpert={setExpert} errors={errors.expert} clearErrors={clearErrors}/>
                         }
                     </div>
                 }
@@ -78,11 +92,11 @@ export default function RegisterForm() {
 
                 <div className="flex flex-col gap-y-5">
                     <div className="flex items-center gap-3">
-                        <input id="charter" type="checkbox" />
+                        <input id="charter" type="checkbox" onChange={(e) => setCharter(!charter)} checked={charter} />
                         <label htmlFor="charter">Je m'engage au respect de la charte du label</label>
                     </div>
                     <div className="flex items-start gap-3">
-                        <input id="conditions" type="checkbox" className="mt-0.5" />
+                        <input id="conditions" type="checkbox" className="mt-0.5" onChange={(e) => setConditions(!conditions)} checked={conditions} />
                         <div className="flex flex-col gap-2">
                             <label htmlFor="conditions">Déclaration d'engagement au respect de la charte du label</label>
                             <p className="text-trivial text-sm">
@@ -95,7 +109,7 @@ export default function RegisterForm() {
                     En soumettant ce formulaire, vous vous inscrivez à la formation de label {label}. Un représentant du label vous contactera pour confirmer votre inscription et vous fournir les informations relatives au paiement et au déroulement de la formation.
                 </p>
                 <div className="flex justify-center">
-                    <button className="mt-11 btn btn-primary px-28 py-2.5">
+                    <button className="mt-11 btn btn-primary px-28 py-2.5 disabled:opacity-70 disabled:cursor-not-allowed" disabled={!charter || !conditions}>
                         Valider
                     </button>
                 </div>
