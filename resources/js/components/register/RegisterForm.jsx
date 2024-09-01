@@ -13,7 +13,11 @@ export default function RegisterForm() {
         number_of_years: "", number_of_projects: "", number_of_metrics: "",
         professional_status: "", resumee: ""
     });
-    const [company, setCompany] = useState({});
+    const [company, setCompany] = useState({
+        company_name: "", address: "", phone: "", email: "", website: "",
+        responsible_name: "", responsible_job: "", activityArea: "", registry: "",
+        employees: []
+    });
     const [provider, setProvider] = useState({});
 
     const submit = (e) => {
