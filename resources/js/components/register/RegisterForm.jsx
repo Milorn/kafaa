@@ -6,8 +6,8 @@ import RegisterProvider from "./RegisterProvider";
 import axios from "axios";
 
 export default function RegisterForm() {
-    const [type, setType] = useState('expert');
-    const [label, setLabel] = useState('pv');
+    const [type, setType] = useState('');
+    const [label, setLabel] = useState('');
     const [submitting, setSubmitting] = useState(false);
     const [charter, setCharter] = useState(false);
     const [conditions, setConditions] = useState(false);
@@ -37,19 +37,24 @@ export default function RegisterForm() {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(expert);
+        let data = {};
 
         if (type == 'expert') {
-            axios.postForm('/register', { type, ...expert, label })
-                .catch(err => {
-                    if (err.response.status == 422) {
-                        const errors = {};
-                        Object.keys(err.response.data.errors)
-                            .forEach(key => errors[key] = err.response.data.errors[key][0]);
-                        setErrors({ expert: errors });
-                    }
-                });
+            data = { type, ...expert, label };
         }
+        else if (type == 'company') {
+            data = { type, ...company };
+        }
+
+        axios.postForm('/register', data)
+            .catch(err => {
+                if (err.response.status == 422) {
+                    const errors = {};
+                    Object.keys(err.response.data.errors)
+                        .forEach(key => errors[key] = err.response.data.errors[key][0]);
+                    setErrors({expert: {}, provider: {}, company: {}, [type]: errors });
+                }
+            });
 
         /* const data = type == 'expert' ? expert : type == 'company' ? company : provider; */
     };
@@ -61,7 +66,7 @@ export default function RegisterForm() {
                     <div className="fieldset">
                         <label htmlFor="type">Vous représentez :</label>
                         <div className="relative">
-                            <select id="type" className="w-full shadow-bottom" onChange={(e) => setType(e.target.value)} defaultValue={type}>
+                            <select id="type" className="w-full shadow-bottom" onChange={(e) => setType(e.target.value)} defaultValue={type} required>
                                 <option value="" disabled>Please select</option>
                                 <option value="expert">Installateur</option>
                                 <option value="company">Entreprise</option>
@@ -78,7 +83,7 @@ export default function RegisterForm() {
                         <div className="fieldset">
                             <label htmlFor="label">Choisissez un label :</label>
                             <div className="relative">
-                                <select id="label" className="w-full shadow-bottom" onChange={(e) => setLabel(e.target.value)} defaultValue={label}>
+                                <select id="label" className="w-full shadow-bottom" onChange={(e) => setLabel(e.target.value)} defaultValue={label} required>
                                     <option value="" disabled>Please select</option>
                                     <option value="epe">EPE</option>
                                     <option value="pv">PV</option>

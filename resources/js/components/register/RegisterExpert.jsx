@@ -26,10 +26,8 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor="lname">Nom</label>
-
                         <input id="lname" name="lname" type="text" className={errors.lname && "border border-red-500"} placeholder="Nom" value={expert.lname} onChange={change} />
                         <p className="text-sm text-red-500">{errors.lname}</p>
-
                     </div>
                     <div className="fieldset">
                         <label htmlFor="fname">Prénom</label>

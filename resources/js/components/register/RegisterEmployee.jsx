@@ -1,5 +1,5 @@
 
-export default function RegisterEmployee({ index, employee, changeEmployee }) {
+export default function RegisterEmployee({ index, employee, changeEmployee, errors }) {
 
     const change = (e) => {
         changeEmployee(index, e.target.name, e.target.value);
@@ -11,16 +11,16 @@ export default function RegisterEmployee({ index, employee, changeEmployee }) {
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor={`employee-lname-${index}`}>Nom</label>
-                        <input id={`employee-lname-${index}`} name="lname" type="text" placeholder="Nom" value={employee.lname} onChange={change} />
+                        <input id={`employee-lname-${index}`} name="lname" type="text" placeholder="Nom" value={employee.lname} onChange={change} required/>
                     </div>
                     <div className="fieldset">
                         <label htmlFor={`employee-fname-${index}`}>Prénom</label>
-                        <input id={`employee-fname-${index}`} name="fname" type="text" placeholder="Prénom" value={employee.fname} onChange={change} />
+                        <input id={`employee-fname-${index}`} name="fname" type="text" placeholder="Prénom" value={employee.fname} onChange={change} required/>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor={`employee-address-${index}`}>Adresse</label>
-                        <input id={`employee-address-${index}`} name="address" type="text" placeholder="Adresse" value={employee.address} onChange={change} />
+                        <input id={`employee-address-${index}`} name="address" type="text" placeholder="Adresse" value={employee.address} onChange={change} required/>
                     </div>
 
 
@@ -28,18 +28,18 @@ export default function RegisterEmployee({ index, employee, changeEmployee }) {
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor={`employee-phone-${index}`}>Téléphone</label>
-                        <input id={`employee-phone-${index}`} name="phone" type="tel" placeholder="0555555555" value={employee.phone} onChange={change} />
+                        <input id={`employee-phone-${index}`} name="phone" type="tel" placeholder="0555555555" value={employee.phone} onChange={change} required/>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor={`employee-email-${index}`}>Email</label>
-                        <input id={`employee-email-${index}`} name="email" type="email" placeholder="test@example.com" value={employee.email} onChange={change} />
+                        <input id={`employee-email-${index}`} name="email" type="email" placeholder="test@example.com" value={employee.email} onChange={change} required/>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor={`employee-label-${index}`}>Label</label>
                         <div className="relative">
-                            <select id={`employee-label-${index}`} name="label" className="w-full field" value={employee.label} onChange={change}>
+                            <select id={`employee-label-${index}`} name="label" className="w-full field" value={employee.label} onChange={change} required>
                                 <option value="" disabled>Please select</option>
                                 <option value="pv">PV</option>
                                 <option value="epe">EPE</option>

@@ -28,11 +28,6 @@ class RegisterRequest extends FormRequest
     {
         $rules = [
             'type' => ['required', Rule::enum(UserType::class)->except(UserType::Admin)],
-            'fname' => ['required', 'string', 'max:100'],
-            'lname' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'email'],
-            'phone' => ['required', 'string', 'max:20'],
-            'address' => ['required', 'string', 'max:100'],
         ];
 
         $userTypeRules = $this->getRulesByUserType();
@@ -44,12 +39,16 @@ class RegisterRequest extends FormRequest
     {
         return match ($this->type) {
             UserType::Company->value => [
+                'responsible_name' => ['required', 'string', 'max:100'],
+                'email' => ['required', 'email'],
+                'phone' => ['required', 'string', 'max:20'],
+                'address' => ['required', 'string', 'max:100'],
                 'company_name' => ['required', 'string', 'max:200'],
                 'website' => ['required', 'url'],
                 'responsible_job' => ['required', 'string', 'max:100'],
                 'activity_area' => ['required', 'exists:activity_areas,id'],
                 'registry' => ['required', File::types(['pdf'])],
-                'employees' => ['required', 'array'],
+                'employees' => ['nullable', 'array'],
                 'employees.*.fname' => ['required', 'string', 'max:100'],
                 'employees.*.lname' => ['required', 'string', 'max:100'],
                 'employees.*.address' => ['required', 'string', 'max:100'],
@@ -58,6 +57,11 @@ class RegisterRequest extends FormRequest
                 'employees.*.label' => ['required', Rule::enum(LabelType::class)],
             ],
             UserType::Expert->value => [
+                'fname' => ['required', 'string', 'max:100'],
+                'lname' => ['required', 'string', 'max:100'],
+                'email' => ['required', 'email'],
+                'phone' => ['required', 'string', 'max:20'],
+                'address' => ['required', 'string', 'max:100'],
                 'diploma' => ['required', 'string', 'max:100'],
                 'number_of_years' => ['required', 'numeric', 'integer', 'min:0'],
                 'number_of_projects' => ['required', 'numeric', 'integer', 'min:0'],
@@ -67,8 +71,13 @@ class RegisterRequest extends FormRequest
                 'label' => ['required', Rule::enum(LabelType::class)],
             ],
             UserType::Provider->value => [
+                'responsible_name' => ['required', 'string', 'max:100'],
+                'email' => ['required', 'email'],
+                'phone' => ['required', 'string', 'max:20'],
+                'address' => ['required', 'string', 'max:100'],
+                'diploma' => ['required', 'string', 'max:100'],
                 'company_name' => ['required', 'string', 'max:200'],
-                'website' => ['nullable', 'url'],
+                'website' => ['required', 'url'],
                 'responsible_job' => ['required', 'string', 'max:100'],
                 'activity_area' => ['required', 'exists:activity_areas,id'],
                 'registry' => ['required', File::types(['pdf'])],

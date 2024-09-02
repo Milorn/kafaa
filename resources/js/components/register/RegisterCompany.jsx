@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import RegisterEmployee from "./RegisterEmployee";
 import { TrashIcon } from "@heroicons/react/16/solid";
 
-export default function RegisterCompany({ company, setCompany }) {
+export default function RegisterCompany({ company, setCompany, errors, clearErrors }) {
     const [activityAreas, setActivityAreas] = useState([]);
     useEffect(() => {
         axios.get('/data/activity-areas')
@@ -14,6 +14,7 @@ export default function RegisterCompany({ company, setCompany }) {
             ...company,
             [e.target.name]: e.target.value
         });
+        clearErrors('company', e.target.name);
     };
 
     const handleFile = (e) => {
@@ -23,6 +24,7 @@ export default function RegisterCompany({ company, setCompany }) {
                 registry: e.target.files[0]
             });
         }
+        clearErrors('company', 'registry');
     }
 
     const addEmployee = () => {
@@ -52,44 +54,51 @@ export default function RegisterCompany({ company, setCompany }) {
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor="company_name">Nom de l'entreprise</label>
-                        <input type="text" id="company_name" name="company_name" placeholder="Nom de l'entreprise" value={company.company_name} onChange={change} />
+                        <input type="text" id="company_name" name="company_name" className={errors.company_name && "border border-red-500"} placeholder="Nom de l'entreprise" value={company.company_name} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.company_name}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="address">Adresse</label>
-                        <input type="text" id="address" name="address" placeholder="Adresse" value={company.address} onChange={change} />
+                        <input type="text" id="address" name="address" className={errors.address && "border border-red-500"} placeholder="Adresse"  value={company.address} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.address}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="0555555555" value={company.phone} onChange={change} />
+                        <input type="tel" id="phone" name="phone" className={errors.phone && "border border-red-500"} placeholder="0555555555" value={company.phone} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.phone}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="test@example.com" value={company.email} onChange={change} />
+                        <input type="email" id="email" name="email" className={errors.email && "border border-red-500"} placeholder="test@example.com" value={company.email} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.email}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="website">Site web</label>
-                        <input type="url" id="website" name="website" placeholder="https://website.com" value={company.website} onChange={change} />
+                        <input type="url" id="website" name="website" className={errors.website && "border border-red-500"} placeholder="https://website.com" value={company.website} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.website}</p>
                     </div>
                 </div>
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor="responsible_lname">Nom du résponsable</label>
-                        <input type="text" id="responsible_lname" name="responsible_name" placeholder="Nom du résponsable" value={company.responsible_name} onChange={change} />
+                        <input type="text" id="responsible_name" className={errors.responsible_name && "border border-red-500"} name="responsible_name" placeholder="Nom du résponsable" value={company.responsible_name} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.responsible_name}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="responsible_job">Fonction du résponsable</label>
-                        <input type="text" id="responsible_job" name="responsible_job" placeholder="Fonction du résponsable" value={company.responsible_job} onChange={change} />
+                        <input type="text" id="responsible_job" className={errors.responsible_job && "border border-red-500"} name="responsible_job" placeholder="Fonction du résponsable" value={company.responsible_job} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.responsible_job}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="activity-area">Domaine d'activité</label>
                         <div className="relative">
-                            <select id="activity-area" name="activityArea" className="w-full field" value={company.activityArea} onChange={change}>
+                            <select id="activity-area" name="activity_area" className={`w-full field ${errors.activity_area && "border border-red-500"}`} value={company.activityArea} onChange={change}>
                                 <option value="" disabled>Please select</option>
                                 {
                                     activityAreas.map((area) => (
@@ -101,6 +110,7 @@ export default function RegisterCompany({ company, setCompany }) {
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </div>
+                        <p className="text-sm text-red-500">{errors.activity_area}</p>
                     </div>
 
                     <div className="fieldset">
@@ -108,9 +118,12 @@ export default function RegisterCompany({ company, setCompany }) {
                         <p className="text-xs text-trivial">
                             Veuillez fournir une copie de votre registre du commerce attestant de l'existence légale de votre entreprise
                         </p>
-                        <label htmlFor="registry" className="btn btn-primary text-center py-2.5 hover:cursor-pointer">Choisir un fichier</label>
+                        <label htmlFor="registry" className={`btn btn-primary text-center py-2.5 hover:cursor-pointer ${errors.registry && "bg-red-500"}`}>
+                            Choisir un fichier
+                            {company.registry && <span className="text-xs font-base overflow-hidden">: 1 fichier choisi</span>}
+                            </label>
                         <input id="registry" type="file" name="registry" className="hidden" onChange={handleFile} />
-
+                        <p className="text-sm text-red-500">{errors.registry}</p>
                     </div>
                 </div>
 
@@ -125,7 +138,7 @@ export default function RegisterCompany({ company, setCompany }) {
                                     <TrashIcon className="size-5 fill-red-500" />
                                 </button>
                             </div>
-                            <RegisterEmployee index={index} employee={employee} changeEmployee={changeEmployee} />
+                            <RegisterEmployee index={index} employee={employee} changeEmployee={changeEmployee} errors={errors.employees}/>
                             <hr className="mt-4" />
                         </div>
                     ))
