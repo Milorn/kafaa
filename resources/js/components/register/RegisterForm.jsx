@@ -1,9 +1,10 @@
 import { Field, Form, Formik } from "formik";
-import { useState } from "react"
+import { useRef, useState } from "react"
 import RegisterExpert from "./RegisterExpert";
 import RegisterCompany from "./RegisterCompany";
 import RegisterProvider from "./RegisterProvider";
 import axios from "axios";
+import Spinner from "../ui/Spinner";
 
 export default function RegisterForm() {
     const [type, setType] = useState('');
@@ -11,10 +12,11 @@ export default function RegisterForm() {
     const [submitting, setSubmitting] = useState(false);
     const [charter, setCharter] = useState(false);
     const [conditions, setConditions] = useState(false);
+    const formContainer = useRef();
 
     const [expert, setExpert] = useState({
-        fname: "", lname: "", address: "", phone: "", email: "", diploma: "",
-        number_of_years: "", number_of_projects: "", number_of_metrics: "",
+        fname: "", lname: "", address: "", phone: "", email: "", password: "",
+        diploma: "", number_of_years: "", number_of_projects: "", number_of_metric: "",
         professional_status: "", resumee: ""
     });
     const [company, setCompany] = useState({
@@ -37,6 +39,11 @@ export default function RegisterForm() {
 
     const submit = (e) => {
         e.preventDefault();
+
+        if(submitting) return;
+
+        setSubmitting(true);
+
         let data = {};
 
         if (type == 'expert') {
@@ -56,15 +63,14 @@ export default function RegisterForm() {
                     Object.keys(err.response.data.errors)
                         .forEach(key => errors[key] = err.response.data.errors[key][0]);
                     setErrors({expert: {}, provider: {}, company: {}, [type]: errors });
+                    formContainer.current.scrollIntoView();
                 }
-            });
-
-        /* const data = type == 'expert' ? expert : type == 'company' ? company : provider; */
+            }).finally(() => setSubmitting(false));
     };
 
     return (
         <>
-            <form onSubmit={submit}>
+            <form onSubmit={submit} ref={formContainer}>
                 <div className="flex flex-col gap-7 px-6 py-12 bg-[#F8F8F8] rounded-lg shadow-bottom">
                     <div className="fieldset">
                         <label htmlFor="type">Vous représentez :</label>
@@ -130,8 +136,9 @@ export default function RegisterForm() {
                     En soumettant ce formulaire, vous vous inscrivez à la formation de label {label}. Un représentant du label vous contactera pour confirmer votre inscription et vous fournir les informations relatives au paiement et au déroulement de la formation.
                 </p>
                 <div className="flex justify-center">
-                    <button className="mt-11 btn btn-primary px-28 py-2.5 disabled:opacity-70 disabled:cursor-not-allowed" disabled={!charter || !conditions}>
+                    <button className="mt-11 btn btn-primary px-28 py-2.5 flex items-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed" disabled={!charter || !conditions}>
                         Valider
+                        <Spinner loading={submitting}/>
                     </button>
                 </div>
             </form>

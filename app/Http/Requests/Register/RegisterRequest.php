@@ -8,6 +8,7 @@ use App\Enums\UserType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterRequest extends FormRequest
 {
@@ -40,7 +41,7 @@ class RegisterRequest extends FormRequest
         return match ($this->type) {
             UserType::Company->value => [
                 'responsible_name' => ['required', 'string', 'max:100'],
-                'email' => ['required', 'email'],
+                'email' => ['required', 'email', 'unique:users,email'],
                 'phone' => ['required', 'string', 'max:20'],
                 'address' => ['required', 'string', 'max:100'],
                 'company_name' => ['required', 'string', 'max:200'],
@@ -59,20 +60,21 @@ class RegisterRequest extends FormRequest
             UserType::Expert->value => [
                 'fname' => ['required', 'string', 'max:100'],
                 'lname' => ['required', 'string', 'max:100'],
-                'email' => ['required', 'email'],
+                'email' => ['required', 'email', 'unique:users,email'],
+                'password' => ['required', Password::min(8)],
                 'phone' => ['required', 'string', 'max:20'],
                 'address' => ['required', 'string', 'max:100'],
                 'diploma' => ['required', 'string', 'max:100'],
                 'number_of_years' => ['required', 'numeric', 'integer', 'min:0'],
                 'number_of_projects' => ['required', 'numeric', 'integer', 'min:0'],
-                'number_of_metrics' => ['required', 'numeric', 'integer', 'min:0'],
+                'number_of_metric' => ['required', 'numeric', 'integer', 'min:0'],
                 'professional_status' => ['required', Rule::enum(ProfessionalStatus::class)],
                 'resumee' => ['required', File::types(['pdf'])],
                 'label' => ['required', Rule::enum(LabelType::class)],
             ],
             UserType::Provider->value => [
                 'responsible_name' => ['required', 'string', 'max:100'],
-                'email' => ['required', 'email'],
+                'email' => ['required', 'email', 'unique:users,email'],
                 'phone' => ['required', 'string', 'max:20'],
                 'address' => ['required', 'string', 'max:100'],
                 'provider_name' => ['required', 'string', 'max:200'],

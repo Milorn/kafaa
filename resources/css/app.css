@@ -6,7 +6,8 @@
 
 @layer base {
     html {
-        @apply font-medium
+        @apply font-medium;
+        scroll-behavior: smooth;
     }
 }
 

@@ -54,13 +54,19 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                     </div>
 
                     <div className="fieldset">
+                        <label htmlFor="password">Mot de passe</label>
+                        <input id="password" name="password" type="password" className={errors.password && "border border-red-500"} placeholder="********" value={expert.password} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.password}</p>
+                    </div>
+
+                </div>
+                <div className="flex flex-col gap-7">
+
+                    <div className="fieldset">
                         <label htmlFor="diploma">Diplôme</label>
                         <input id="diploma" name="diploma" type="text" className={errors.diploma && "border border-red-500"} placeholder="Diplôme" value={expert.diploma} onChange={change} />
                         <p className="text-sm text-red-500">{errors.diploma}</p>
                     </div>
-                </div>
-                <div className="flex flex-col gap-7">
-                    <h6 className="text-sm font-semibold">Expérience dans le domaine {label == 'pv' ? "d'installation solaire" : "de l'éclairage public"}</h6>
 
                     <div className="fieldset">
                         <label htmlFor="number_of_years">Nombre d'années</label>
@@ -75,9 +81,9 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                     </div>
 
                     <div className="fieldset">
-                        <label htmlFor="number_of_metrics">{label == 'pv' ? "Nombre de kWc installées" : "Projet d'EP solaire "}</label>
-                        <input id="number_of_metrics" name="number_of_metrics" type="number" className={errors.number_of_metrics && "border border-red-500"} placeholder="Nombre" value={expert.number_of_metrics} onChange={change} />
-                        <p className="text-sm text-red-500">{errors.number_of_metrics}</p>
+                        <label htmlFor="number_of_metric">{label == 'pv' ? "Nombre de kWc installées" : "Projet d'EP solaire "}</label>
+                        <input id="number_of_metric" name="number_of_metric" type="number" className={errors.number_of_metric && "border border-red-500"} placeholder="Nombre" value={expert.number_of_metric} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.number_of_metric}</p>
                     </div>
 
                     <div className="fieldset">
@@ -95,11 +101,10 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                         <p className="text-sm text-red-500">{errors.professional_status}</p>
                     </div>
 
-                    <div className="fieldset">
-                        <label>Joindre le CV en format PDF</label>
-                    </div>
+
 
                     <div className="fieldset">
+                        <label>Joindre le CV en format PDF</label>
                         <label htmlFor="resumee" className={`btn btn-primary text-center py-2.5 hover:cursor-pointer ${errors.resumee && "bg-red-500"}`}>
                             Choisir un fichier
                             {expert.resumee && <span className="text-xs font-base overflow-hidden">: 1 fichier choisi</span>}
