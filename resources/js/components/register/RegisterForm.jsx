@@ -19,12 +19,12 @@ export default function RegisterForm() {
     });
     const [company, setCompany] = useState({
         company_name: "", address: "", phone: "", email: "", website: "",
-        responsible_name: "", responsible_job: "", activityArea: "", registry: "",
+        responsible_name: "", responsible_job: "", activity_area: "", registry: "",
         employees: []
     });
     const [provider, setProvider] = useState({
         provider_name: "", address: "", phone: "", email: "", website: "",
-        responsible_name: "", responsible_job: "", activityArea: "", registry: "",
+        responsible_name: "", responsible_job: "", activity_area: "", registry: "",
     });
 
     const [errors, setErrors] = useState({ expert: {}, company: {}, provider: {} });
@@ -44,6 +44,9 @@ export default function RegisterForm() {
         }
         else if (type == 'company') {
             data = { type, ...company };
+        }
+        else {
+            data = {type, ...provider};
         }
 
         axios.postForm('/register', data)
