@@ -30,9 +30,9 @@ class RegisterRequest extends FormRequest
             'type' => ['required', Rule::enum(UserType::class)->except(UserType::Admin)],
             'fname' => ['required', 'string', 'max:100'],
             'lname' => ['required', 'string', 'max:100'],
-            'address' => ['required', 'string', 'max:100'],
-            'phone' => ['required', 'string', 'max:20'],
             'email' => ['required', 'email'],
+            'phone' => ['required', 'string', 'max:20'],
+            'address' => ['required', 'string', 'max:100'],
         ];
 
         $userTypeRules = $this->getRulesByUserType();
@@ -44,7 +44,18 @@ class RegisterRequest extends FormRequest
     {
         return match ($this->type) {
             UserType::Company->value => [
-                'company_name' => ['required'],
+                'company_name' => ['required', 'string', 'max:200'],
+                'website' => ['required', 'url'],
+                'responsible_job' => ['required', 'string', 'max:100'],
+                'activity_area' => ['required', 'exists:activity_areas,id'],
+                'registry' => ['required', File::types(['pdf'])],
+                'employees' => ['required', 'array'],
+                'employees.*.fname' => ['required', 'string', 'max:100'],
+                'employees.*.lname' => ['required', 'string', 'max:100'],
+                'employees.*.address' => ['required', 'string', 'max:100'],
+                'employees.*.phone' => ['required', 'string', 'max:20'],
+                'employees.*.email' => ['required', 'email'],
+                'employees.*.label' => ['required', Rule::enum(LabelType::class)],
             ],
             UserType::Expert->value => [
                 'diploma' => ['required', 'string', 'max:100'],
@@ -56,7 +67,11 @@ class RegisterRequest extends FormRequest
                 'label' => ['required', Rule::enum(LabelType::class)],
             ],
             UserType::Provider->value => [
-
+                'company_name' => ['required', 'string', 'max:200'],
+                'website' => ['nullable', 'url'],
+                'responsible_job' => ['required', 'string', 'max:100'],
+                'activity_area' => ['required', 'exists:activity_areas,id'],
+                'registry' => ['required', File::types(['pdf'])],
             ],
             default => []
         };

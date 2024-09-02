@@ -3,6 +3,7 @@ import { useState } from "react"
 import RegisterExpert from "./RegisterExpert";
 import RegisterCompany from "./RegisterCompany";
 import RegisterProvider from "./RegisterProvider";
+import axios from "axios";
 
 export default function RegisterForm() {
     const [type, setType] = useState('expert');
@@ -26,7 +27,7 @@ export default function RegisterForm() {
         responsible_name: "", responsible_job: "", activityArea: "", registry: "",
     });
 
-    const [errors, setErrors] = useState({ expert: { lname: "This field is required" }, company: {}, provider: {} });
+    const [errors, setErrors] = useState({ expert: {}, company: {}, provider: {} });
 
     const clearErrors = (type, name) => {
         const obj = { ...errors };
@@ -36,9 +37,21 @@ export default function RegisterForm() {
 
     const submit = (e) => {
         e.preventDefault();
+        console.log(expert);
 
-        const data = type == 'expert' ? expert : type == 'company' ? company : provider;
-        console.log(data);
+        if (type == 'expert') {
+            axios.postForm('/register', { type, ...expert, label })
+                .catch(err => {
+                    if (err.response.status == 422) {
+                        const errors = {};
+                        Object.keys(err.response.data.errors)
+                            .forEach(key => errors[key] = err.response.data.errors[key][0]);
+                        setErrors({ expert: errors });
+                    }
+                });
+        }
+
+        /* const data = type == 'expert' ? expert : type == 'company' ? company : provider; */
     };
 
     return (
@@ -82,8 +95,8 @@ export default function RegisterForm() {
                     <div className="mt-10">
                         {
                             type == 'company' ? <RegisterCompany company={company} setCompany={setCompany} errors={errors.company} clearErrors={clearErrors} />
-                                : type == 'provider' ? <RegisterProvider provider={provider} setProvider={setProvider} errors={errors.provider} clearErrors={clearErrors}/>
-                                    : type == 'expert' && label && <RegisterExpert label={label} expert={expert} setExpert={setExpert} errors={errors.expert} clearErrors={clearErrors}/>
+                                : type == 'provider' ? <RegisterProvider provider={provider} setProvider={setProvider} errors={errors.provider} clearErrors={clearErrors} />
+                                    : type == 'expert' && label && <RegisterExpert label={label} expert={expert} setExpert={setExpert} errors={errors.expert} clearErrors={clearErrors} />
                         }
                     </div>
                 }

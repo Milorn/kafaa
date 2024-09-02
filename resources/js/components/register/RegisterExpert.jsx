@@ -10,12 +10,13 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
     };
 
     const handleFile = (e) => {
-        if (e.target.files && e.target.files.length > 0) {
+        if (e.target.files && e.target.files[0]) {
             setExpert({
                 ...expert,
                 resumee: e.target.files[0]
             });
         }
+        clearErrors('expert', 'resumee');
     }
 
     return (
@@ -32,27 +33,32 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                     </div>
                     <div className="fieldset">
                         <label htmlFor="fname">Prénom</label>
-                        <input id="fname" name="fname" type="text" placeholder="Prénom" value={expert.fname} onChange={change} />
+                        <input id="fname" name="fname" type="text" className={errors.fname && "border border-red-500"} placeholder="Prénom" value={expert.fname} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.fname}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="address">Adresse</label>
-                        <input id="address" name="address" type="text" placeholder="Adresse" value={expert.address} onChange={change} />
+                        <input id="address" name="address" type="text" className={errors.address && "border border-red-500"} placeholder="Adresse" value={expert.address} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.address}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="phone">Téléphone</label>
-                        <input id="phone" name="phone" type="tel" placeholder="0555555555" value={expert.phone} onChange={change} />
+                        <input id="phone" name="phone" type="tel" className={errors.phone && "border border-red-500"} placeholder="0555555555" value={expert.phone} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.phone}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="email">Email</label>
-                        <input id="email" name="email" type="email" placeholder="test@example.com" value={expert.email} onChange={change} />
+                        <input id="email" name="email" type="email" className={errors.email && "border border-red-500"} placeholder="test@example.com" value={expert.email} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.email}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="diploma">Diplôme</label>
-                        <input id="diploma" name="diploma" type="text" placeholder="Diplôme" value={expert.diploma} onChange={change} />
+                        <input id="diploma" name="diploma" type="text" className={errors.diploma && "border border-red-500"} placeholder="Diplôme" value={expert.diploma} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.diploma}</p>
                     </div>
                 </div>
                 <div className="flex flex-col gap-7">
@@ -60,23 +66,26 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
 
                     <div className="fieldset">
                         <label htmlFor="number_of_years">Nombre d'années</label>
-                        <input id="number_of_years" name="number_of_years" type="number" placeholder="Nombre d'années" value={expert.number_of_years} onChange={change} />
+                        <input id="number_of_years" name="number_of_years" className={errors.number_of_years && "border border-red-500"} type="number" placeholder="Nombre d'années" value={expert.number_of_years} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.number_of_years}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="number_of_projects">{label == 'pv' ? 'Nombre de projets solaires photovoltaïques installés' : "Projet d'EP conventionnel"}</label>
-                        <input id="number_of_projects" name="number_of_projects" type="number" placeholder="Nombre de projets" value={expert.number_of_projects} onChange={change} />
+                        <input id="number_of_projects" name="number_of_projects" className={errors.number_of_projects && "border border-red-500"} type="number" placeholder="Nombre de projets" value={expert.number_of_projects} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.number_of_projects}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="number_of_metrics">{label == 'pv' ? "Nombre de kWc installées" : "Projet d'EP solaire "}</label>
-                        <input id="number_of_metrics" name="number_of_metrics" type="number" placeholder="Nombre" value={expert.number_of_metrics} onChange={change} />
+                        <input id="number_of_metrics" name="number_of_metrics" type="number" className={errors.number_of_metrics && "border border-red-500"} placeholder="Nombre" value={expert.number_of_metrics} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.number_of_metrics}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="professional_status">Statut professionnel</label>
                         <div className="relative">
-                            <select id="professional_status" name="professional_status" className="w-full field text-[#BBB]" value={expert.professional_status} onChange={change}>
+                            <select id="professional_status" name="professional_status" className={`w-full field  ${errors.professional_status && "border border-red-500"}`} value={expert.professional_status} onChange={change}>
                                 <option value="" disabled>Please select</option>
                                 <option value="employed">Employé</option>
                                 <option value="unemployed">Chômeur</option>
@@ -85,6 +94,7 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </div>
+                        <p className="text-sm text-red-500">{errors.professional_status}</p>
                     </div>
 
                     <div className="fieldset">
@@ -92,12 +102,12 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                     </div>
 
                     <div className="fieldset">
-                        <label htmlFor="resumee" className="btn btn-primary text-center py-2.5 hover:cursor-pointer">
+                        <label htmlFor="resumee" className={`btn btn-primary text-center py-2.5 hover:cursor-pointer ${errors.resumee && "bg-red-500"}`}>
                             Choisir un fichier
                             {expert.resumee && <span className="text-xs font-base overflow-hidden">: 1 fichier choisi</span>}
                         </label>
                         <input id="resumee" name="resumee" type="file" className="hidden" onChange={handleFile} />
-
+                        <p className="text-sm text-red-500">{errors.resumee}</p>
                     </div>
 
                 </div>
