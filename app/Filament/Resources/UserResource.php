@@ -5,9 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\UserType;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\Group;
-use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -16,8 +14,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
-use Illuminate\Support\Str;
-use Rawilk\FilamentPasswordInput\Password;
 use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 
 class UserResource extends Resource
@@ -40,49 +36,21 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Informations personnelles')
-                    ->columns(2)
+                Select::make('type')
+                    ->label('Type')
+                    ->options(UserType::class)
+                    ->required(),
+                Grid::make(2)
                     ->schema([
-                        Group::make([
-                            Select::make('type')
-                                ->label('Type')
-                                ->options(UserType::class)
-                                ->required(),
-                        ])->columns(2)
-                            ->columnSpanFull(),
-                        TextInput::make('lname')
+                        TextInput::make('name')
                             ->label('Nom')
-                            ->placeholder('Nom')
-                            ->required(),
-                        TextInput::make('fname')
-                            ->label('Prénom')
-                            ->placeholder('Prénom')
-                            ->required(),
+                            ->placeholder('Nom'),
                         TextInput::make('email')
                             ->label('Email')
                             ->email()
                             ->placeholder('example@email.com')
                             ->unique(ignorable: fn ($record) => $record)
                             ->required(),
-                        Password::make('password')
-                            ->label('Mot de passe')
-                            ->placeholder('*******')
-                            ->copyable()
-                            ->hintAction(fn ($set) => Action::make('generate')
-                                ->label('Genérer')
-                                ->action(fn () => $set('password', Str::password(12))))
-                            ->required(fn ($context) => $context == 'create'),
-                        TextInput::make('phone')
-                            ->label('Téléphone')
-                            ->placeholder('+213 555 555 555')
-                            ->tel(),
-                        TextInput::make('job')
-                            ->label('Poste')
-                            ->placeholder('Poste'),
-                        TextInput::make('address')
-                            ->label('Adresse')
-                            ->placeholder('Adresse')
-                            ->columnSpanFull(),
                     ]),
             ]);
     }
@@ -94,7 +62,14 @@ class UserResource extends Resource
                 TextColumn::make('name')
                     ->label('Nom')
                     ->sortable()
-                    ->searchable(),
+                    ->searchable()
+                    ->extraAttributes(['class' => 'underline'])
+                    ->url(fn ($record) => match ($record->type) {
+                        UserType::Expert => ExpertResource::getUrl('edit', ['record' => $record->userable_id]),
+                        UserType::Company => CompanyResource::getUrl('edit', ['record' => $record->userable_id]),
+                        UserType::Provider => ProviderResource::getUrl('edit', ['record' => $record->userable_id]),
+                        default => ''
+                    }),
                 TextColumn::make('email')
                     ->label('Email')
                     ->sortable()
@@ -124,14 +99,13 @@ class UserResource extends Resource
                     ->label('Imiter')
                     ->color('info')
                     ->redirectTo(route('filament.app.pages.my-profile')),
-                Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(fn ($query) => $query->where('type', '!=', UserType::Admin));
     }
 
     public static function getRelations(): array
@@ -145,8 +119,6 @@ class UserResource extends Resource
     {
         return [
             'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }

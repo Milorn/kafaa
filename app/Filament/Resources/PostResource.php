@@ -5,11 +5,10 @@ namespace App\Filament\Resources;
 use App\Enums\PostType;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -42,31 +41,26 @@ class PostResource extends Resource
                             ->options(PostType::class)
                             ->live(true)
                             ->required(),
-                        FileUpload::make('thumbnail')
+                        SpatieMediaLibraryFileUpload::make('file')
                             ->label('Image')
                             ->disk('public')
-                            ->directory('posts/images')
+                            ->collection('posts_images')
                             ->image()
                             ->imageEditor()
                             ->required()
                             ->columnSpanFull(),
-                        Group::make()
+                        SpatieMediaLibraryFileUpload::make('document')
+                            ->label('Document')
+                            ->helperText('Pour plusieurs fichiers veuillez télécharger un fichier .rar')
+                            ->hint('pdf, images, office, rar')
+                            ->disk('public')
+                            ->collection('documents')
+                            ->downloadable()
+                            ->previewable(false)
+                            ->maxSize(1024 * 50) // 50mb
+                            ->required()
                             ->columnSpanFull()
-                            ->relationship('file', condition: fn (?array $state): bool => filled($state['path']))
-                            ->visible(fn ($get) => $get('type') == PostType::Documents->value)
-                            ->schema([
-                                FileUpload::make('path')
-                                    ->storeFileNamesIn('name')
-                                    ->label('Document')
-                                    ->helperText('Pour plusieurs fichiers veuillez télécharger un fichier .rar')
-                                    ->hint('pdf, images, office, rar')
-                                    ->disk('public')
-                                    ->directory('posts/documents')
-                                    ->downloadable()
-                                    ->previewable(false)
-                                    ->maxSize(1024 * 50) // 50mb
-                                    ->required(),
-                            ]),
+                            ->visible(fn ($get) => $get('type') == PostType::Documents->value),
                     ]),
                 Translate::make()
                     ->schema([

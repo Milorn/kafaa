@@ -54,7 +54,12 @@ class User extends Authenticatable implements FilamentUser
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn ($value, $attributes) => $attributes['fname'].' '.$attributes['lname']
+            get: fn ($value, $attributes) => match ($this->type) {
+                UserType::Expert => $this->userable->fname.' '.$this->userable->lname,
+                UserType::Company => $this->userable->responsible_name,
+                UserType::Provider => $this->userable->responsible_name,
+                UserType::Admin => $attributes['name'],
+            }
         );
     }
 }

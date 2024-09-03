@@ -26,4 +26,4 @@ Route::controller(ViewDataController::class)->prefix('/data')->group(function ()
     Route::get('/activity-areas', 'activityAreas')->name('data.activity-areas');
 });
 
-Route::get('/files/private/{path}', [FileController::class, 'getFile'])->where('path', '.*')->middleware('auth')->name('files');
+Route::get('/files/private/{id}/{path}', [FileController::class, 'getFile'])->where('path', '.*')->middleware('auth')->name('files');

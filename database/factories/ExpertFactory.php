@@ -19,12 +19,17 @@ class ExpertFactory extends Factory
     public function definition(): array
     {
         return [
-            'type' => fake()->randomElement(LabelType::class),
+            'lname' => fake()->lastName(),
+            'fname' => fake()->firstName(),
+            'address' => fake()->optional()->address(),
+            'phone' => fake()->optional()->phoneNumber(),
             'diploma' => fake()->optional()->sentence(),
+            'professional_status' => fake()->optional()->randomElement(ProfessionalStatus::class),
+            'job' => fake()->optional()->jobTitle(),
+            'label' => fake()->randomElement(LabelType::class),
             'years_of_experience' => fake()->optional()->numberBetween(0, 20),
             'number_of_projects' => fake()->optional()->numberBetween(0, 20),
             'number_of_metric' => fake()->optional()->numberBetween(0, 20),
-            'professional_status' => fake()->randomElement(ProfessionalStatus::class),
         ];
     }
 }

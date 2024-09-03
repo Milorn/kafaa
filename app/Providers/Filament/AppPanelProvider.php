@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Pages\RegisterPage;
 use App\Livewire\UpdatePersonalInfo;
 use App\Livewire\UpdateProfessionalInfo;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
@@ -16,6 +15,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationGroup;
 use Filament\Notifications\Notification;
 use Filament\Pages;
+use Filament\Pages\Auth\EditProfile;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Tables\Columns\TextColumn;
@@ -40,7 +40,7 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
-            ->registration(RegisterPage::class)
+            ->profile(EditProfile::class)
             ->colors([
                 'primary' => '#066938',
             ])
@@ -101,7 +101,8 @@ class AppPanelProvider extends PanelProvider
         });
 
         TextColumn::configureUsing(function (TextColumn $column) {
-            $column->limit(50);
+            $column->limit(50)
+                ->placeholder('Vide');
         });
 
         RichEditor::configureUsing(function (RichEditor $editor) {

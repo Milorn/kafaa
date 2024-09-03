@@ -5,26 +5,28 @@ namespace App\Http\Controllers;
 use App\Enums\UserType;
 use App\Models\Company;
 use App\Models\Expert;
-use App\Models\File;
 use App\Models\Provider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class FileController extends Controller
 {
-    public function getFile($path)
+    public function getFile($id, $path)
     {
-        $file = File::where('path', $path)->first();
+        $file = Media::where(['id' => $id, 'file_name' => $path])->get()->first();
 
         if (! $file) {
             abort(404);
         }
 
         if ($this->verfiyPermission($file)) {
-            return Storage::disk('private')->download($file->path, $file->name);
+            return Storage::disk('private')->download("{$id}/{$file->file_name}", $file->name);
         } else {
             abort(403);
         }
+
+        return Storage::disk('private')->download($path, 'test.pdf');
     }
 
     private function verfiyPermission($file): bool
@@ -37,17 +39,17 @@ class FileController extends Controller
             return true;
         }
 
-        if ($file->fileable_type == Company::class) {
+        if ($file->model_type == Company::class) {
             if ($user->type == UserType::Company) {
-                return $userableId == $file->fileable_id;
+                return $userableId == $file->model_id;
             }
-        } elseif ($file->fileable_type == Provider::class) {
+        } elseif ($file->model_type == Provider::class) {
             if ($user->type == UserType::Provider) {
-                return $userableId == $file->fileable_id;
+                return $userableId == $file->model_id;
             }
-        } elseif ($file->fileable_type == Expert::class) {
+        } elseif ($file->model_type == Expert::class) {
             if ($user->type == UserType::Expert) {
-                return $userableId == $file->fileable_id;
+                return $userableId == $file->model_id;
             }
         }
 

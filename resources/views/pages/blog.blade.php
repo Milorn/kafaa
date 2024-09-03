@@ -23,7 +23,7 @@
             @foreach ($posts as $post)
                 <div class="rounded-3xl shadow-[2px_15px_12px_0px_rgba(0,0,0,0.25)]">
                     <img class="h-72 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
-                        src="{{ Storage::disk('public')->url($post->thumbnail) }}">
+                        src="{{$post->getFirstMediaUrl("posts_images") }}">
                     <div class="px-10 py-5 flex flex-col">
                         <p class="text-trivial text-sm mb-5">{{ $post->created_at->translatedFormat('d F Y') }}</p>
                         <a href="{{ route('blog.single', ['slug' => $post->slug]) }}">

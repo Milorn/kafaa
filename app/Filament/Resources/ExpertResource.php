@@ -8,10 +8,9 @@ use App\Enums\UserType;
 use App\Filament\Resources\ExpertResource\Pages;
 use App\Models\Expert;
 use Filament\Forms\Components\Actions\Action;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,6 +18,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Rawilk\FilamentPasswordInput\Password;
 
@@ -40,7 +40,7 @@ class ExpertResource extends Resource
     {
         return $form
             ->schema([
-                Section::make('Informations personnelles')
+                Section::make('Informations de connexion')
                     ->relationship('user')
                     ->mutateRelationshipDataBeforeCreateUsing(function ($data) {
                         $data['type'] = UserType::Expert;
@@ -49,14 +49,6 @@ class ExpertResource extends Resource
                     })
                     ->columns(2)
                     ->schema([
-                        TextInput::make('lname')
-                            ->label('Nom')
-                            ->placeholder('Nom')
-                            ->required(),
-                        TextInput::make('fname')
-                            ->label('Prénom')
-                            ->placeholder('Prénom')
-                            ->required(),
                         TextInput::make('email')
                             ->label('Email')
                             ->email()
@@ -70,65 +62,83 @@ class ExpertResource extends Resource
                             ->hintAction(fn ($set) => Action::make('generate')
                                 ->label('Genérer')
                                 ->action(fn () => $set('password', Str::password(12))))
-                            ->required(fn ($context) => $context == 'create'),
-                        TextInput::make('phone')
-                            ->label('Téléphone')
-                            ->placeholder('+213 555 555 555')
-                            ->tel(),
-                        TextInput::make('job')
-                            ->label('Poste')
-                            ->placeholder('Poste'),
-                        TextInput::make('address')
-                            ->label('Adresse')
-                            ->placeholder('Adresse')
-                            ->columnSpanFull(),
+                            ->required(fn ($context) => $context == 'create')
+                            ->dehydrated(fn ($state): bool => filled($state))
+                            ->dehydrateStateUsing(fn ($state): string => Hash::make($state)),
                     ]),
                 Section::make('Informations professionnelles')
                     ->columns(2)
                     ->schema([
-                        Select::make('type')
-                            ->label('Type du label')
-                            ->options(LabelType::class)
-                            ->required()
-                            ->live()
-                            ->disabledOn('edit'),
+                        TextInput::make('lname')
+                            ->label('Nom')
+                            ->placeholder('Nom')
+                            ->required(),
+                        TextInput::make('fname')
+                            ->label('Prénom')
+                            ->placeholder('Prénom')
+                            ->required(),
+                        TextInput::make('phone')
+                            ->label('Téléphone')
+                            ->placeholder('Téléphone')
+                            ->tel(),
                         TextInput::make('diploma')
                             ->label('Diplôme')
                             ->placeholder('Diplôme'),
-                        TextInput::make('years_of_experience')
-                            ->label('Années d\'éxperiences')
-                            ->numeric()
-                            ->minValue(0)
-                            ->placeholder('0'),
-                        TextInput::make('number_of_projects')
-                            ->label('Nombre de projets')
-                            ->numeric()
-                            ->minValue(0)
-                            ->placeholder('0')
-                            ->visible(fn ($get) => $get('type')),
-                        TextInput::make('number_of_metric')
-                            ->label(fn ($get) => $get('type') == LabelType::PV->value ? 'Nombre de kWc installées' : 'Nombre de projets d\'EP solaire')
-                            ->numeric()
-                            ->minValue(0)
-                            ->placeholder('0')
-                            ->visible(fn ($get) => $get('type')),
+                        TextInput::make('address')
+                            ->label('Adresse')
+                            ->placeholder('Adresse')
+                            ->columnSpanFull(),
                         Select::make('professional_status')
                             ->label('Statut professionnel')
                             ->options(ProfessionalStatus::class),
-                        Group::make()
-                            ->columnSpanFull()
-                            ->relationship('file', condition: fn (?array $state): bool => filled($state['path']))
-                            ->schema([
-                                FileUpload::make('path')
-                                    ->storeFileNamesIn('name')
-                                    ->label('CV')
-                                    ->disk('private')
-                                    ->directory('experts/resumees')
-                                    ->downloadable()
-                                    ->previewable(false)
-                                    ->acceptedFileTypes(['application/pdf', 'image/*'])
-                                    ->maxSize(1024 * 12), // 12mb
-                            ]),
+                        Select::make('label')
+                            ->label('Label')
+                            ->options(LabelType::class)
+                            ->default(LabelType::PV)
+                            ->live(true)
+                            ->required(),
+                        SpatieMediaLibraryFileUpload::make('file')
+                            ->label('CV')
+                            ->disk('private')
+                            ->collection('experts_resumees')
+                            ->downloadable()
+                            ->previewable(false)
+                            ->acceptedFileTypes(['application/pdf', 'image/*'])
+                            ->maxSize(1024 * 12)
+                            ->columnSpanFull(), // 12mb
+
+                    ]),
+                Section::make('Experience professionnelles')
+                    ->columns(2)
+                    ->schema([
+                        TextInput::make('years_of_experience')
+                            ->label('Nombre d\'années')
+                            ->numeric()
+                            ->integer()
+                            ->placeholder(0)
+                            ->minValue(0),
+                        TextInput::make('number_of_projects')
+                            ->label(fn ($get) => match ($get('label')) {
+                                LabelType::PV->value => 'Nombre de projets solaires photovoltaïques',
+                                LabelType::PV => 'Nombre de projets solaires photovoltaïques',
+                                LabelType::EPE->value => "Nombre de projets d'EP conventionnel",
+                                LabelType::EPE => "Nombre de projets d'EP conventionnel"
+                            })
+                            ->numeric()
+                            ->integer()
+                            ->placeholder(0)
+                            ->minValue(0),
+                        TextInput::make('number_of_metric')
+                            ->label(fn ($get) => match ($get('label')) {
+                                LabelType::PV->value => 'Nombre de kWc installées',
+                                LabelType::PV => 'Nombre de kWc installées',
+                                LabelType::EPE->value => "Nombre de projets d'EP solaire",
+                                LabelType::EPE => "Nombre de projets d'EP solaire",
+                            })
+                            ->numeric()
+                            ->integer()
+                            ->placeholder(0)
+                            ->minValue(0),
                     ]),
             ]);
     }
@@ -137,12 +147,16 @@ class ExpertResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name')
+                TextColumn::make('lname')
                     ->label('Nom')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('type')
-                    ->label('Type')
+                TextColumn::make('fname')
+                    ->label('Prénom')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('label')
+                    ->label('Label')
                     ->sortable()
                     ->badge(),
                 TextColumn::make('professional_status')
@@ -163,8 +177,8 @@ class ExpertResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('type')
-                    ->label('Type')
+                SelectFilter::make('label')
+                    ->label('Label')
                     ->options(LabelType::class)
                     ->native(false),
                 SelectFilter::make('professional_status')

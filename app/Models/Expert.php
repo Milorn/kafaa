@@ -7,12 +7,14 @@ use App\Enums\ProfessionalStatus;
 use Cesargb\Database\Support\CascadeDelete;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Expert extends Model
+class Expert extends Model implements HasMedia
 {
-    use CascadeDelete, HasFactory;
+    use CascadeDelete, HasFactory, InteractsWithMedia;
 
-    protected $cascadeDeleteMorph = ['user', 'file'];
+    protected $cascadeDeleteMorph = ['user'];
 
     protected $guarded = [
         'id',
@@ -22,7 +24,7 @@ class Expert extends Model
 
     protected $casts = [
         'professional_status' => ProfessionalStatus::class,
-        'type' => LabelType::class,
+        'label' => LabelType::class,
     ];
 
     protected static function booted(): void
@@ -35,11 +37,6 @@ class Expert extends Model
     public function user()
     {
         return $this->morphOne(User::class, 'userable');
-    }
-
-    public function file()
-    {
-        return $this->morphOne(File::class, 'fileable');
     }
 
     public function label()

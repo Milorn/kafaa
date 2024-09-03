@@ -28,7 +28,6 @@ class RegisterController extends Controller
     }
 
     /** ------------------------------ */
-
     private function registerExpert(array $data)
     {
         $expert = Expert::create([
@@ -45,7 +44,7 @@ class RegisterController extends Controller
                 'fileable_type' => Expert::class,
                 'fileable_id' => $expert->id,
                 'name' => $data['resumee']->getClientOriginalName(),
-                'path' => $data['resumee']->store('experts/resumees', 'private')
+                'path' => $data['resumee']->store('experts/resumees', 'private'),
             ]);
         }
 
@@ -64,7 +63,11 @@ class RegisterController extends Controller
         return ['status' => 'success'];
     }
 
-    private function registerCompany(array $data) {}
+    private function registerCompany(array $data)
+    {
+    }
 
-    private function registerProvider(array $data) {}
+    private function registerProvider(array $data)
+    {
+    }
 }

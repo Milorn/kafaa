@@ -18,7 +18,6 @@ return new class extends Migration
             $table->json('title');
             $table->json('subtitle')->nullable();
             $table->json('content');
-            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

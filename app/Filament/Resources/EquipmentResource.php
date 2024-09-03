@@ -6,9 +6,9 @@ use App\Enums\EquipmentStatus;
 use App\Enums\UserType;
 use App\Filament\Resources\EquipmentResource\Pages;
 use App\Models\Equipment;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -51,18 +51,18 @@ class EquipmentResource extends Resource
                             ->placeholder('description')
                             ->columnSpanFull()
                             ->required(),
-                        /* FileUpload::make('path')
-                            ->storeFileNamesIn('name')
+                        SpatieMediaLibraryFileUpload::make('files')
                             ->multiple()
                             ->label('Fiches')
                             ->disk('private')
-                            ->directory('equipments/files')
+                            ->collection('equipments')
                             ->downloadable()
                             ->previewable(false)
                             ->acceptedFileTypes(['application/pdf', 'image/*'])
                             ->maxFiles(10)
                             ->maxSize(1024 * 12)
-                            ->required() // 12mb */
+                            ->required() // 12mb
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

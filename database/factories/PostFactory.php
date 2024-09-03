@@ -26,7 +26,6 @@ class PostFactory extends Factory
             'slug' => Str::slug($title),
             'subtitle' => fake()->boolean() ? ['fr' => fake('fr_FR')->sentence(), 'ar' => fake()->sentence()] : null,
             'content' => ['fr' => fake('fr_FR')->text(), 'ar' => fake()->text()],
-            'thumbnail' => 'placeholder.png',
         ];
     }
 }

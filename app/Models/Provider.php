@@ -5,12 +5,14 @@ namespace App\Models;
 use Cesargb\Database\Support\CascadeDelete;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Provider extends Model
+class Provider extends Model implements HasMedia
 {
-    use CascadeDelete, HasFactory;
+    use CascadeDelete, HasFactory, InteractsWithMedia;
 
-    protected $cascadeDeleteMorph = ['user', 'file'];
+    protected $cascadeDeleteMorph = ['user'];
 
     protected $guarded = [
         'id',
@@ -33,10 +35,5 @@ class Provider extends Model
     public function activityArea()
     {
         return $this->belongsTo(ActivityArea::class);
-    }
-
-    public function file()
-    {
-        return $this->morphOne(File::class, 'fileable');
     }
 }

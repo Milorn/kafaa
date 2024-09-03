@@ -19,8 +19,12 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
-            'activity_area_id' => ActivityArea::pluck('id')->random(),
+            'responsible_name' => fake()->name(),
+            'responsible_job' => fake()->optional()->jobTitle(),
+            'address' => fake()->optional()->address(),
+            'phone' => fake()->optional()->phoneNumber(),
             'website' => fake()->optional()->url(),
+            'activity_area_id' => ActivityArea::pluck('id')->random(),
         ];
     }
 }

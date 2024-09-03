@@ -1,7 +1,7 @@
 <x-layouts.main>
     <x-slot:main>
         <div class="relative">
-            <img class="w-full min-h-96" src="{{ Storage::disk('public')->url($post->thumbnail) }}">
+            <img class="w-full min-h-96" src="{{$post->getFirstMediaUrl("posts_images")}}">
             <div class="absolute bottom-16 w-full">
                 <div class="max-w-screen-lg mx-auto">
                     <span
@@ -23,7 +23,7 @@
                 @foreach ($relatedPosts as $related)
                     <div class="flex flex-row shadow-xl rounded-lg">
                         <img class="w-48 rounded-tl-lg rounded-bl-lg"
-                            src="{{ Storage::disk('public')->url($related->thumbnail) }}">
+                            src="{{$related->getFirstMediaUrl("posts_images") }}">
                         <div class="flex flex-col p-7 flex-grow">
                             <p class="text-sm text-trivial">{{ $related->created_at->translatedFormat('d F Y') }}</p>
                             <h3 class="text-primary text-3xl line-clamp-2 mt-1 mb-2">{{ $related->title }}</h3>
