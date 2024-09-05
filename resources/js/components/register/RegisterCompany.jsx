@@ -84,7 +84,7 @@ export default function RegisterCompany({ company, setCompany, errors, clearErro
                 </div>
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
-                        <label htmlFor="responsible_lname">Nom du résponsable</label>
+                        <label htmlFor="responsible_name">Nom du résponsable</label>
                         <input type="text" id="responsible_name" className={errors.responsible_name && "border border-red-500"} name="responsible_name" placeholder="Nom du résponsable" value={company.responsible_name} onChange={change} />
                         <p className="text-sm text-red-500">{errors.responsible_name}</p>
                     </div>

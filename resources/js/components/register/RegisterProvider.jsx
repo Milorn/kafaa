@@ -55,23 +55,32 @@ export default function RegisterProvider({ provider, setProvider, errors, clearE
                         <p className="text-sm text-red-500">{errors.email}</p>
                     </div>
 
+
                     <div className="fieldset">
-                        <label htmlFor="website">Site web</label>
-                        <input type="url" id="website" name="website" className={errors.website && "border border-red-500"} placeholder="https://website.com" value={provider.website} onChange={change} />
-                        <p className="text-sm text-red-500">{errors.website}</p>
+                        <label htmlFor="password">Mot de passe</label>
+                        <input id="password" name="password" type="password" className={errors.password && "border border-red-500"} placeholder="********" value={provider.password} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.password}</p>
                     </div>
+
+
                 </div>
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor="responsible_name">Nom du résponsable</label>
                         <input type="text" id="responsible_name" name="responsible_name" className={errors.responsible_name && "border border-red-500"} placeholder="Nom du résponsable" value={provider.responsible_name} onChange={change} />
-                        <p className="text-sm text-red-500">{errors.responsible_lname}</p>
+                        <p className="text-sm text-red-500">{errors.responsible_name}</p>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor="responsible_job">Fonction du résponsable</label>
                         <input type="text" id="responsible_job" name="responsible_job" className={errors.responsible_job && "border border-red-500"} placeholder="Fonction du résponsable" value={provider.responsible_job} onChange={change} />
                         <p className="text-sm text-red-500">{errors.responsible_job}</p>
+                    </div>
+
+                    <div className="fieldset">
+                        <label htmlFor="website">Site web</label>
+                        <input type="url" id="website" name="website" className={errors.website && "border border-red-500"} placeholder="https://website.com" value={provider.website} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.website}</p>
                     </div>
 
                     <div className="fieldset">

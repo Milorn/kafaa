@@ -25,8 +25,8 @@ export default function RegisterForm() {
         employees: []
     });
     const [provider, setProvider] = useState({
-        provider_name: "", address: "", phone: "", email: "", website: "",
-        responsible_name: "", responsible_job: "", activity_area: "", registry: "",
+        provider_name: "", address: "", phone: "", email: "", password: "",
+        website: "", responsible_name: "", responsible_job: "", activity_area: "", registry: "",
     });
 
     const [errors, setErrors] = useState({ expert: {}, company: {}, provider: {} });
