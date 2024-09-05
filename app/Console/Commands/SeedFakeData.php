@@ -21,7 +21,7 @@ class SeedFakeData extends Command
      *
      * @var string
      */
-    protected $signature = 'app:seed-fake-data {--M|migrate}';
+    protected $signature = 'app:seed-fake-data {--m|migrate}';
 
     /**
      * The console command description.

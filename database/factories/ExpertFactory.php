@@ -25,7 +25,6 @@ class ExpertFactory extends Factory
             'phone' => fake()->optional()->phoneNumber(),
             'diploma' => fake()->optional()->sentence(),
             'professional_status' => fake()->optional()->randomElement(ProfessionalStatus::class),
-            'job' => fake()->optional()->jobTitle(),
             'label' => fake()->randomElement(LabelType::class),
             'years_of_experience' => fake()->optional()->numberBetween(0, 20),
             'number_of_projects' => fake()->optional()->numberBetween(0, 20),

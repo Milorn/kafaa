@@ -2,8 +2,7 @@
 
 namespace App\Providers\Filament;
 
-use App\Livewire\UpdatePersonalInfo;
-use App\Livewire\UpdateProfessionalInfo;
+use App\Livewire\UpdateProfile;
 use DutchCodingCompany\FilamentDeveloperLogins\FilamentDeveloperLoginsPlugin;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
@@ -136,8 +135,7 @@ class AppPanelProvider extends PanelProvider
                 ->myProfile()
                 ->enableTwoFactorAuthentication()
                 ->myProfileComponents([
-                    'personal_info' => UpdatePersonalInfo::class,
-                    UpdateProfessionalInfo::class,
+                    'personal_info' => UpdateProfile::class,
                 ]),
         ];
     }
