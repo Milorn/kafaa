@@ -65,7 +65,7 @@ class RegisterRequest extends FormRequest
                 'phone' => ['required', 'string', 'max:20'],
                 'address' => ['required', 'string', 'max:100'],
                 'diploma' => ['required', 'string', 'max:100'],
-                'number_of_years' => ['required', 'numeric', 'integer', 'min:0'],
+                'years_of_experience' => ['required', 'numeric', 'integer', 'min:0'],
                 'number_of_projects' => ['required', 'numeric', 'integer', 'min:0'],
                 'number_of_metric' => ['required', 'numeric', 'integer', 'min:0'],
                 'professional_status' => ['required', Rule::enum(ProfessionalStatus::class)],

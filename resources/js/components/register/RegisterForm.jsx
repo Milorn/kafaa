@@ -16,7 +16,7 @@ export default function RegisterForm() {
 
     const [expert, setExpert] = useState({
         fname: "", lname: "", address: "", phone: "", email: "", password: "",
-        diploma: "", number_of_years: "", number_of_projects: "", number_of_metric: "",
+        diploma: "", years_of_experience: "", number_of_projects: "", number_of_metric: "",
         professional_status: "", resumee: ""
     });
     const [company, setCompany] = useState({

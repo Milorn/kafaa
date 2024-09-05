@@ -48,7 +48,6 @@ return new class extends Migration
             $table->unsignedInteger('years_of_experience')->nullable();
             $table->unsignedInteger('number_of_projects')->nullable();
             $table->unsignedInteger('number_of_metric')->nullable();
-            $table->string('resume')->nullable();
             $table->timestamps();
         });
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\UserType;
 use App\Http\Requests\Register\RegisterRequest;
 use App\Models\Expert;
-use App\Models\File;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,30 +30,26 @@ class RegisterController extends Controller
     private function registerExpert(array $data)
     {
         $expert = Expert::create([
-            'type' => $data['label'],
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
             'diploma' => $data['diploma'],
-            'years_of_experience' => $data['number_of_years'],
+            'professional_status' => $data['professional_status'],
+            'label' => $data['label'],
+            'years_of_experience' => $data['years_of_experience'],
             'number_of_projects' => $data['number_of_projects'],
             'number_of_metric' => $data['number_of_metric'],
-            'professional_status' => $data['professional_status'],
         ]);
 
         if (isset($data['resumee'])) {
-            File::create([
-                'fileable_type' => Expert::class,
-                'fileable_id' => $expert->id,
-                'name' => $data['resumee']->getClientOriginalName(),
-                'path' => $data['resumee']->store('experts/resumees', 'private'),
-            ]);
+            $expert->addMediaFromRequest('resumee')
+                ->toMediaCollection('experts_resumees', 'private');
         }
 
-        $user = User::create([
-            'fname' => $data['fname'],
-            'lname' => $data['lname'],
+        User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'phone' => $data['phone'],
-            'address' => $data['address'],
             'type' => UserType::Expert,
             'userable_type' => Expert::class,
             'userable_id' => $expert->id,

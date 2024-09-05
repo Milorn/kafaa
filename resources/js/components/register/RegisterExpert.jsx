@@ -69,9 +69,9 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                     </div>
 
                     <div className="fieldset">
-                        <label htmlFor="number_of_years">Nombre d'années</label>
-                        <input id="number_of_years" name="number_of_years" className={errors.number_of_years && "border border-red-500"} type="number" placeholder="Nombre d'années" value={expert.number_of_years} onChange={change} />
-                        <p className="text-sm text-red-500">{errors.number_of_years}</p>
+                        <label htmlFor="years_of_experience">Nombre d'années</label>
+                        <input id="years_of_experience" name="years_of_experience" className={errors.years_of_experience && "border border-red-500"} type="number" placeholder="Nombre d'années" value={expert.years_of_experience} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.years_of_experience}</p>
                     </div>
 
                     <div className="fieldset">
