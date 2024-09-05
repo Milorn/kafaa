@@ -42,6 +42,7 @@ class ExpertResource extends Resource
             ->schema([
                 Section::make('Informations de connexion')
                     ->relationship('user')
+                    ->visible(fn ($record) => $record->user)
                     ->mutateRelationshipDataBeforeCreateUsing(function ($data) {
                         $data['type'] = UserType::Expert;
 
@@ -81,6 +82,10 @@ class ExpertResource extends Resource
                             ->label('Téléphone')
                             ->placeholder('Téléphone')
                             ->tel(),
+                        TextInput::make('email')
+                            ->label('Email secondaire')
+                            ->placeholder('email@example.com')
+                            ->email(),
                         TextInput::make('diploma')
                             ->label('Diplôme')
                             ->placeholder('Diplôme'),

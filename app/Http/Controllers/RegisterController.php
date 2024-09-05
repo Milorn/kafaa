@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ProfessionalStatus;
 use App\Enums\UserType;
 use App\Http\Requests\Register\RegisterRequest;
+use App\Models\Company;
 use App\Models\Expert;
 use App\Models\Provider;
 use App\Models\User;
@@ -64,6 +66,45 @@ class RegisterController extends Controller
 
     private function registerCompany(array $data)
     {
+        $company = Company::create([
+            'name' => $data['company_name'],
+            'responsible_name' => $data['responsible_name'],
+            'responsible_job' => $data['responsible_job'] ?? null,
+            'address' => $data['address'] ?? null,
+            'phone' => $data['phone'] ?? null,
+            'website' => $data['website'] ?? null,
+            'activity_area_id' => $data['activity_area'] ?? null,
+        ]);
+
+        if (isset($data['registry'])) {
+            $company->addMediaFromRequest('registry')
+                ->toMediaCollection('companies_registries', 'private');
+        }
+
+        User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'type' => UserType::Company,
+            'userable_type' => Company::class,
+            'userable_id' => $company->id,
+        ]);
+
+        if (isset($data['employees'])) {
+            foreach ($data['employees'] as $employee) {
+                Expert::create([
+                    'company_id' => $company->id,
+                    'fname' => $employee['fname'],
+                    'lname' => $employee['lname'],
+                    'address' => $employee['address'] ?? null,
+                    'phone' => $employee['phone'] ?? null,
+                    'email' => $employee['email'] ?? null,
+                    'label' => $employee['label'],
+                    'professional_status' => ProfessionalStatus::Employed,
+                ]);
+            }
+        }
+
+        return ['status' => 'success'];
     }
 
     private function registerProvider(array $data)

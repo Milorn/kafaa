@@ -23,6 +23,7 @@ class ExpertFactory extends Factory
             'fname' => fake()->firstName(),
             'address' => fake()->optional()->address(),
             'phone' => fake()->optional()->phoneNumber(),
+            'email' => fake()->optional()->safeEmail(),
             'diploma' => fake()->optional()->sentence(),
             'professional_status' => fake()->optional()->randomElement(ProfessionalStatus::class),
             'label' => fake()->randomElement(LabelType::class),

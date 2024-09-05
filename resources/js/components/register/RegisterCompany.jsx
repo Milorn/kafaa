@@ -77,10 +77,11 @@ export default function RegisterCompany({ company, setCompany, errors, clearErro
                     </div>
 
                     <div className="fieldset">
-                        <label htmlFor="website">Site web</label>
-                        <input type="url" id="website" name="website" className={errors.website && "border border-red-500"} placeholder="https://website.com" value={company.website} onChange={change} />
-                        <p className="text-sm text-red-500">{errors.website}</p>
+                        <label htmlFor="password">Mot de passe</label>
+                        <input id="password" name="password" type="password" className={errors.password && "border border-red-500"} placeholder="********" value={company.password} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.password}</p>
                     </div>
+
                 </div>
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
@@ -96,9 +97,15 @@ export default function RegisterCompany({ company, setCompany, errors, clearErro
                     </div>
 
                     <div className="fieldset">
+                        <label htmlFor="website">Site web</label>
+                        <input type="url" id="website" name="website" className={errors.website && "border border-red-500"} placeholder="https://website.com" value={company.website} onChange={change} />
+                        <p className="text-sm text-red-500">{errors.website}</p>
+                    </div>
+
+                    <div className="fieldset">
                         <label htmlFor="activity-area">Domaine d'activité</label>
                         <div className="relative">
-                            <select id="activity-area" name="activity_area" className={`w-full field ${errors.activity_area && "border border-red-500"}`} value={company.activityArea} onChange={change}>
+                            <select id="activity-area" name="activity_area" className={`w-full field ${errors.activity_area && "border border-red-500"}`} value={company.activity_area} onChange={change}>
                                 <option value="" disabled>Please select</option>
                                 {
                                     activityAreas.map((area) => (

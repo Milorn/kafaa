@@ -67,6 +67,9 @@ class UpdateProfile extends MyProfileComponent
                                 ->label('Téléphone')
                                 ->placeholder('Téléphone')
                                 ->tel(),
+                            TextInput::make('email')
+                                ->label('Email secondaire')
+                                ->placeholder('email@example.com'),
                             TextInput::make('diploma')
                                 ->label('Diplôme')
                                 ->placeholder('Diplôme'),

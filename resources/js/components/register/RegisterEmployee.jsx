@@ -20,7 +20,7 @@ export default function RegisterEmployee({ index, employee, changeEmployee, erro
 
                     <div className="fieldset">
                         <label htmlFor={`employee-address-${index}`}>Adresse</label>
-                        <input id={`employee-address-${index}`} name="address" type="text" placeholder="Adresse" value={employee.address} onChange={change} required/>
+                        <input id={`employee-address-${index}`} name="address" type="text" placeholder="Adresse" value={employee.address} onChange={change}/>
                     </div>
 
 
@@ -28,12 +28,12 @@ export default function RegisterEmployee({ index, employee, changeEmployee, erro
                 <div className="flex flex-col gap-7">
                     <div className="fieldset">
                         <label htmlFor={`employee-phone-${index}`}>Téléphone</label>
-                        <input id={`employee-phone-${index}`} name="phone" type="tel" placeholder="0555555555" value={employee.phone} onChange={change} required/>
+                        <input id={`employee-phone-${index}`} name="phone" type="tel" placeholder="0555555555" value={employee.phone} onChange={change}/>
                     </div>
 
                     <div className="fieldset">
                         <label htmlFor={`employee-email-${index}`}>Email</label>
-                        <input id={`employee-email-${index}`} name="email" type="email" placeholder="test@example.com" value={employee.email} onChange={change} required/>
+                        <input id={`employee-email-${index}`} name="email" type="email" placeholder="test@example.com" value={employee.email} onChange={change}/>
                     </div>
 
                     <div className="fieldset">

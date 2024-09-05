@@ -40,6 +40,7 @@ return new class extends Migration
             $table->foreignId('company_id')->nullable()->constrained('companies')->nullOnDelete();
             $table->string('lname');
             $table->string('fname');
+            $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('diploma')->nullable();
