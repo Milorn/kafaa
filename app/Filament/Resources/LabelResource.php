@@ -45,6 +45,10 @@ class LabelResource extends Resource
                             ->label('Type')
                             ->options(LabelType::class)
                             ->required(),
+                        DatePicker::make('starts_on')
+                            ->label('Date de début')
+                            ->default(today())
+                            ->required(),
                         DatePicker::make('expires_on')
                             ->label('Date d\'expiration')
                             ->required(),
@@ -73,8 +77,13 @@ class LabelResource extends Resource
                     ->label('Etat')
                     ->badge()
                     ->sortable(),
+                TextColumn::make('starts_on')
+                    ->label('Date de début')
+                    ->date()
+                    ->badge()
+                    ->sortable(),
                 TextColumn::make('expires_on')
-                    ->label('Expire le')
+                    ->label('Date d\'éxpiration')
                     ->date()
                     ->badge()
                     ->sortable(),

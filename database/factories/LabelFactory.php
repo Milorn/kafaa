@@ -21,6 +21,7 @@ class LabelFactory extends Factory
         return [
             'type' => fake()->randomElement(LabelType::class),
             'status' => fake()->randomElement(LabelStatus::class),
+            'starts_on' => fake()->dateTimeBetween('-2 years', 'now'),
             'expires_on' => fake()->dateTimeBetween('-2 years', '+5 years'),
         ];
     }

@@ -39,7 +39,7 @@ class Expert extends Model implements HasMedia
         return $this->morphOne(User::class, 'userable');
     }
 
-    public function label()
+    public function certificate()
     {
         return $this->hasOne(Label::class);
     }

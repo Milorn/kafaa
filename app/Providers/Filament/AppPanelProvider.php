@@ -68,7 +68,8 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->navigationGroups($this->getNavigationGroups())
-            ->plugins($this->getPlugins());
+            ->plugins($this->getPlugins())
+            ->viteTheme('resources/css/filament/app/theme.css');
     }
 
     public function boot(): void

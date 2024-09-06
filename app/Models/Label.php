@@ -16,6 +16,7 @@ class Label extends Model
     protected $casts = [
         'type' => LabelType::class,
         'status' => LabelStatus::class,
+        'starts_on' => 'date',
         'expires_on' => 'date',
     ];
 

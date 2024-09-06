@@ -9,6 +9,7 @@ export default defineConfig({
                 // Css
                 'resources/css/app.css', 
                 'resources/css/forms.css',
+                'resources/css/filament/app/theme.css',
 
                 // Js
                 'resources/js/pro.js',

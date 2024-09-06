@@ -43,7 +43,7 @@ class SeedFakeData extends Command
         $this->info('Seeding...');
         Expert::factory(5)
             ->has(User::factory()->type(UserType::Expert))
-            ->has(Label::factory())
+            ->has(Label::factory(), 'certificate')
             ->has(Project::factory(2))
             ->create();
 
