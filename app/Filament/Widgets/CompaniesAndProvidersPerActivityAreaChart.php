@@ -8,9 +8,13 @@ use App\Models\Provider;
 use Filament\Support\RawJs;
 use Filament\Widgets\ChartWidget;
 
-class CompaniesAndProvidersPerActivityArea extends ChartWidget
+class CompaniesAndProvidersPerActivityAreaChart extends ChartWidget
 {
-    protected static ?string $heading = 'Chart';
+    protected static ?string $pollingInterval = null;
+
+    protected static ?int $sort = 4;
+
+    protected static ?string $heading = 'Répartition des entreprises et fournisseurs par secteur d\'activité';
 
     protected int|string|array $columnSpan = 'full';
 

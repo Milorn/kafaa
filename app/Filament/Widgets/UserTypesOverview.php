@@ -12,6 +12,8 @@ class UserTypesOverview extends BaseWidget
 {
     protected static ?string $pollingInterval = null;
 
+    protected static ?int $sort = 1;
+
     protected function getStats(): array
     {
         return [
