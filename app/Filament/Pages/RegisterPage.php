@@ -13,10 +13,7 @@ class RegisterPage extends SimplePage
 
     protected static string $view = 'filament.pages.register-page';
 
-    public function register()
-    {
-
-    }
+    public function register() {}
 
     public function form(Form $form): Form
     {
