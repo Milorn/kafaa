@@ -1,29 +1,32 @@
 @php
     use App\Enums\LabelStatus;
-    $expiryDate = $record->certificate->expires_on;
-    $expiryColor = $expiryDate->lte(today())
-        ? 'text-danger-500'
-        : (today()->diffInDays($expiryDate) < 30
-            ? 'text-warning-500'
-            : 'text-black');
-    $statusText = null;
-    $statusColor = null;
-    $canRenew = false;
+    if ($record->certificate) {
+        $labelType = $record->certificate->type;
+        $expiryDate = $record->certificate->expires_on;
+        $expiryColor = $expiryDate->lte(today())
+            ? 'text-danger-500'
+            : (today()->diffInDays($expiryDate) < 30
+                ? 'text-warning-500'
+                : 'text-black');
+        $statusText = null;
+        $statusColor = null;
+        $canRenew = false;
 
-    if ($record->certificate->status == LabelStatus::Accepted) {
-        if ($expiryDate->lte(today())) {
-            $statusText = 'Expiré';
-            $statusColor = 'danger';
+        if ($record->certificate->status == LabelStatus::Accepted) {
+            if ($expiryDate->lte(today())) {
+                $statusText = 'Expiré';
+                $statusColor = 'danger';
+            } else {
+                $statusText = 'Valide';
+                $statusColor = $record->certificate->status->getColor();
+            }
+            if (today()->diffInDays($expiryDate) < 30) {
+                $canRenew = true;
+            }
         } else {
-            $statusText = 'Valide';
+            $statusText = $record->certificate->status->getLabel();
             $statusColor = $record->certificate->status->getColor();
         }
-        if (today()->diffInDays($expiryDate) < 30) {
-            $canRenew = true;
-        }
-    } else {
-        $statusText = $record->certificate->status->getLabel();
-        $statusColor = $record->certificate->status->getColor();
     }
 
 @endphp
@@ -32,9 +35,12 @@
 
 
     @if ($record->certificate)
-        <x-filament::section heading="Label" icon="heroicon-o-document-check">
-            <x-slot name="headerEnd">
-
+        <x-filament::section>
+            <x-slot name="heading">
+               <div class="flex items-center gap-2">
+                <img class="size-12" src={{ asset('images/logo_' . $labelType->value . '.svg') }} alt="{{$labelType->value}}">
+                Label {{ $record->certificate->type->getLabel() }}
+               </div>
             </x-slot>
 
             <div class="flex flex-col gap-2">
@@ -53,11 +59,12 @@
                     </x-filament::badge>
                 </div>
                 @if ($canRenew)
-                <div class="mt-4">
-                    <x-filament::button color="info" tooltip="Demander un renouvellement" size="xs" wire:click="renew">
-                        Renouveler
-                    </x-filament::button>
-                </div>
+                    <div class="mt-4">
+                        <x-filament::button color="info" tooltip="Demander un renouvellement" size="xs"
+                            wire:click="renew">
+                            Renouveler
+                        </x-filament::button>
+                    </div>
                 @endif
             </div>
         </x-filament::section>

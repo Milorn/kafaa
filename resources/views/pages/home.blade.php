@@ -60,7 +60,7 @@
                 <div class="max-w-2xl grid grid-cols-2 gap-8 mt-10">
                     <div class="flex flex-col items-center">
                         <div class="bg-white py-10 px-16 flex justify-center rounded-lg">
-                            <img class="h-52" src="{{ asset('images/label_pv_logo.png') }}" alt="Logo Label EPE">
+                            <img class="h-52" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label EPE">
                         </div>
                         <h2 class="text-center text-white font-bold text-3xl mt-10 mb-2">Kafa'a PV</h2>
                         <p class="text-center text-lg text-white">
@@ -73,7 +73,7 @@
 
                     <div class="flex flex-col items-center">
                         <div class="bg-white py-10 px-20 flex justify-center rounded-lg">
-                            <img class="h-52" src="{{ asset('images/label_epe_logo.png') }}" alt="Logo Label EPE">
+                            <img class="h-52" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
                         </div>
                         <h2 class="text-center text-white font-bold text-3xl mt-10 mb-2">Kafa'a Inara</h2>
                         <p class="text-center text-lg text-white">

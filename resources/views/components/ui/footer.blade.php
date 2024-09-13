@@ -3,8 +3,8 @@
         <div class="flex flex-col gap-10">
             <img class="h-20 p-1 object-contain" src="{{ asset('images/cerefe_logo.png') }}" alt="Logo Cerefe">
             <div class="flex flew-row justify-end gap-10">
-                <img class="h-28" src="{{ asset('images/label_pv_logo.png') }}" alt="Logo Label PV">
-                <img class="h-28" src="{{ asset('images/label_epe_logo.png') }}" alt="Logo Label EPE">
+                <img class="h-28" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
+                <img class="h-28" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
             </div>
         </div>
         <ul class="text-md flex flex-col justify-center gap-2">

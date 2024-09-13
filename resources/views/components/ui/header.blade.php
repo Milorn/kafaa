@@ -5,8 +5,8 @@
                 <img class="h-16 border-r border-primary pr-6 py-2" src="{{ asset('images/cerefe_logo.png') }}"
                     alt="Logo Cerefe">
             </a>
-            <img class="h-14" src="{{ asset('images/label_pv_logo.png') }}" alt="Logo Label PV">
-            <img class="h-14" src="{{ asset('images/label_epe_logo.png') }}" alt="Logo Label EPE">
+            <img class="h-14" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
+            <img class="h-14" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
         </div>
         <ul>
             <li
