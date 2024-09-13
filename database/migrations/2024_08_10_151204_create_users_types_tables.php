@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('lname');
             $table->string('fname');
             $table->string('email')->nullable();
+            $table->foreignId('wilaya_id')->nullable()->constrained('wilayas')->nullOnDelete();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('diploma')->nullable();

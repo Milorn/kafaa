@@ -38,6 +38,7 @@ class RegisterController extends Controller
         $expert = Expert::create([
             'fname' => $data['fname'],
             'lname' => $data['lname'],
+            'wilaya' => $data['wilaya'] ?? null,
             'address' => $data['address'] ?? null,
             'phone' => $data['phone'] ?? null,
             'diploma' => $data['diploma'] ?? null,

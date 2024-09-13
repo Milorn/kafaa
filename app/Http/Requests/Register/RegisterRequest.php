@@ -64,6 +64,7 @@ class RegisterRequest extends FormRequest
                 'fname' => ['required', 'string', 'max:100'],
                 'lname' => ['required', 'string', 'max:100'],
                 'phone' => ['nullable', 'string', 'max:20'],
+                'wilaya' => ['nullable', 'exists:wilayas,id'],
                 'address' => ['nullable', 'string', 'max:100'],
                 'diploma' => ['nullable', 'string', 'max:100'],
                 'years_of_experience' => ['nullable', 'numeric', 'integer', 'min:0'],

@@ -53,4 +53,9 @@ class Expert extends Model implements HasMedia
     {
         return $this->hasMany(Project::class);
     }
+
+    public function wilaya()
+    {
+        return $this->belongsTo(Wilaya::class);
+    }
 }

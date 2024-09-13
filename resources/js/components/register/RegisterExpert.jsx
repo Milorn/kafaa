@@ -1,5 +1,11 @@
+import { useEffect, useState } from "react";
 
 export default function RegisterExpert({ label, expert, setExpert, errors, clearErrors }) {
+    const [wilayas, setWilayas] = useState([]);
+    useEffect(() => {
+        axios.get('/data/wilayas')
+            .then(({ data }) => setWilayas(data));
+    }, []);
 
     const change = (e) => {
         setExpert({
@@ -33,6 +39,24 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                         <label htmlFor="fname">Prénom</label>
                         <input id="fname" name="fname" type="text" className={errors.fname && "border border-red-500"} placeholder="Prénom" value={expert.fname} onChange={change} />
                         <p className="text-sm text-red-500">{errors.fname}</p>
+                    </div>
+
+                    <div className="fieldset">
+                        <label htmlFor="wilaya">Wilaya</label>
+                        <div className="relative">
+                            <select id="wilaya" name="wilaya" className={`w-full field ${errors.wilaya && "border border-red-500"}`} value={expert.wilaya} onChange={change}>
+                                <option value="" disabled>Please select</option>
+                                {
+                                    wilayas.map((wilaya) => (
+                                        <option key={wilaya.id} value={wilaya.id}>{wilaya.code} - {wilaya.name}</option>
+                                    ))
+                                }
+                            </select>
+                            <svg className="pointer-events-none absolute top-0 right-0 mt-3 mr-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        <p className="text-sm text-red-500">{errors.wilaya}</p>
                     </div>
 
                     <div className="fieldset">

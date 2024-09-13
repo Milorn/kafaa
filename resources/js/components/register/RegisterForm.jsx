@@ -15,7 +15,7 @@ export default function RegisterForm() {
     const formContainer = useRef();
 
     const [expert, setExpert] = useState({
-        fname: "", lname: "", address: "", phone: "", email: "", password: "",
+        fname: "", lname: "", wilaya: "", address: "", phone: "", email: "", password: "",
         diploma: "", years_of_experience: "", number_of_projects: "", number_of_metric: "",
         professional_status: "", resumee: ""
     });
