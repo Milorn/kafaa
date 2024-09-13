@@ -18,8 +18,8 @@ class ProjectFactory extends Factory
     {
         return [
             'name' => fake()->word(),
-            'started_on' => fake()->dateTimeBetween('-5 years', '+5 years'),
-            'finished_on' => fake()->dateTimeBetween('-1 years', '+5 years'),
+            'started_on' => fake()->dateTimeBetween('-1 year', '+1 year'),
+            'finished_on' => fake()->dateTimeBetween('-1 year', '+1 year'),
             'description' => fake()->optional()->text(),
         ];
     }
