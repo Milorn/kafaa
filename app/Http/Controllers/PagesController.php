@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\PostType;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
@@ -22,9 +23,12 @@ class PagesController extends Controller
         return view('pages/pro');
     }
 
-    public function blog()
+    public function blog(Request $request)
     {
-        $posts = Post::where('type', '!=', PostType::Documents)->paginate(9);
+        $posts = Post::query()
+            ->where('type', '!=', PostType::Documents)
+            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
+            ->paginate(9);
 
         return view('pages/blog')->with('posts', $posts);
     }
@@ -40,11 +44,11 @@ class PagesController extends Controller
             ->with('relatedPosts', $relatedPosts);
     }
 
-    public function documents()
+    public function documents(Request $request)
     {
         $documents = Post::query()
-            ->with('file')
             ->where('type', PostType::Documents)
+            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
             ->paginate(9);
 
         return view('pages/documents')->with('documents', $documents);
