@@ -23,12 +23,12 @@
             <div class="max-w-2xl grid grid-cols-2 gap-8 mt-16">
                 <div class="flex flex-col items-center gap-y-28">
                     <img class="h-52" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label EPE">
-                    <button class="btn-primary mt-5 text-xl px-28">S'inscrire</button>
+                    <a href="{{route('register')}}" class="btn-primary mt-5 text-xl px-28">S'inscrire</a>
                 </div>
 
                 <div class="flex flex-col items-center gap-y-28">
                     <img class="h-52" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
-                    <button class="btn-primary mt-5 text-xl px-28">S'inscrire</button>
+                    <a href="{{route('register')}}" class="btn-primary mt-5 text-xl px-28">S'inscrire</a>
                 </div>
             </div>
         </div>

@@ -53,7 +53,7 @@
                         Rackham.
                     </p>
                 </div>
-                <button class="btn-primary h-fit px-28 py-4 font-bold text-xl">S'inscrire</button>
+                <a href="{{route('register')}}" class="btn-primary h-fit px-28 py-4 font-bold text-xl">S'inscrire</a>
             </div>
         </div>
         <div class="grid grid-cols-2 mb-5">

@@ -13,6 +13,7 @@ export default function RegisterForm() {
     const [charter, setCharter] = useState(false);
     const [conditions, setConditions] = useState(false);
     const formContainer = useRef();
+    const [error, setError] = useState(false);
 
     const [expert, setExpert] = useState({
         fname: "", lname: "", wilaya: "", address: "", phone: "", email: "", password: "",
@@ -43,6 +44,7 @@ export default function RegisterForm() {
         if(submitting) return;
 
         setSubmitting(true);
+        setError(false);
 
         let data = {};
 
@@ -57,6 +59,7 @@ export default function RegisterForm() {
         }
 
         axios.postForm('/register', data)
+            .then(() => window.location.href = "/app/login")
             .catch(err => {
                 if (err.response.status == 422) {
                     const errors = {};
@@ -64,6 +67,9 @@ export default function RegisterForm() {
                         .forEach(key => errors[key] = err.response.data.errors[key][0]);
                     setErrors({expert: {}, provider: {}, company: {}, [type]: errors });
                     formContainer.current.scrollIntoView();
+                }
+                else {
+                    setError(true);
                 }
             }).finally(() => setSubmitting(false));
     };
@@ -135,8 +141,9 @@ export default function RegisterForm() {
                 <p className="mt-7">
                     En soumettant ce formulaire, vous vous inscrivez à la formation de label {label}. Un représentant du label vous contactera pour confirmer votre inscription et vous fournir les informations relatives au paiement et au déroulement de la formation.
                 </p>
-                <div className="flex justify-center">
-                    <button className="mt-11 btn btn-primary px-28 py-2.5 flex items-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed" disabled={!charter || !conditions}>
+                <div className="flex flex-col justify-center items-center mt-10 gap-2">
+                    {error && <p className="text-red-500">Une erreur est survenue.</p>}
+                    <button className="btn btn-primary px-28 py-2.5 flex items-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed" disabled={!charter || !conditions}>
                         Valider
                         <Spinner loading={submitting}/>
                     </button>

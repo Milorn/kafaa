@@ -73,6 +73,10 @@ class UpdateProfile extends MyProfileComponent
                             TextInput::make('diploma')
                                 ->label('Diplôme')
                                 ->placeholder('Diplôme'),
+                            Select::make('wilaya_id')
+                                ->label('Wilaya')
+                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->id.'-'.$record->name)
+                                ->relationship('wilaya', 'name'),
                             TextInput::make('address')
                                 ->label('Adresse')
                                 ->placeholder('Adresse')

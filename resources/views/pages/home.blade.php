@@ -13,8 +13,8 @@
                             the industry's standard dummy text ever since the 1500s, when an unknown printer took a
                             galley of type and scrambled it to make a type.
                         </p>
-                        <button class="btn btn-icon bg-white text-primary">En savoir plus <x-heroicon-o-arrow-right
-                                class="size-5 text-primary stroke-2" /> </button>
+                        <a href="{{route('about-us')}}" class="btn btn-icon inline-flex bg-white text-primary">En savoir plus <x-heroicon-o-arrow-right
+                                class="size-5 text-primary stroke-2" /> </a>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                             page
                             when looking at its layout.
                         </p>
-                        <button class="btn-secondary mt-5 text-xl">En savoir plus</button>
+                        <a href="{{route('pro')}}" class="btn-secondary mt-5 text-xl">En savoir plus</a>
                     </div>
 
                     <div class="flex flex-col items-center">
@@ -81,7 +81,7 @@
                             page
                             when looking at its layout.
                         </p>
-                        <button class="btn-secondary mt-5 text-xl">En savoir plus</button>
+                        <a href="{{route('pro')}}" class="btn-secondary mt-5 text-xl">En savoir plus</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                         </p>
                     </div>
                 </div>
-                <button class="btn-primary mt-5 text-4xl px-24 py-5">Demander une labélisation</button>
+                <a href="{{route('register')}}" class="btn-primary mt-5 text-4xl px-24 py-5">Demander une labélisation</a>
             </div>
         </div>
 
