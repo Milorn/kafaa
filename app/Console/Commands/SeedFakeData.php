@@ -59,6 +59,10 @@ class SeedFakeData extends Command
         Post::factory(10)
             ->create();
 
+        Post::factory(10)
+            ->document()
+            ->create();
+
         Equipment::factory(20)
             ->create();
     }

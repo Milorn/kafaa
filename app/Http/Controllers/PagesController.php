@@ -28,7 +28,7 @@ class PagesController extends Controller
         $posts = Post::query()
             ->where('type', '!=', PostType::Documents)
             ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
-            ->paginate(9);
+            ->simplePaginate(9);
 
         return view('pages/blog')->with('posts', $posts);
     }
@@ -49,7 +49,7 @@ class PagesController extends Controller
         $documents = Post::query()
             ->where('type', PostType::Documents)
             ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
-            ->paginate(9);
+            ->simplePaginate(9);
 
         return view('pages/documents')->with('documents', $documents);
     }

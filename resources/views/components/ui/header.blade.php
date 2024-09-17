@@ -11,7 +11,7 @@
         <ul>
             <li
                 class="inline-block mx-2 pb-3 @if (request()->routeIs('home')) link-active @else font-medium text-trivial @endif">
-                <a href="/" class="hover:text-primary">Acceuil</a>
+                <a href="/" class="hover:text-primary">Accueil</a>
             </li>
             <li
                 class="inline-block mx-2 pb-3 @if (request()->routeIs('about-us')) link-active @else font-medium text-trivial @endif">

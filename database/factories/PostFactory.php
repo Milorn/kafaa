@@ -28,4 +28,13 @@ class PostFactory extends Factory
             'content' => ['fr' => fake('fr_FR')->text(), 'ar' => fake()->text()],
         ];
     }
+
+    public function document(): Factory
+    {
+        return $this->state(function () {
+            return [
+                'type' => PostType::Documents,
+            ];
+        });
+    }
 }
