@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('provider_id')->nullable()->constrained('providers')->cascadeOnDelete();
+            $table->string('slug');
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('status');

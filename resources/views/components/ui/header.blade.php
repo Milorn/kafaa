@@ -39,13 +39,18 @@
                     </li>
                 </ul>
             </li>
+            <li
+                class="inline-block mx-2 pb-3 @if (request()->routeIs('equipments')) link-active @else font-medium text-trivial @endif">
+                <a href="/equipments" class="hover:text-primary">Espace fournisseurs</a>
+            </li>
             <li class="inline-block ml-12">
                 <div class="flex flex-col gap-2">
                     <a href="/register" class="btn-primary btn-icon">S'enregistrer <x-heroicon-o-arrow-right
                             class="size-5 text-white stroke-2" /> </a>
                     <p class="text-trivial text-xs text-right">
                         Déja inscrit ?
-                        <a href="{{route('filament.app.auth.login')}}" class="text-primary underline decoration-primary">se connecter</a>
+                        <a href="{{ route('filament.app.auth.login') }}"
+                            class="text-primary underline decoration-primary">se connecter</a>
                     </p>
                 </div>
             </li>

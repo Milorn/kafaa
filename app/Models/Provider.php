@@ -36,4 +36,9 @@ class Provider extends Model implements HasMedia
     {
         return $this->belongsTo(ActivityArea::class);
     }
+
+    public function equipments()
+    {
+        return $this->hasMany(Equipment::class);
+    }
 }

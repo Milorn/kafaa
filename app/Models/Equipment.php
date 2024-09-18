@@ -17,4 +17,9 @@ class Equipment extends Model implements HasMedia
     protected $casts = [
         'status' => EquipmentStatus::class,
     ];
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
 }

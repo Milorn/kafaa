@@ -15,6 +15,8 @@ Route::controller(PagesController::class)->group(function () {
     Route::get('/blog', 'blog')->name('blog');
     Route::get('/blog/{slug}', 'singleBlog')->name('blog.single');
     Route::get('/documents', 'documents')->name('documents');
+    Route::get('/equipments', 'equipments')->name('equipments');
+    Route::get('/equipments/{slug}', 'singleEquipment')->name('equipments.single');
 });
 
 Route::controller(RegisterController::class)->group(function () {
