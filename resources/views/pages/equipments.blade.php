@@ -26,13 +26,11 @@
             <div class="grid grid-cols-3 gap-x-5 gap-y-6 max-w-screen-xl mx-auto px-12">
                 @foreach ($equipments as $equipment)
                     <div class="rounded-3xl shadow-[2px_15px_12px_0px_rgba(0,0,0,0.25)]">
-                        <img class="h-72 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
-                            src="{{ $equipment->getFirstMediaUrl('equipments') ? $equipment->getFirstMediaUrl('equipment') : asset('images/placeholder.webp') }}">
+                        <img class="h-56 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
+                            src="{{ $equipment->getFirstMediaUrl('equipments') ? $equipment->getFirstMediaUrl('equipments') : asset('images/placeholder.webp') }}">
                         <div class="px-10 py-5 flex flex-col">
-                            <p class="text-trivial text-sm mb-5">{{ $equipment->created_at->translatedFormat('d F Y') }}
-                            </p>
-                            <a href="{{ route('blog.single', ['slug' => $equipment->slug]) }}">
-                                <h2 class="text-4xl text-primary font-bold line-clamp-2 mb-2">{{ $equipment->title }}
+                            <a href="{{ route('equipments.single', ['slug' => $equipment->slug]) }}">
+                                <h2 class="text-4xl text-primary font-bold line-clamp-2 mb-2 text-justify">{{ $equipment->name }}
                                 </h2>
                             </a>
                             <p class="text-black text-base line-clamp-4 mb-5">
@@ -45,7 +43,7 @@
                 @endforeach
             </div>
             <div class="flex justify-center gap-4 my-10">
-                {{ $documents->links() }}
+                {{ $equipments->links() }}
             </div>
         @else
             <h4 class="text-center text-lg mb-20 mt-10">Aucun résultat</h4>

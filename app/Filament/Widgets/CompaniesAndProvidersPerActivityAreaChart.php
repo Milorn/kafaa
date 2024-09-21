@@ -66,14 +66,14 @@ class CompaniesAndProvidersPerActivityAreaChart extends ChartWidget
                 [
                     'label' => 'Entreprises',
                     'data' => $companiesData,
-                    'backgroundColor' => 'rgba(255, 99, 132, 0.2)',
-                    'borderColor' => 'rgb(255, 99, 132)',
+                    'backgroundColor' => '#06693899',
+                    'borderColor' => '#066938',
                 ],
                 [
                     'label' => 'Fournisseurs',
                     'data' => $providersData,
-                    'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
-                    'borderColor' => 'rgb(75, 192, 192)',
+                    'backgroundColor' => '#FFD60099',
+                    'borderColor' => '#FFD600',
                 ],
             ],
             'labels' => $activityAreas->pluck('name')->toArray(),

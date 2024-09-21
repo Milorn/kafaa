@@ -70,6 +70,14 @@ class ExpertResource extends Resource
                 Section::make('Informations professionnelles')
                     ->columns(2)
                     ->schema([
+                        SpatieMediaLibraryFileUpload::make('image')
+                            ->label('Image')
+                            ->disk('public')
+                            ->collection('experts_avatars')
+                            ->image()
+                            ->imageEditor()
+                            ->avatar()
+                            ->columnSpanFull(),
                         TextInput::make('lname')
                             ->label('Nom')
                             ->placeholder('Nom')

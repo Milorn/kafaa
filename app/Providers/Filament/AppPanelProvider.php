@@ -64,7 +64,9 @@ class AppPanelProvider extends PanelProvider
             ])
             ->navigationGroups($this->getNavigationGroups())
             ->plugins($this->getPlugins())
-            ->viteTheme('resources/css/filament/app/theme.css');
+            ->viteTheme('resources/css/filament/app/theme.css')
+            ->brandLogo(asset('images/cerefe_logo.png'))
+            ->brandLogoHeight('3rem');
     }
 
     public function boot(): void

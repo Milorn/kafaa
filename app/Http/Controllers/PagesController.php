@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\EquipmentStatus;
 use App\Enums\PostType;
 use App\Models\Equipment;
 use App\Models\Post;
@@ -57,12 +58,12 @@ class PagesController extends Controller
 
     public function equipments(Request $request)
     {
-        $documents = Post::query()
-            ->where('type', PostType::Documents)
-            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
+        $equipments = Equipment::query()
+            ->where('status', EquipmentStatus::Compliant)
+            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(name) like '%".strtolower($request->search)."%'"))
             ->simplePaginate(9);
 
-        return view('pages/equipments')->with('documents', $documents);
+        return view('pages/equipments')->with('equipments', $equipments);
     }
 
     public function singleEquipment($slug)

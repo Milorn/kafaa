@@ -25,12 +25,12 @@ class LabelTypesChart extends ChartWidget
                         Label::query()->where('type', LabelType::EPE)->count(),
                     ],
                     'backgroundColor' => [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
+                        '#06693899',
+                        '#FFD60099',
                     ],
                     'borderColor' => [
-                        'rgb(255, 99, 132)',
-                        'rgb(75, 192, 192)',
+                        '#066938',
+                        '#FFD600',
                     ],
                 ],
             ],

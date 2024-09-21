@@ -19,6 +19,7 @@ class EquipmentFactory extends Factory
     {
         return [
             'name' => fake()->word(),
+            'slug' => fake()->slug(),
             'description' => fake()->paragraph(),
             'status' => fake()->randomElement(EquipmentStatus::class),
         ];

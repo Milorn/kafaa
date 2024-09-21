@@ -25,8 +25,12 @@ class EquipmentComformityChart extends ChartWidget
                         Equipment::query()->where('status', EquipmentStatus::NonCompliant)->count(),
                     ],
                     'backgroundColor' => [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
+                        '#06693899',
+                        '#FFD60099',
+                    ],
+                    'borderColor' => [
+                        '#066938',
+                        '#FFD600',
                     ],
                 ],
             ],
