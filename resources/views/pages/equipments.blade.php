@@ -27,7 +27,7 @@
                 @foreach ($equipments as $equipment)
                     <div class="rounded-3xl shadow-[2px_15px_12px_0px_rgba(0,0,0,0.25)]">
                         <img class="h-64 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
-                            src="{{ $equipment->getFirstMediaUrl('equipments') ? $equipment->getFirstMediaUrl('equipments') : asset('images/placeholder.webp') }}">
+                            src="{{ $equipment->getFirstMediaUrl('equipments_images') ? $equipment->getFirstMediaUrl('equipments_images') : asset('images/placeholder.webp') }}">
                         <div class="px-8 pb-5 pt-2 flex flex-col">
                             <a href="{{ route('equipments.single', ['slug' => $equipment->slug]) }}">
                                 <h2 class="text-xl text-primary font-bold line-clamp-2 mb-2 text-justify">{{ $equipment->name }}</h2>

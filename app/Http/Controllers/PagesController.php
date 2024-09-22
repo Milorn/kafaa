@@ -70,12 +70,22 @@ class PagesController extends Controller
 
     public function singleEquipment($slug)
     {
-        $equipment = Equipment::where('slug', $slug)
+        $equipment = Equipment::query()
             ->with('provider')
+            ->where('slug', $slug)
+            ->where('status', EquipmentStatus::Compliant)
             ->firstOrFail();
 
+        $others = Equipment::query()
+            ->where('id', '!=', $equipment->id)
+            ->where('status', EquipmentStatus::Compliant)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
         return view('pages/equipment-single')
-            ->with('equipment', $equipment);
+            ->with('equipment', $equipment)
+            ->with('others', $others);
     }
 
     public function experts(Request $request)

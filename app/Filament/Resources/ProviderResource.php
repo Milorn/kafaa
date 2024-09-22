@@ -7,6 +7,7 @@ use App\Filament\Resources\ProviderResource\Pages;
 use App\Models\ActivityArea;
 use App\Models\Provider;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -68,6 +69,16 @@ class ProviderResource extends Resource
                 Section::make('Informations professionnelles')
                     ->columns(2)
                     ->schema([
+                        Group::make()
+                            ->columns(2)
+                            ->schema([
+                                SpatieMediaLibraryFileUpload::make('image')
+                                    ->label('Logo')
+                                    ->disk('public')
+                                    ->collection('providers_logos')
+                                    ->image()
+                                    ->imageEditor(),
+                            ])->columnSpanFull(),
                         TextInput::make('name')
                             ->label('Nom de l\'entreprise')
                             ->placeholder('Nom de l\'entreprise')

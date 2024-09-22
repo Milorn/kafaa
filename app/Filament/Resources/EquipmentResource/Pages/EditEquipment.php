@@ -28,7 +28,7 @@ class EditEquipment extends EditRecord
                 $data['slug'] .= '-'.$count;
             }
             $count++;
-        } while (Equipment::where('slug', $data['slug'])->count() > 0);
+        } while (Equipment::where('slug', $data['slug'])->whereNot('id', $this->record->id)->count() > 0);
 
         return $data;
     }

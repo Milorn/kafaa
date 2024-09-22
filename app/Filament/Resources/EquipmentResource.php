@@ -46,11 +46,29 @@ class EquipmentResource extends Resource
                             ->options(EquipmentStatus::class)
                             ->visible(fn ($context) => $context == 'edit')
                             ->disabled(Auth::user()->type != UserType::Admin),
+                        Select::make('provider_id')
+                            ->label('Fournisseur')
+                            ->relationship('provider', 'name')
+                            ->searchable()
+                            ->preload(),
                         Textarea::make('description')
                             ->label('Description')
                             ->placeholder('description')
                             ->columnSpanFull()
                             ->required(),
+                        SpatieMediaLibraryFileUpload::make('images')
+                            ->multiple()
+                            ->label('Images')
+                            ->disk('public')
+                            ->collection('equipments_images')
+                            ->image()
+                            ->acceptedFileTypes(['image/*'])
+                            ->maxFiles(5)
+                            ->maxSize(1024 * 12)
+                            ->required()
+                            ->panelLayout('grid')
+                            ->reorderable()
+                            ->columnSpanFull(),
                         SpatieMediaLibraryFileUpload::make('files')
                             ->multiple()
                             ->label('Fiches')
@@ -60,8 +78,7 @@ class EquipmentResource extends Resource
                             ->previewable(false)
                             ->acceptedFileTypes(['application/pdf', 'image/*'])
                             ->maxFiles(10)
-                            ->maxSize(1024 * 12)
-                            ->required() // 12mb
+                            ->maxSize(1024 * 10)
                             ->columnSpanFull(),
                     ]),
             ]);
