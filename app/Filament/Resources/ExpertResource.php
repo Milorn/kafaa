@@ -222,8 +222,8 @@ class ExpertResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])->modifyQueryUsing(function($query) {
-                if(auth()->user()->isCompany()) {
+            ])->modifyQueryUsing(function ($query) {
+                if (auth()->user()->isCompany()) {
                     $query->where('company_id', auth()->user()->userable_id);
                 }
             });

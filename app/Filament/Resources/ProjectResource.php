@@ -112,8 +112,8 @@ class ProjectResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])->modifyQueryUsing(function($query) {
-                if(auth()->user()->isExpert()) {
+            ])->modifyQueryUsing(function ($query) {
+                if (auth()->user()->isExpert()) {
                     $query->where('expert_id', auth()->user()->userable_id);
                 }
             });

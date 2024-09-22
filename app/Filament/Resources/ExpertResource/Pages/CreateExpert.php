@@ -11,10 +11,10 @@ class CreateExpert extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if(auth()->user()->isCompany()) {
+        if (auth()->user()->isCompany()) {
             $data['company_id'] = auth()->user()->userable_id;
         }
-        
+
         return $data;
     }
 }

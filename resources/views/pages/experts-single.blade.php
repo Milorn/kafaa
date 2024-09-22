@@ -4,7 +4,7 @@
 
 <x-layouts.main>
     <x-slot:main>
-        <div class="max-w-screen-xl mx-auto my-9">
+        <div class="max-w-screen-xl mx-auto my-9 px-5">
             <div class="bg-[#F4F4F4] rounded-lg grid grid-cols-3 py-12 px-20 gap-x-12  place-items-center">
                 <img class="rounded-full w-full aspect-square"
                     src="{{ $expert->getFirstMedia('experts_avatars') ?? asset('images/placeholder.webp') }}">

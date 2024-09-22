@@ -23,7 +23,7 @@
         </form>
 
         @if (count($posts))
-            <div class="grid grid-cols-3 gap-x-5 gap-y-6 max-w-screen-xl mx-auto px-12">
+            <div class="grid grid-cols-3 gap-x-8 gap-y-10 max-w-screen-xl mx-auto px-12">
                 @foreach ($posts as $post)
                     <div class="rounded-3xl shadow-[2px_15px_12px_0px_rgba(0,0,0,0.25)]">
                         <img class="h-72 w-full object-cover rounded-tr-3xl rounded-tl-3xl"

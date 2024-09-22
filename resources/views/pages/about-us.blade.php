@@ -57,9 +57,9 @@
             </div>
         </div>
         <div class="grid grid-cols-2 mb-5">
-            <img src="{{ asset('images/about-us/vision.png') }}" class="w-full" alt="Solar panels in the desert">
+            <img src="{{ asset('images/about-us/vision.png') }}" class="w-full h-full" alt="Solar panels in the desert">
             <div class="flex flex-col px-32 justify-center">
-                <h1 class="font-extrabold text-primary text-6xl mb-10">Notre vision</h1>
+                <h1 class="font-extrabold text-primary text-6xl mb-10 mt-5">Notre vision</h1>
                 <p class="text-xl text-justify">
                     The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
                     Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in

@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use App\Models\Expert;
 use Filament\Pages\Page;
 
 class MyLabelPage extends Page
@@ -28,6 +27,6 @@ class MyLabelPage extends Page
 
     public function mount()
     {
-       $this->record = auth()->user()->userable;
+        $this->record = auth()->user()->userable;
     }
 }

@@ -112,8 +112,8 @@ class EquipmentResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ])->modifyQueryUsing(function($query) {
-                if(auth()->user()->isProvider()) {
+            ])->modifyQueryUsing(function ($query) {
+                if (auth()->user()->isProvider()) {
                     $query->where('provider_id', auth()->user()->userable_id);
                 }
             });

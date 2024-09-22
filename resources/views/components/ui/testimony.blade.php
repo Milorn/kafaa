@@ -1,6 +1,6 @@
 <div class="flex justify-center gap-16  max-w-screen-sm mx-auto">
     <div class="flex flex-col justify-center items-center gap-5 w-full">
-        <img class="rounded-full" src="{{ asset('images/placeholder.webp') }}"
+        <img class="rounded-full aspect-square" src="{{ asset('images/placeholder.webp') }}"
             alt="Avatar placeholder">
         <p class="text-white text-lg font-bold">Nom Prénom</p>
     </div>

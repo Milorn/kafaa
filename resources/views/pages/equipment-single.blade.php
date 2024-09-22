@@ -1,7 +1,7 @@
 <x-layouts.main>
     <x-slot:main>
 
-        <div class="max-w-screen-xl mx-auto mt-11 mb-16">
+        <div class="max-w-screen-xl mx-auto mt-11 mb-16 px-5">
             <h1 class="text-primary text-5xl font-bold mb-7">{{ $equipment->name }}</h1>
             <div class="grid grid-cols-3 gap-5 mx-auto mb-16">
                 @forelse ($equipment->getMedia('equipments_images') as $media)
@@ -38,18 +38,18 @@
                     <h3 class="text-primary font-bold text-3xl mb-4">Fournisseur</h3>
                     @if ($equipment->provider)
                         <div class="shadow-lg p-6 rounded-xl">
-                            <img class="mb-10" src="{{ $equipment->provider->getFirstMediaUrl('providers_logos') }}"
+                            <img class="mb-10" src="{{ $equipment->provider->getFirstMediaUrl('providers_logos') ? $equipment->provider->getFirstMediaUrl('providers_logos') : asset('images/placeholder.webp') }}"
                                 alt="">
                             <h2 class="font-bold text-lg text-primary line-clamp-2 mb-2">
                                 {{ $equipment->provider->name }}</h2>
                             <ul class="flex flex-col gap-2">
                                 <li class="flex items-center text-sm text-gray-800">
                                     <img class="size-7" src="{{ asset('images/location.svg') }}" alt="Map icon">
-                                    {{ $equipment->provider->address }}
+                                    {{ $equipment->provider?->address ?? 'Aucune' }}
                                 </li>
                                 <li class="flex items-center text-sm text-gray-800">
                                     <img class="size-7" src="{{ asset('images/call.svg') }}" alt="Phone icon">
-                                    {{ $equipment->provider->phone }}
+                                    {{ $equipment->provider?->phone ?? 'Aucun' }}
                                 </li>
                             </ul>
                         </div>

@@ -11,10 +11,10 @@ class CreateProject extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        if(auth()->user()->isExpert()) {
+        if (auth()->user()->isExpert()) {
             $data['expert_id'] = auth()->user()->userable_id;
         }
-        
+
         return $data;
     }
 }

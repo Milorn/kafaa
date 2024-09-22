@@ -9,7 +9,7 @@
         </style>
     </x-slot:head>
     <x-slot:main>
-        <div class="max-w-screen-xl mx-auto">
+        <div class="max-w-screen-xl mx-auto px-5">
             <h1 class="mt-14 mb-11 text-primary text-4xl font-bold">Espace experts</h1>
             <form class="grid grid-cols-4 gap-x-5 mb-6" method="GET" action="{{ route('experts') }}">
                 <input name="search"
@@ -36,7 +36,7 @@
             @if (count($experts))
                 <div class="grid grid-cols-6 gap-5">
                     @foreach ($experts as $expert)
-                        <div class="p-3 shadow-xl rounded-xl flex flex-col items-center">
+                        <div class="p-3 shadow-xl rounded-xl flex flex-col justify-between items-center">
                             <div class="flex gap-4 items-center mb-3.5">
                                 <img class="size-16 rounded-full"
                                     src="{{ $expert->getFirstMedia('experts_avatars') ?? asset('images/placeholder.webp') }}">

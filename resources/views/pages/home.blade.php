@@ -6,7 +6,7 @@
             <div class="bg-gradient-to-r from-primary absolute w-1/2 h-full"></div>
             <div class="absolute inset-0 max-w-screen-xl mx-auto">
                 <div class="grid grid-cols-2 content-center h-full">
-                    <div class="pb-20">
+                    <div class="pb-20 px-5 xl:px-0">
                         <h1 class="text-white font-extrabold text-6xl">Qui sommes-nous?</h1>
                         <p class="text-white text-2xl mt-3 mb-16 pl-1 w-[80%]">
                             Kafaa is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been

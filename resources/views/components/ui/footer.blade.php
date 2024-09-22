@@ -1,5 +1,5 @@
 <footer>
-    <div class="bg-white pb-16 pt-12 mx-auto max-w-screen-xl flex justify-between items-end">
+    <div class="bg-white pb-16 pt-12 mx-auto max-w-screen-xl flex justify-between items-end px-5">
         <div class="flex flex-col gap-10">
             <img class="h-20 p-1 object-contain" src="{{ asset('images/cerefe_logo.png') }}" alt="Logo Cerefe">
             <div class="flex flew-row justify-end gap-10">
