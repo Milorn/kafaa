@@ -58,6 +58,7 @@
                                 </p>
                                 <span class="text-xs font-semibold text-[#AFAFAF]">N° de projets:
                                     {{ $expert->number_of_projects ?? 'Non specifié' }} </span>
+                                    <a href="{{route('experts.single', ['expert' => $expert])}}" class="btn btn-primary w-full py-2.5 mt-3 text-xs font-bold inline-block text-center">Voir profile</a>
                             </div>
                         </div>
                     @endforeach
