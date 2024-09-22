@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Enums\EquipmentStatus;
 use App\Enums\LabelStatus;
-use App\Enums\LabelType;
 use App\Enums\PostType;
 use App\Models\Equipment;
 use App\Models\Expert;
@@ -64,7 +63,7 @@ class PagesController extends Controller
         $equipments = Equipment::query()
             ->where('status', EquipmentStatus::Compliant)
             ->when($request->search, fn ($query) => $query->whereRaw("LOWER(name) like '%".strtolower($request->search)."%'"))
-            ->simplePaginate(9);
+            ->simplePaginate(8);
 
         return view('pages/equipments')->with('equipments', $equipments);
     }

@@ -23,20 +23,19 @@
         </form>
 
         @if (count($equipments))
-            <div class="grid grid-cols-3 gap-x-5 gap-y-6 max-w-screen-xl mx-auto px-12">
+            <div class="grid grid-cols-4 gap-x-5 gap-y-10 max-w-screen-xl mx-auto px-12">
                 @foreach ($equipments as $equipment)
                     <div class="rounded-3xl shadow-[2px_15px_12px_0px_rgba(0,0,0,0.25)]">
-                        <img class="h-56 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
+                        <img class="h-64 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
                             src="{{ $equipment->getFirstMediaUrl('equipments') ? $equipment->getFirstMediaUrl('equipments') : asset('images/placeholder.webp') }}">
-                        <div class="px-10 py-5 flex flex-col">
+                        <div class="px-8 pb-5 pt-2 flex flex-col">
                             <a href="{{ route('equipments.single', ['slug' => $equipment->slug]) }}">
-                                <h2 class="text-4xl text-primary font-bold line-clamp-2 mb-2 text-justify">{{ $equipment->name }}
-                                </h2>
+                                <h2 class="text-xl text-primary font-bold line-clamp-2 mb-2 text-justify">{{ $equipment->name }}</h2>
                             </a>
-                            <p class="text-black text-base line-clamp-4 mb-5">
+                            <p class="text-black text-sm line-clamp-4 mb-3 text-justify">
                                 {{ strip_tags($equipment->description) }}
                             </p>
-                            <a class="btn btn-primary text-center hover:cursor-pointer"
+                            <a class="btn btn-primary text-center text-base hover:cursor-pointer py-4"
                                 href="{{ route('equipments.single', ['slug' => $equipment->slug]) }}">Voir produit</a>
                         </div>
                     </div>
