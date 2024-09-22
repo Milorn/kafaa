@@ -41,7 +41,8 @@ class ProjectResource extends Resource
                             ->getOptionLabelFromRecordUsing(fn ($record) => $record->user->name)
                             ->searchable()
                             ->preload()
-                            ->required(),
+                            ->required()
+                            ->visible(auth()->user()->isAdmin()),
                         TextInput::make('name')
                             ->label('Nom du projet')
                             ->placeholder('Nom')
@@ -105,12 +106,17 @@ class ProjectResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(function($query) {
+                if(auth()->user()->isExpert()) {
+                    $query->where('expert_id', auth()->user()->userable_id);
+                }
+            });
     }
 
     public static function getRelations(): array

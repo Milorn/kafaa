@@ -8,6 +8,7 @@ use App\Enums\UserType;
 use App\Filament\Resources\ExpertResource\Pages;
 use App\Models\Expert;
 use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -42,7 +43,7 @@ class ExpertResource extends Resource
             ->schema([
                 Section::make('Informations de connexion')
                     ->relationship('user')
-                    ->visible(fn ($record) => $record->user)
+                    ->visible(fn ($record) => $record && $record->user)
                     ->mutateRelationshipDataBeforeCreateUsing(function ($data) {
                         $data['type'] = UserType::Expert;
 
@@ -78,6 +79,16 @@ class ExpertResource extends Resource
                             ->imageEditor()
                             ->avatar()
                             ->columnSpanFull(),
+                        Grid::make()
+                            ->columns(2)
+                            ->columnSpanFull()
+                            ->schema([
+                                Select::make('company_id')
+                                    ->label('Entreprise')
+                                    ->relationship('company', 'name')
+                                    ->searchable()
+                                    ->preload(),
+                            ]),
                         TextInput::make('lname')
                             ->label('Nom')
                             ->placeholder('Nom')
@@ -211,7 +222,11 @@ class ExpertResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(function($query) {
+                if(auth()->user()->isCompany()) {
+                    $query->where('company_id', auth()->user()->userable_id);
+                }
+            });
     }
 
     public static function getRelations(): array

@@ -25,6 +25,10 @@ class CreateEquipment extends CreateRecord
             $count++;
         } while (Equipment::where('slug', $data['slug'])->count() > 0);
 
+        if(auth()->user()->isProvider()) {
+            $data['provider_id'] = auth()->user()->userable_id;
+        }
+
         return $data;
     }
 }

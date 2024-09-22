@@ -50,7 +50,8 @@ class EquipmentResource extends Resource
                             ->label('Fournisseur')
                             ->relationship('provider', 'name')
                             ->searchable()
-                            ->preload(),
+                            ->preload()
+                            ->visible(auth()->user()->isAdmin()),
                         Textarea::make('description')
                             ->label('Description')
                             ->placeholder('description')
@@ -111,7 +112,11 @@ class EquipmentResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->modifyQueryUsing(function($query) {
+                if(auth()->user()->isProvider()) {
+                    $query->where('provider_id', auth()->user()->userable_id);
+                }
+            });
     }
 
     public static function getRelations(): array
