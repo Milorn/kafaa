@@ -13,36 +13,40 @@
                             the industry's standard dummy text ever since the 1500s, when an unknown printer took a
                             galley of type and scrambled it to make a type.
                         </p>
-                        <a href="{{route('about-us')}}" class="btn btn-icon inline-flex bg-white text-primary">En savoir plus <x-heroicon-o-arrow-right
-                                class="size-5 text-primary stroke-2" /> </a>
+                        <a href="{{ route('about-us') }}" class="btn btn-icon inline-flex bg-white text-primary">En savoir
+                            plus <x-heroicon-o-arrow-right class="size-5 text-primary stroke-2" /> </a>
                     </div>
                 </div>
             </div>
 
             <img class="objet-cover w-full" src="{{ asset('images/home/hero.png') }}">
 
-            <div class="relative max-w-screen-xl mx-auto flex justify-center">
-                <div
-                class="bg-[#45AC4C]  py-8 px-4 rounded-xl shadow-[0px_9px_11px_0px_#149455] absolute -top-48 z-10">
-                <div class="flex flex-col gap-3 text-center">
-                    <h1 class="text-white font-bold text-3xl">Trouvez un installateur labellisé</h1>
-                    <p class="text-xl text-white opacity-60">
-                        Kafaa is simply dummy text of the printing and typesetting
-                        industry. <br> Lorem Ipsum has been
-                    </p>
-                    <div class="grid grid-cols-3 gap-6">
-                        <div class="bg-white flex justify-center items-center gap-2 py-5 px-8 rounded-md">
-                            <span class="text-trivial">Type d'installation</span>
-                            <x-heroicon-o-chevron-down class="size-5 text-trivial" />
-                        </div>
+            <div class="relative max-w-screen-xl mx-auto flex justify-center px-44 w-full">
+                <div class="bg-[#45AC4C]  py-8 px-4 rounded-xl shadow-[0px_9px_11px_0px_#149455] absolute -top-48 z-10">
+                    <div class="flex flex-col gap-3 text-center">
+                        <h1 class="text-white font-bold text-3xl">Trouvez un installateur labellisé</h1>
+                        <p class="text-xl text-white opacity-60">
+                            Kafaa is simply dummy text of the printing and typesetting
+                            industry. <br> Lorem Ipsum has been
+                        </p>
+                        <form class="grid grid-cols-3 gap-6" method="GET" action="{{route('experts')}}">
+                            <select name="label"
+                                class="bg-white text-center gap-2 py-5 px-8 rounded-md focus:outline-none text-trivial">
+                                <option disabled selected>Filtrer par Type</option>
+                                <option value="epe">EPE</option>
+                                <option value="pv">PV</option>
+                            </select>
 
-                        <div class="bg-white py-5 px-8 rounded-md">
-                            <span class="text-trivial">Veuillez saisir adresse, ville, code postal</span>
-                        </div>
-                        <button class="btn-secondary text-xl">Rechercher</button>
+                            <select name="wilaya" class="bg-white text-center gap-2 py-5 px-8 rounded-md focus:outline-none text-trivial">
+                                <option value="" disabled selected>Filtrer par Wilaya</option>
+                                @foreach ($wilayas as $key => $wilaya)
+                                    <option value="{{ $key }}">{{ $key }} - {{ $wilaya }}</option>
+                                @endforeach
+                            </select>
+                            <button class="btn-secondary text-xl">Rechercher</button>
+                        </form>
                     </div>
                 </div>
-            </div>
             </div>
 
         </div>
@@ -68,7 +72,7 @@
                             page
                             when looking at its layout.
                         </p>
-                        <a href="{{route('pro')}}" class="btn-secondary mt-5 text-xl">En savoir plus</a>
+                        <a href="{{ route('pro') }}" class="btn-secondary mt-5 text-xl">En savoir plus</a>
                     </div>
 
                     <div class="flex flex-col items-center">
@@ -81,7 +85,7 @@
                             page
                             when looking at its layout.
                         </p>
-                        <a href="{{route('pro')}}" class="btn-secondary mt-5 text-xl">En savoir plus</a>
+                        <a href="{{ route('pro') }}" class="btn-secondary mt-5 text-xl">En savoir plus</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +128,8 @@
                         </p>
                     </div>
                 </div>
-                <a href="{{route('register')}}" class="btn-primary mt-5 text-4xl px-24 py-5">Demander une labélisation</a>
+                <a href="{{ route('register') }}" class="btn-primary mt-5 text-4xl px-24 py-5">Demander une
+                    labélisation</a>
             </div>
         </div>
 

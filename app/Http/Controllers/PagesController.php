@@ -4,17 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Enums\EquipmentStatus;
 use App\Enums\LabelStatus;
+use App\Enums\LabelType;
 use App\Enums\PostType;
 use App\Models\Equipment;
 use App\Models\Expert;
 use App\Models\Post;
+use App\Models\Wilaya;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function home()
     {
-        return view('pages/home');
+        $wilayas = Wilaya::query()
+            ->pluck('name', 'id');
+
+        return view('pages/home')
+            ->with('wilayas', $wilayas);
     }
 
     public function aboutUs()
@@ -90,11 +96,19 @@ class PagesController extends Controller
 
     public function experts(Request $request)
     {
-        $equipments = Expert::query()
-            ->whereRelation('certificae', 'status', LabelStatus::Accepted)
-            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(name) like '%".strtolower($request->search)."%'"))
-            ->simplePaginate(9);
+        $experts = Expert::query()
+            ->with('wilaya')
+            ->whereRelation('certificate', 'status', LabelStatus::Accepted)
+            ->when($request->query('search'), fn ($query) => $query->where(fn ($query) => $query->whereRaw("LOWER(fname) like '%".strtolower($request->query('search'))."%'")->orWhereRaw("LOWER(lname) like '%".strtolower($request->query('search'))."%'")))
+            ->when($request->query('wilaya'), fn ($query) => $query->where('wilaya_id', $request->query('wilaya')))
+            ->when($request->query('label') && LabelType::tryFrom($request->query('label')), fn ($query) => $query->where('label', LabelType::from($request->query('label'))))
+            ->simplePaginate(18);
 
-        return view('pages/experts')->with('experts', $experts);
+        $wilayas = Wilaya::query()
+            ->pluck('name', 'id');
+
+        return view('pages/experts')
+            ->with('experts', $experts)
+            ->with('wilayas', $wilayas);
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\LabelType;
 use App\Enums\ProfessionalStatus;
+use App\Models\Wilaya;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,6 +26,7 @@ class ExpertFactory extends Factory
             'phone' => fake()->optional()->phoneNumber(),
             'email' => fake()->optional()->safeEmail(),
             'diploma' => fake()->optional()->sentence(),
+            'wilaya_id' => Wilaya::inRandomOrder()->first(),
             'professional_status' => fake()->optional()->randomElement(ProfessionalStatus::class),
             'label' => fake()->randomElement(LabelType::class),
             'years_of_experience' => fake()->optional()->numberBetween(0, 20),
