@@ -116,7 +116,7 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                             <select id="professional_status" name="professional_status" className={`w-full field  ${errors.professional_status && "border border-red-500"}`} value={expert.professional_status} onChange={change}>
                                 <option value="" disabled>Please select</option>
                                 <option value="employed">Employé</option>
-                                <option value="unemployed">Chômeur</option>
+                                <option value="unemployed">Sans emploi</option>
                             </select>
                             <svg className="pointer-events-none absolute top-0 right-0 mt-3 mr-3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>

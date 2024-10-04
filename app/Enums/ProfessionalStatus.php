@@ -14,7 +14,7 @@ enum ProfessionalStatus: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::Employed => 'Employé',
-            self::Unemployed => 'Chômeur',
+            self::Unemployed => 'Sans emploi',
         };
     }
 

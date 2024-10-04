@@ -7,7 +7,7 @@
             <div class="absolute inset-0 max-w-screen-xl mx-auto">
                 <div class="grid grid-cols-2 content-center h-full">
                     <div class="pb-20 px-5 xl:px-0">
-                        <h1 class="text-white font-extrabold text-6xl">Qui sommes-nous?</h1>
+                        <h1 class="text-white font-extrabold text-6xl">Contexte</h1>
                         <p class="text-white text-2xl mt-3 mb-16 pl-1 w-[80%]">
                             Kafaa is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                             the industry's standard dummy text ever since the 1500s, when an unknown printer took a

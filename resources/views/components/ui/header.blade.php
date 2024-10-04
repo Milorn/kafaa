@@ -15,7 +15,7 @@
             </li>
             <li
                 class="pb-3 @if (request()->routeIs('about-us')) link-active @else font-medium text-trivial @endif">
-                <a href="/about-us" class="hover:text-primary">Qui sommes nous ?</a>
+                <a href="/about-us" class="hover:text-primary">Contexte</a>
             </li>
             <li
                 class="pb-3 @if (request()->routeIs('pro')) link-active @else font-medium text-trivial @endif">
@@ -41,7 +41,7 @@
             </li>
             <li
                 class="pb-3 @if (request()->routeIs('experts')) link-active @else font-medium text-trivial @endif">
-                <a href="/experts" class="hover:text-primary">Experts</a>
+                <a href="/experts" class="hover:text-primary">Installateurs</a>
             </li>
             <li
                 class="pb-3 @if (request()->routeIs('equipments')) link-active @else font-medium text-trivial @endif">
