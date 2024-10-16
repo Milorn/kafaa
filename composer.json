@@ -20,6 +20,7 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
+        "mcamara/laravel-localization": "^2.0",
         "rawilk/filament-password-input": "^2.0",
         "solution-forest/filament-translate-field": "^1.2",
         "spatie/laravel-translatable": "^6.7",

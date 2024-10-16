@@ -18,7 +18,7 @@
             <li><a href="#">Médiathéque</a></li>
             <li><a href="#">Choisissez une ville</a></li>
             <li><a href="#">Espace presse</a></li>
-            <li><a href="{{route('register')}}">Nous rejoindre</a></li>
+            <li><a href="{{LaravelLocalization::localizeUrl('register')}}">Nous rejoindre</a></li>
             <li><a href="{{route('filament.app.pages.dashboard')}}">Espace pro</a></li>
         </ul>
         <ul class="text-md flex flex-col justify-center gap-2">
