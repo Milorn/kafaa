@@ -126,12 +126,12 @@ export default function RegisterForm() {
                 <div className="flex flex-col gap-y-5">
                     <div className="flex items-center gap-3">
                         <input id="charter" type="checkbox" onChange={(e) => setCharter(!charter)} checked={charter} />
-                        <label htmlFor="charter">Je m'engage au respect de la charte du label</label>
+                        <label htmlFor="charter">Je m'engage au respect de <a href="/charter" target="_blank" className="text-primary underline">la charte du label</a></label>
                     </div>
                     <div className="flex items-start gap-3">
                         <input id="conditions" type="checkbox" className="mt-0.5" onChange={(e) => setConditions(!conditions)} checked={conditions} />
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="conditions">Déclaration d'engagement au respect de la charte du label</label>
+                            <label htmlFor="conditions">Déclaration d'engagement au respect de <a href="/charter" target="_blank" className="text-primary underline">la charte du label</a></label>
                             <p className="text-trivial text-sm">
                                 Je déclare sur l'honneur l'exactitude des informations fournies dans ce formulaire. Je suis conscient que le non-respect des engagements pris dans ce formulaire peut entraîner la suspension ou la révocation de mon adhésion au label solaire PV.
                             </p>

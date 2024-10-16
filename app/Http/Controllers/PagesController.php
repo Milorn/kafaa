@@ -123,4 +123,9 @@ class PagesController extends Controller
         return view('pages/experts-single')
             ->with('expert', $expert);
     }
+
+    public function charter()
+    {
+        return view('pages/charter');
+    }
 }
