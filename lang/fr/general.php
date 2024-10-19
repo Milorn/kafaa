@@ -48,4 +48,42 @@ return [
     'footer.join_us' => 'Nous rejoindre',
     'footer.pro' => 'Espace pro',
     'footer.contact_us' => 'Nous contacter',
+
+
+    'epe' => 'epe',
+    'pv' => 'pv',
+    'EPE' => 'EPE',
+    'PV' => 'PV',
+
+    'label' => 'Label',
+    'labels' => 'Labels',
+
+    'context' => 'Contexte',
+
+    'home' => 'Accueil',
+    'home.hero_text' => "Kafaa is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type.",
+    'home.cta' => 'En savoir plus',
+    'home.expert.title' => 'Trouvez un installateur labellisé',
+    'home.expert.subtitle' => 'Kafaa is simply dummy text of the printing and typesetting industry. <br> Lorem Ipsum has been',
+    'home.expert.filter_by_type' => 'Filtrer par Type',
+    'home.expert.filter_by_wilaya' => 'Filtrer par Wilaya',
+    'home.labels.title' => 'Les labels',
+    'home.labels.text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+    'home.labels.pv' => "Kafa'a PV",
+    'home.labels.pv_text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    'home.labels.epe' => "Kafa'a Inara",
+    'home.labels.epe_text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    'home.advantages.title' => "Les avantages d'un label",
+    'home.advantages.text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+    'home.advantages1.title' => 'Avantage 1',
+    'home.advantages1.text' => "It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.",
+    'home.advantages2.title' => 'Avantage 2',
+    'home.advantages2.text' => "It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.",
+    'home.advantages3.title' => 'Avantage 3',
+    'home.advantages3.text' => "It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.",
+    'home.advantages.cta' => 'Demander une labélisation',
+
+    // Globals
+    'search' => 'Rechercher',
+    'know_more' => 'En savoir plus'
 ];
