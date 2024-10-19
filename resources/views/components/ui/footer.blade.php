@@ -8,22 +8,22 @@
             </div>
         </div>
         <ul class="text-md flex flex-col justify-center gap-2">
-            <li><a href="#">Mentions légales</a></li>
-            <li><a href="#">Politique de confidentialité</a></li>
-            <li><a href="#">FAQ particulier</a></li>
-            <li><a href="#">FAQ professionel</a></li>
-            <li><a href="#">Photothéque</a></li>
+            <li><a href="#">@lang('general.footer.legal_mentions')</a></li>
+            <li><a href="#">@lang('general.footer.confidentiality')</a></li>
+            <li><a href="#">@lang('general.footer.faq_regular')</a></li>
+            <li><a href="#">@lang('general.footer.faq_professional')</a></li>
+            <li><a href="#">@lang('general.footer.photos')</a></li>
         </ul>
         <ul class="text-md flex flex-col justify-center gap-2">
-            <li><a href="#">Médiathéque</a></li>
-            <li><a href="#">Choisissez une ville</a></li>
-            <li><a href="#">Espace presse</a></li>
-            <li><a href="{{LaravelLocalization::localizeUrl('register')}}">Nous rejoindre</a></li>
-            <li><a href="{{route('filament.app.pages.dashboard')}}">Espace pro</a></li>
+            <li><a href="#">@lang('general.footer.media')</a></li>
+            <li><a href="#">@lang('general.footer.choose_city')</a></li>
+            <li><a href="#">@lang('general.footer.press')</a></li>
+            <li><a href="{{LaravelLocalization::localizeUrl('register')}}">@lang('general.footer.join_us')</a></li>
+            <li><a href="{{route('filament.app.pages.dashboard')}}">@lang('general.footer.pro')</a></li>
         </ul>
         <ul class="text-md flex flex-col justify-center gap-2">
             <li>
-                <h3 class="text-xl text-primary font-bold">Nous contacter</h3>
+                <h3 class="text-xl text-primary font-bold">@lang('general.footer.contact_us')</h3>
             </li>
             <li class="flex items-start gap-1 ml-2">
                 <img src="{{ asset('images/mail.svg') }}" alt="Mail icon" class="size-6">
