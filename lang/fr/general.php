@@ -101,6 +101,11 @@ return [
                     confiance des consommateurs dans les systèmes photovoltaïques et d'éclairage public
                     installés, contribuant ainsi à un avenir plus durable et efficient sur le plan énergétique.",
 
+    'pro.title' => 'Devenir pro',
+    'pro.expert.title' => 'Devenez installateur labellisé',
+    'pro.expert.text' => 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham',
+    'pro.expert.register' => "S'inscrire",
+
     // Globals
     'search' => 'Rechercher',
     'know_more' => 'En savoir plus'
