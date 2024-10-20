@@ -1,5 +1,5 @@
 <header class="bg-white py-6 px-5  border-b-2 border-b-primary sticky top-0 z-50">
-    <nav class="flex justify-between items-center mx-auto max-w-screen-xl">
+    <nav class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
         <div class="flex gap-3">
             <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                 <img class="h-14 border-r border-primary pr-3 py-2" src="{{ asset('images/cerefe_logo.png') }}"
@@ -8,7 +8,7 @@
             <img class="h-14" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
             <img class="h-14" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
         </div>
-        <ul class="flex items-center gap-4">
+        <ul class="flex flex-wrap items-center gap-4">
             <li class="pb-3 @if (request()->routeIs('home')) link-active @else font-medium text-trivial @endif">
                 <a href="{{ LaravelLocalization::localizeUrl('/') }}" class="hover:text-primary">@lang('general.header.welcome')</a>
             </li>
@@ -46,7 +46,7 @@
                     class="hover:text-primary">@lang('general.header.providers')</a>
             </li>
             <li
-                class="group pb-3 hover:cursor-pointer relative @if (request()->routeIs('blog') || request()->routeIs('documents')) link-active @else font-medium text-trivial @endif">
+                class="group pb-3 hover:cursor-pointer relative">
                 <span class="flex items-center gap-0.5">
                     {{ LaravelLocalization::getCurrentLocale() }}
                     <img src="{{ asset('images/globe.svg') }}" class="size-6 fill-trivial">

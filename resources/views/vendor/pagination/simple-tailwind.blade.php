@@ -3,14 +3,14 @@
         {{-- Previous Page Link --}}
         @if (!$paginator->onFirstPage())
             <a href="{{ $paginator->previousPageUrl() }}" rel="prev" class="bg-primary text-white text-sm py-2 px-3 rounded-lg">
-                « Précédent
+                « @lang('general.previous')
             </a>
         @endif
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
             <a href="{{ $paginator->nextPageUrl() }}" rel="next" class="bg-primary text-white text-sm py-2 px-3 rounded-lg">
-                Suivant »
+                @lang('general.next') »
             </a>
         @endif
     </nav>

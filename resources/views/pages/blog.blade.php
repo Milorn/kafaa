@@ -10,15 +10,15 @@
     </x-slot:head>
     <x-slot:main>
         <div class="relative h-[570px] hero flex justify-center items-center">
-            <h1 class="text-white text-7xl font-bold">Blog</h1>
+            <h1 class="text-white text-7xl font-bold">@lang('general.blog')</h1>
         </div>
 
         <form action="{{ route('blog') }}" method="GET" class="flex  max-w-screen-lg mx-auto my-12">
             <input type="text" name="search" value="{{ request()->query('search') }}"
                 class="w-full  bg-[#EDEDED] py-2 px-4 border-2 border-[#DEDEDE] border-r-0 rounded-tl-md rounded-bl-md hover:outline-none focus:outline-none"
-                placeholder="Trouvez un article qui vous intéresse">
+                placeholder="{{__('general.blog.search_placeholder')}}">
             <button
-                class="btn btn-primary h-full rounded-none px-24 flex items-center gap-2 text-lg rounded-tr-md rounded-br-md font-normal">Rechercher
+                class="btn btn-primary h-full rounded-none px-24 flex items-center gap-2 text-lg rounded-tr-md rounded-br-md font-normal">@lang('general.blog.search')
                 <x-heroicon-o-magnifying-glass class="size-6 text-white stroke-2" /></button>
         </form>
 
@@ -29,7 +29,7 @@
                         <img class="h-72 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
                             src="{{ $post->getFirstMediaUrl('posts_images') ? $post->getFirstMediaUrl('posts_images') : asset('images/placeholder.webp') }}">
                         <div class="px-10 py-5 flex flex-col">
-                            <p class="text-trivial text-sm mb-5">{{ $post->created_at->translatedFormat('d F Y') }}</p>
+                            <p class="text-trivial text-sm mb-5">{{ $post->created_at->translatedFormat('d/m/Y') }}</p>
                             <a href="{{ route('blog.single', ['slug' => $post->slug]) }}">
                                 <h2 class="text-4xl text-primary font-bold line-clamp-2 mb-2">{{ $post->title }}</h2>
                             </a>
@@ -37,7 +37,7 @@
                                 {{ strip_tags($post->content) }}
                             </p>
                             <a class="btn btn-primary text-center hover:cursor-pointer"
-                                href="{{ route('blog.single', ['slug' => $post->slug]) }}">Lire plus</a>
+                                href="{{ route('blog.single', ['slug' => $post->slug]) }}">@lang('general.read_more')</a>
                         </div>
 
                     </div>
@@ -47,7 +47,7 @@
                 {{ $posts->links() }}
             </div>
         @else
-            <h4 class="text-center text-lg mb-20 mt-10">Aucun résultat</h4>
+            <h4 class="text-center text-lg mb-20 mt-10">@lang('general.no_result')</h4>
         @endif
     </x-slot:main>
 </x-layouts.main>
