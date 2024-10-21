@@ -107,9 +107,10 @@ return [
     'pro.expert.register' => "S'inscrire",
 
     'blog' => 'Blog',
-    'blog.search' => 'Rechercher',
     'blog.search_placeholder' => 'Trouvez un article qui vous intéresse',
-    'blog.read_more' => 'Lire plus',
+
+    'documents' => 'Documents',
+    'documents.search_placeholder' => 'Trouvez un document qui vous intéresse',
 
     // Globals
     'search' => 'Rechercher',
