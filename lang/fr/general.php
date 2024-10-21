@@ -119,6 +119,12 @@ return [
     'experts.years' => 'an(s)',
     'experts.see_profile' => 'Voir profile',
 
+    'provider' => 'Fournisseur',
+    'providers.title' => 'Espace fournisseurs',
+    'providers.search_placeholder' => 'Trouvez un produit qui vous intéresse',
+    'providers.view_product' => 'Voir produit',
+    'providers.other_products' => 'Autres produits',
+
     // Globals
     'search' => 'Rechercher',
     'know_more' => 'En savoir plus',
@@ -131,4 +137,5 @@ return [
     'wilaya' => 'Wilaya',
     'not_specified' => 'Non spécifié',
     'resumee' => 'Curriculum Vitae',
+    'description' => 'Description'
 ];

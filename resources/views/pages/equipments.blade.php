@@ -10,15 +10,15 @@
     </x-slot:head>
     <x-slot:main>
         <div class="relative h-[570px] hero flex justify-center items-center">
-            <h1 class="text-white text-7xl font-bold">Espaces fournisseurs</h1>
+            <h1 class="text-white text-7xl font-bold">@lang('general.providers.title')</h1>
         </div>
 
         <form action="{{ route('equipments') }}" method="GET" class="flex  max-w-screen-lg mx-auto my-12">
             <input type="text" name="search" value="{{ request()->query('search') ?? '' }}"
                 class="w-full  bg-[#EDEDED] py-2 px-4 border-2 border-[#DEDEDE] border-r-0 rounded-tl-md rounded-bl-md hover:outline-none focus:outline-none"
-                placeholder="Trouvez un article qui vous intéresse">
+                placeholder="{{__('general.providers.search_placeholder')}}">
             <button
-                class="btn btn-primary h-full rounded-none px-24 flex items-center gap-2 text-lg rounded-tr-md rounded-br-md font-normal">Rechercher
+                class="btn btn-primary h-full rounded-none px-24 flex items-center gap-2 text-lg rounded-tr-md rounded-br-md font-normal">@lang('general.search')
                 <x-heroicon-o-magnifying-glass class="size-6 text-white stroke-2" /></button>
         </form>
 
@@ -36,7 +36,7 @@
                                 {{ strip_tags($equipment->description) }}
                             </p>
                             <a class="btn btn-primary text-center text-base hover:cursor-pointer py-4"
-                                href="{{ route('equipments.single', ['slug' => $equipment->slug]) }}">Voir produit</a>
+                                href="{{ route('equipments.single', ['slug' => $equipment->slug]) }}">@lang('general.providers.view_product')</a>
                         </div>
                     </div>
                 @endforeach
