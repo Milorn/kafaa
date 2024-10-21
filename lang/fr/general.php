@@ -112,6 +112,13 @@ return [
     'documents' => 'Documents',
     'documents.search_placeholder' => 'Trouvez un document qui vous intéresse',
 
+    'experts.title' => 'Espace experts',
+    'experts.filters.name_placeholder' => 'Nom Prénom',
+    'experts.experience' => 'Expèrience',
+    'experts.number_of_projects' => 'N° de projets',
+    'experts.years' => 'an(s)',
+    'experts.see_profile' => 'Voir profile',
+
     // Globals
     'search' => 'Rechercher',
     'know_more' => 'En savoir plus',
@@ -119,4 +126,9 @@ return [
     'no_results' => 'Aucun résultat',
     'next' => 'Suivant',
     'previous' => 'Précédent',
+    'none' => 'Aucun',
+    'none_f' => 'Aucune',
+    'wilaya' => 'Wilaya',
+    'not_specified' => 'Non spécifié',
+    'resumee' => 'Curriculum Vitae',
 ];
