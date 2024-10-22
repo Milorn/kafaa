@@ -63,9 +63,7 @@
                             <img class="h-52" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
                         </div>
                         <h2 class="text-center text-white font-bold text-3xl mt-10 mb-2">@lang('general.home.labels.pv')</h2>
-                        <p class="text-center text-lg text-white">
-                            @lang('general.home.labels.pv_text')
-                        </p>
+
                         <a href="{{ route('pro') }}" class="btn-secondary mt-5 text-xl">@lang('general.know_more')</a>
                     </div>
 
@@ -74,9 +72,7 @@
                             <img class="h-52" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
                         </div>
                         <h2 class="text-center text-white font-bold text-3xl mt-10 mb-2">@lang('general.home.labels.epe')</h2>
-                        <p class="text-center text-lg text-white">
-                            @lang('general.home.labels.epe_text')
-                        </p>
+        
                         <a href="{{ route('pro') }}" class="btn-secondary mt-5 text-xl">@lang('general.know_more')</a>
                     </div>
                 </div>

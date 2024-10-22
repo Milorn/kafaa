@@ -1,12 +1,13 @@
 <header class="bg-white py-6 px-5  border-b-2 border-b-primary sticky top-0 z-50">
     <nav class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-        <div class="flex gap-3">
+        <div class="flex items-center gap-3">
             <a href="{{ LaravelLocalization::localizeUrl('/') }}">
                 <img class="h-14 border-r border-primary pr-3 py-2" src="{{ asset('images/cerefe_logo.png') }}"
                     alt="Logo Cerefe">
             </a>
             <img class="h-14" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
             <img class="h-14" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
+            <img class="h-10" src="{{asset('images/giz.png')}}">
         </div>
         <ul class="flex flex-wrap items-center gap-4">
             <li class="pb-3 @if (request()->routeIs('home')) link-active @else font-medium text-trivial @endif">

@@ -41,26 +41,39 @@ return [
     'context' => 'Contexte',
 
     'home' => 'Accueil',
-    'home.hero_text' => "Kafaa is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type.",
+    'home.hero_text' => "Le CEREFE a identifié des lacunes dans les qualifications techniques et la fiabilité des équipements pour les projets solaires en Algérie. En collaboration avec la GIZ, ils ont mis en place deux labels, Kafa'A PV et Kafa'A Inara, pour certifier les installateurs photovoltaïques et d'éclairage public, avec des formations pour améliorer la qualité des installations.",
     'home.cta' => 'En savoir plus',
     'home.expert.title' => 'Trouvez un installateur labellisé',
-    'home.expert.subtitle' => 'Kafaa is simply dummy text of the printing and typesetting industry. <br> Lorem Ipsum has been',
+    'home.expert.subtitle' => "La labellisation KAFA'A de personnes permet la reconnaissance dynamique <br>des compétences",
     'home.expert.filter_by_type' => 'Filtrer par Type',
     'home.expert.filter_by_wilaya' => 'Filtrer par Wilaya',
     'home.labels.title' => 'Les labels',
-    'home.labels.text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+    'home.labels.text' => "Le label « KAFA'A PV » et « KAFA'A EPE » sont des
+        systèmes de labélisation d'installateurs individuels
+        dans le domaine du solaire photovoltaïque et
+        éclairage publique, qui peuvent intervenir dans le
+        cadre d'une entreprise ou en tant qu'installateur en
+        freelance.
+        Ces labels sont exclusivement délivrés par le
+        commissariat aux énergies renouvelables et à
+        l'efficacité énergétique (CEREFE).",
     'home.labels.pv' => "Kafa'a PV",
     'home.labels.pv_text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
     'home.labels.epe' => "Kafa'a Inara",
     'home.labels.epe_text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
     'home.advantages.title' => "Les avantages d'un label",
-    'home.advantages.text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-    'home.advantages1.title' => 'Avantage 1',
-    'home.advantages1.text' => "It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.",
-    'home.advantages2.title' => 'Avantage 2',
-    'home.advantages2.text' => "It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.",
-    'home.advantages3.title' => 'Avantage 3',
-    'home.advantages3.text' => "It is a long established fact that a reader will be distracted by the readable content of a when looking at its layout.",
+    'home.advantages.text' => "Que vous soyez un professionnel expérimenté du solaire ou de
+                            l'éclairage public ou bien un récent diplômé passionné par les
+                            énergies renouvelables le label « KAFA'A » reconnait et valorise
+                            l'expertise et le dévouement des individus qui vont contribuer à
+                            l'avancement de l'Energie solaire photovoltaïque et l'éclairage
+                            public en Algérie.",
+    'home.advantages1.title' => 'Annuaire',
+    'home.advantages1.text' => "Insertion dans l'annuaire national des installateurs labellisés",
+    'home.advantages2.title' => 'Marchés',
+    'home.advantages2.text' => "Garantie d'accès aux marchés publics",
+    'home.advantages3.title' => 'Validation',
+    'home.advantages3.text' => "Validation des compétences opérationnelles par des formations pratiques",
     'home.advantages.cta' => 'Demander une labélisation',
 
 
@@ -86,7 +99,7 @@ return [
                 labels, nous visons à promouvoir l'excellence technique et à renforcer la confiance des
                 consommateurs dans les systèmes photovoltaïques et d'éclairage public installés.",
     'context.expert.title' => 'Devenez installateur labellisé',
-    'context.expert.text' => 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.',
+    'context.expert.text' => "Le label « KAFA'A PV » et « KAFA'A EPE » sont exclusivement délivrés par le commissariat aux énergies renouvelables et à l'efficacité énergétique (CEREFE).",
     'context.expert.register' => "S'inscrire",
     'context.vision.title' => 'Notre vision',
     'context.vision.text' => "Les labels Kafaa-PV et Kafaa-Inara visent à garantir une meilleure qualité à tout citoyen et à
@@ -104,7 +117,18 @@ return [
 
     'pro.title' => 'Devenir pro',
     'pro.expert.title' => 'Devenez installateur labellisé',
-    'pro.expert.text' => 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham',
+    'pro.expert.text' => "La labellisation « KAFA'A » de personnes permet la
+                                reconnaissance dynamique des compétences à
+                                travers les leviers suivants : <br> <br>
+                                • La validation des connaissances acquises en formation de
+                                base à l'université ou en centre de formation. <br> <br>
+                                • La vérification des compétences opérationnelles par une
+                                partie de formation pratiques et de mise en situation. <br> <br>
+                                • La vérification des compétences en situation de travail
+                                dans le cadre du suivi et du maintien du label par des
+                                exigences de preuves de réalisation conformes. <br> <br>
+                                • Le maintien des compétences à jour par l'obligation de
+                                formations complémentaires pour le maintien de Labélisation.",
     'pro.expert.register' => "S'inscrire",
 
     'blog' => 'Blog',
