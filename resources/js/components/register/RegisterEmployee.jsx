@@ -40,7 +40,7 @@ export default function RegisterEmployee({ index, employee, changeEmployee, erro
                         <label htmlFor={`employee-label-${index}`}>Label</label>
                         <div className="relative">
                             <select id={`employee-label-${index}`} name="label" className="w-full field" value={employee.label} onChange={change} required>
-                                <option value="" disabled>Please select</option>
+                                <option value="" disabled>Veuillez choisir</option>
                                 <option value="pv">PV</option>
                                 <option value="epe">EPE</option>
                             </select>

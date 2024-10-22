@@ -45,7 +45,7 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                         <label htmlFor="wilaya">Wilaya</label>
                         <div className="relative">
                             <select id="wilaya" name="wilaya" className={`w-full field ${errors.wilaya && "border border-red-500"}`} value={expert.wilaya} onChange={change}>
-                                <option value="" disabled>Please select</option>
+                                <option value="" disabled>Veuillez choisir</option>
                                 {
                                     wilayas.map((wilaya) => (
                                         <option key={wilaya.id} value={wilaya.id}>{wilaya.code} - {wilaya.name}</option>
@@ -114,7 +114,7 @@ export default function RegisterExpert({ label, expert, setExpert, errors, clear
                         <label htmlFor="professional_status">Statut professionnel</label>
                         <div className="relative">
                             <select id="professional_status" name="professional_status" className={`w-full field  ${errors.professional_status && "border border-red-500"}`} value={expert.professional_status} onChange={change}>
-                                <option value="" disabled>Please select</option>
+                                <option value="" disabled>Veuillez choisir</option>
                                 <option value="employed">Employé</option>
                                 <option value="unemployed">Sans emploi</option>
                             </select>

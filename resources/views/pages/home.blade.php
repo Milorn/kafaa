@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <img class="objet-cover w-full" src="{{ asset('images/home/hero.png') }}">
+            <img class="objet-cover w-full" src="{{ LaravelLocalization::getCurrentLocale() == 'ar' ? asset('images/home/hero-ar.png') : asset('images/home/hero.png')}}" >
 
             <div class="relative max-w-screen-xl mx-auto flex justify-center px-44 w-full">
                 <div class="bg-[#45AC4C]  py-8 px-4 rounded-xl shadow-[0px_9px_11px_0px_#149455] absolute -top-48 z-10">

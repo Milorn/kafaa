@@ -82,7 +82,7 @@ export default function RegisterForm() {
                         <label htmlFor="type">Vous représentez :</label>
                         <div className="relative">
                             <select id="type" className="w-full shadow-bottom" onChange={(e) => setType(e.target.value)} defaultValue={type} required>
-                                <option value="" disabled>Please select</option>
+                                <option value="" disabled>Veuillez choisir</option>
                                 <option value="expert">Installateur</option>
                                 <option value="company">Entreprise</option>
                                 <option value="provider">Fournisseur</option>
@@ -99,7 +99,7 @@ export default function RegisterForm() {
                             <label htmlFor="label">Choisissez un label :</label>
                             <div className="relative">
                                 <select id="label" className="w-full shadow-bottom" onChange={(e) => setLabel(e.target.value)} defaultValue={label} required>
-                                    <option value="" disabled>Please select</option>
+                                    <option value="" disabled>Veuillez choisir</option>
                                     <option value="epe">EPE</option>
                                     <option value="pv">PV</option>
                                 </select>

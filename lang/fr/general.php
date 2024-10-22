@@ -29,7 +29,6 @@ return [
     'footer.contact_us' => 'Nous contacter',
     'footer.address' => 'Rue Dr Asslh Slimane,<br>Telemly, Alger, Algérie',
 
-
     'epe' => 'epe',
     'pv' => 'pv',
     'EPE' => 'EPE',
@@ -58,9 +57,9 @@ return [
         commissariat aux énergies renouvelables et à
         l'efficacité énergétique (CEREFE).",
     'home.labels.pv' => "Kafa'a PV",
-    'home.labels.pv_text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    'home.labels.pv_text' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
     'home.labels.epe' => "Kafa'a Inara",
-    'home.labels.epe_text' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    'home.labels.epe_text' => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
     'home.advantages.title' => "Les avantages d'un label",
     'home.advantages.text' => "Que vous soyez un professionnel expérimenté du solaire ou de
                             l'éclairage public ou bien un récent diplômé passionné par les
@@ -73,9 +72,8 @@ return [
     'home.advantages2.title' => 'Marchés',
     'home.advantages2.text' => "Garantie d'accès aux marchés publics",
     'home.advantages3.title' => 'Validation',
-    'home.advantages3.text' => "Validation des compétences opérationnelles par des formations pratiques",
+    'home.advantages3.text' => 'Validation des compétences opérationnelles par des formations pratiques',
     'home.advantages.cta' => 'Demander une labélisation',
-
 
     'context.hero' => "De part ses missions, le CEREFE a réalisé une série d'actions de développement des énergies
                 renouvelables et de l'efficacité énergétique en faveur de plusieurs secteurs de l'état,
@@ -162,5 +160,5 @@ return [
     'wilaya' => 'Wilaya',
     'not_specified' => 'Non spécifié',
     'resumee' => 'Curriculum Vitae',
-    'description' => 'Description'
+    'description' => 'Description',
 ];

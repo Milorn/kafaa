@@ -106,7 +106,7 @@ export default function RegisterCompany({ company, setCompany, errors, clearErro
                         <label htmlFor="activity-area">Domaine d'activité</label>
                         <div className="relative">
                             <select id="activity-area" name="activity_area" className={`w-full field ${errors.activity_area && "border border-red-500"}`} value={company.activity_area} onChange={change}>
-                                <option value="" disabled>Please select</option>
+                                <option value="" disabled>Veuillez choisir</option>
                                 {
                                     activityAreas.map((area) => (
                                         <option key={area.id} value={area.id}>{area.name}</option>
