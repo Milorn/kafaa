@@ -27,6 +27,7 @@ return [
     'footer.join_us' => 'Nous rejoindre',
     'footer.pro' => 'Espace pro',
     'footer.contact_us' => 'Nous contacter',
+    'footer.address' => 'Rue Dr Asslh Slimane,<br>Telemly, Alger, Algérie',
 
 
     'epe' => 'epe',

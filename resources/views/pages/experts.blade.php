@@ -57,7 +57,7 @@
                                     {{ $expert->years_of_experience ? $expert->years_of_experience . ' ' . __('general.experts.years') : __('general.not_specified') }}
                                 </p>
                                 <span class="text-xs font-semibold text-[#AFAFAF]">@lang('general.experts.number_of_projects'):
-                                    {{ $expert->number_of_projects ?? 'Non specifié' }} </span>
+                                    {{ $expert->number_of_projects ?? __('general.not_specified') }} </span>
                                     <a href="{{route('experts.single', ['expert' => $expert])}}" class="btn btn-primary w-full py-2.5 mt-3 text-xs font-bold inline-block text-center">@lang('general.experts.see_profile')</a>
                             </div>
                         </div>

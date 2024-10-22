@@ -39,7 +39,7 @@
             </li>
             <li class="flex items-start gap-1 ml-2">
                 <img src="{{ asset('images/location.svg') }}" alt="Location icon" class="size-7 ml-[-1px]">
-                <p>23, Rue Dr Asslh Slimane, <br> Telemly, Alger, Algérie </p>
+                <p>@lang('general.footer.address')</p>
             </li>
         </ul>
     </div>
