@@ -21,7 +21,9 @@ RUN apt update && apt install -y \
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install zip pdo_mysql mbstring exif pcntl bcmath gd intl
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY docker-compose/php/* $PHP_INIT_DIR
+COPY "docker-compose/php/php.ini" /usr/local/etc/php/conf.d
+COPY "./docker-compose/test.txt" "/var/www"
+COPY "./docker-compose/test.txt" "$PHP_INIT_DIR"
 
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
