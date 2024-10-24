@@ -9,6 +9,35 @@
         @apply font-medium;
         scroll-behavior: smooth;
     }
+
+    .rich-editor-content h2 {
+        font-size: revert;
+        font-weight: revert;
+        margin: revert;
+    }
+
+    .rich-editor-content h3 {
+        font-size: revert;
+        font-weight: revert;
+        margin: revert;
+    }
+
+    .rich-editor-content ul {
+        list-style: revert;
+        margin: revert;
+        padding: revert;
+    }
+
+    .rich-editor-content ol {
+        list-style: revert;
+        margin: revert;
+        padding: revert;
+    }
+
+    .rich-editor-content a {
+        text-decoration: revert;
+        @apply text-primary;
+    }
 }
 
 

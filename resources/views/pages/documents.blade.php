@@ -29,10 +29,10 @@
                         <img class="h-72 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
                             src="{{ $document->getFirstMediaUrl('documents') ? $document->getFirstMediaUrl('documents') : asset('images/placeholder.webp') }}">
                         <div class="px-10 py-5 flex flex-col">
-                            <p class="text-trivial text-sm mb-5">{{ $document->created_at->translatedFormat('d/m/Y') }}
+                            <p class="text-trivial text-sm mb-2">{{ $document->created_at->translatedFormat('d/m/Y') }}
                             </p>
                             <a href="{{ route('blog.single', ['slug' => $document->slug]) }}">
-                                <h2 class="text-4xl text-primary font-bold line-clamp-2 mb-2">{{ $document->title }}
+                                <h2 class="text-2xl text-primary font-bold line-clamp-2 mb-2">{{ $document->title }}
                                 </h2>
                             </a>
                             <p class="text-black text-base line-clamp-4 mb-5">
