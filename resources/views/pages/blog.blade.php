@@ -33,7 +33,7 @@
                             <a href="{{ route('blog.single', ['slug' => $post->slug]) }}">
                                 <h2 class="text-2xl text-primary font-bold line-clamp-2 mb-2">{{ $post->title }}</h2>
                             </a>
-                            <p class="text-black text-base line-clamp-4 mb-5 text-justify">
+                            <p class="text-black text-base line-clamp-4 mb-5">
                                 {{ strip_tags($post->content) }}
                             </p>
                             <a class="btn btn-primary text-center hover:cursor-pointer"
