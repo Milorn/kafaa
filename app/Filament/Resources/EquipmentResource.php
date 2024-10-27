@@ -73,7 +73,7 @@ class EquipmentResource extends Resource
                         SpatieMediaLibraryFileUpload::make('files')
                             ->multiple()
                             ->label('Fiches')
-                            ->disk('private')
+                            ->disk('public')
                             ->collection('equipments')
                             ->downloadable()
                             ->previewable(false)

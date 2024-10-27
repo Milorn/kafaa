@@ -138,5 +138,6 @@ return [
     'not_specified' => 'غير محدد',
     'resumee' => 'السيرة الذاتية',
     'description' => 'الوصف',
-
+    'donwnload' => 'تحميل',
+    'files' => 'ملفات'
 ];

@@ -19,36 +19,10 @@
             </div>
 
             <img class="objet-cover w-full" src="{{ LaravelLocalization::getCurrentLocale() == 'ar' ? asset('images/home/hero-ar.png') : asset('images/home/hero.png')}}" >
+        </div>
 
-            <div class="relative max-w-screen-xl mx-auto flex justify-center px-44 w-full">
-                <div class="bg-[#45AC4C]  py-8 px-4 rounded-xl shadow-[0px_9px_11px_0px_#149455] absolute -top-48 z-10">
-                    <div class="flex flex-col gap-3 text-center">
-                        <h1 class="text-white font-bold text-3xl">@lang('general.home.expert.title')</h1>
-                        <p class="text-xl text-white opacity-60">
-                           @lang('general.home.expert.subtitle')
-                        </p>
-                        <form class="grid grid-cols-3 gap-6" method="GET" action="{{ route('experts') }}">
-                            <select name="label"
-                                class="bg-white text-center gap-2 py-5 rounded-md focus:outline-none text-trivial">
-                                <option disabled selected>@lang('general.home.expert.filter_by_type')</option>
-                                <option value="epe">@lang('general.EPE')</option>
-                                <option value="pv">@lang('general.PV')</option>
-                            </select>
-
-                            <select name="wilaya"
-                                class="bg-white text-center gap-2 py-5 px-8 rounded-md focus:outline-none text-trivial">
-                                <option value="" disabled selected>@lang('general.home.expert.filter_by_wilaya')</option>
-                                @foreach ($wilayas as $key => $wilaya)
-                                    <option value="{{ $key }}">{{ $key }} - {{ $wilaya }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <button class="btn-secondary text-xl">@lang('general.search')</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
+        <div class="bg-white flex justify-center">
+            <iframe class="w-full" width="1280" height="725" src="https://www.youtube.com/embed/O7JFxMaNvno" title="Vidéo label kafa&#39;a pv" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 
         <div class="bg-primary pt-20 pb-20 relative">

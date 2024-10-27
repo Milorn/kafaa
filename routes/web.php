@@ -41,3 +41,4 @@ Route::controller(ViewDataController::class)->prefix('/data')->group(function ()
 });
 
 Route::get('/files/private/{id}/{path}', [FileController::class, 'getFile'])->where('path', '.*')->middleware('auth')->name('files');
+Route::get('/equipments/{slug}/download', [PagesController::class, 'downloadEquipment'])->name('equipments.download');

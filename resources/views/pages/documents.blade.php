@@ -39,7 +39,7 @@
                                 {{ strip_tags($document->content) }}
                             </p>
                             <a target="_blank" class="btn btn-primary text-center hover:cursor-pointer"
-                                href="{{ $document->getFirstMediaUrl('documents') }}">Telecharger</a>
+                                href="{{ $document->getFirstMediaUrl('documents') }}">@lang('general.download')</a>
                         </div>
                     </div>
                 @endforeach

@@ -7,13 +7,19 @@
                 @forelse ($equipment->getMedia('equipments_images') as $media)
                     <img class="rounded-lg h-96 w-full object-cover shadow-lg" src="{{ $media->getUrl() }}" alt="">
                 @empty
-                    <img  class="rounded-lg h-96 w-full object-cover shadow-lg" src="{{asset('images/placeholder.webp')}}" alt="">
+                    <img class="rounded-lg h-96 w-full object-cover shadow-lg"
+                        src="{{ asset('images/placeholder.webp') }}" alt="">
                 @endforelse
             </div>
+
             <div class="grid grid-cols-6 gap-x-32">
                 <div class="mb-10 col-span-4">
                     <h3 class="text-primary  font-bold text-3xl mb-3">@lang('general.description')</h3>
                     <p class="text-base text-justify mb-10">{{ $equipment->description }}</p>
+
+                    <h3 class="text-primary  font-bold text-3xl mb-3">@lang('general.files')</h3>
+                    <a href="{{route('equipments.download', ['slug' => $equipment->slug])}}" class="btn btn-primary mb-10 inline-block">@lang('general.download')</a>
+
                     <h3 class="text-primary  font-bold text-3xl mb-3">@lang('general.providers.other_products')</h3>
                     <div class="grid grid-cols-4 gap-5">
                         @foreach ($others as $other)
@@ -33,11 +39,13 @@
                         @endforeach
                     </div>
                 </div>
+
                 <div class="col-span-2">
                     <h3 class="text-primary font-bold text-3xl mb-4">@lang('general.provider')</h3>
                     @if ($equipment->provider)
                         <div class="shadow-lg p-6 rounded-xl">
-                            <img class="mb-10" src="{{ $equipment->provider->getFirstMediaUrl('providers_logos') ? $equipment->provider->getFirstMediaUrl('providers_logos') : asset('images/placeholder.webp') }}"
+                            <img class="mb-10"
+                                src="{{ $equipment->provider->getFirstMediaUrl('providers_logos') ? $equipment->provider->getFirstMediaUrl('providers_logos') : asset('images/placeholder.webp') }}"
                                 alt="">
                             <h2 class="font-bold text-lg text-primary line-clamp-2 mb-2">
                                 {{ $equipment->provider->name }}</h2>
@@ -58,6 +66,7 @@
                 </div>
 
             </div>
+
         </div>
 
     </x-slot:main>

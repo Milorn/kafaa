@@ -8,12 +8,18 @@
             <span
                 class="text-sm bg-primary text-white px-3 py-0.5 rounded-sm inline-block mb-2">{{ $post->created_at->translatedFormat('d/m/Y') }}</span>
             <h1 class="text-primary text-4xl font-bold mb-8">{{ $post->title }}</h1>
-    
 
-      
+
+
             <div class="text-black text-lg text-justify rich-editor-content">
                 {!! $post->content !!}
             </div>
+
+            @if($post->type == \App\Enums\PostType::Documents)
+            <div class="text-right">
+                <a class="btn btn-primary"  href="{{ $post->getFirstMediaUrl('documents') }}" target="_blank">@lang('general.download')</a>
+            </div>
+            @endif
         </div>
 
         <div class="max-w-screen-lg mt-16 mb-12 mx-auto ">

@@ -127,7 +127,7 @@ class ExpertResource extends Resource
                             ->required(),
                         SpatieMediaLibraryFileUpload::make('file')
                             ->label('CV')
-                            ->disk('private')
+                            ->disk('public')
                             ->collection('experts_resumees')
                             ->downloadable()
                             ->previewable(false)

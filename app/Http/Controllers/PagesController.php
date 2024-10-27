@@ -11,6 +11,7 @@ use App\Models\Expert;
 use App\Models\Post;
 use App\Models\Wilaya;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\Support\MediaStream;
 
 class PagesController extends Controller
 {
@@ -127,5 +128,16 @@ class PagesController extends Controller
     public function charter()
     {
         return view('pages/charter');
+    }
+    
+    public function downloadEquipment($slug)
+    {
+        $equipment = Equipment::query()
+            ->where('slug', $slug)
+            ->where('status', EquipmentStatus::Compliant)
+            ->firstOrFail();
+
+        $downloads = $equipment->getMedia('equipments');
+        return MediaStream::create('fiches.zip')->addMedia($downloads);
     }
 }

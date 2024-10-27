@@ -161,4 +161,6 @@ return [
     'not_specified' => 'Non spécifié',
     'resumee' => 'Curriculum Vitae',
     'description' => 'Description',
+    'download' => 'Télécharger',
+    'files' => 'Fiches',
 ];
