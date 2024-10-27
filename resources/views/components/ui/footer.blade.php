@@ -28,15 +28,15 @@
             </li>
             <li class="flex items-start gap-1 ml-2">
                 <img src="{{ asset('images/mail.svg') }}" alt="Mail icon" class="size-6">
-                <p class="mt-[-2px]">contact@cerefe.gov.dz</p>
+                <p dir="ltr" class="mt-[-2px]">contact@cerefe.gov.dz</p>
             </li>
             <li class="flex items-start gap-1 ml-2">
                 <img src="{{ asset('images/call.svg') }}" alt="Call icon" class="size-6">
-                <p>023 50 75 40</p>
+                <p dir="ltr">023 50 75 40</p>
             </li>
             <li class="flex items-start gap-1 ml-2">
                 <img src="{{ asset('images/laptop.svg') }}" alt="Laptop icon" class="size-6">
-                <p>023 50 73 82</p>
+                <p dir="ltr">023 50 73 82</p>
             </li>
             <li class="flex items-start gap-1 ml-2">
                 <img src="{{ asset('images/location.svg') }}" alt="Location icon" class="size-7 ml-[-1px]">

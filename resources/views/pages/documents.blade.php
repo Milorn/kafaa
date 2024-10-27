@@ -27,7 +27,7 @@
                 @foreach ($documents as $document)
                     <div class="rounded-3xl shadow-[2px_15px_12px_0px_rgba(0,0,0,0.25)]">
                         <img class="h-72 w-full object-cover rounded-tr-3xl rounded-tl-3xl"
-                            src="{{ $document->getFirstMediaUrl('documents') ? $document->getFirstMediaUrl('documents') : asset('images/placeholder.webp') }}">
+                            src="{{ $document->getFirstMediaUrl('posts_images') ?? asset('images/placeholder.webp') }}">
                         <div class="px-10 py-5 flex flex-col">
                             <p class="text-trivial text-sm mb-2">{{ $document->created_at->translatedFormat('d/m/Y') }}
                             </p>
@@ -38,8 +38,8 @@
                             <p class="text-black text-base line-clamp-4 mb-5">
                                 {{ strip_tags($document->content) }}
                             </p>
-                            <a class="btn btn-primary text-center hover:cursor-pointer"
-                                href="{{ route('blog.single', ['slug' => $document->slug]) }}">Telecharger</a>
+                            <a target="_blank" class="btn btn-primary text-center hover:cursor-pointer"
+                                href="{{ $document->getFirstMediaUrl('documents') }}">Telecharger</a>
                         </div>
                     </div>
                 @endforeach
