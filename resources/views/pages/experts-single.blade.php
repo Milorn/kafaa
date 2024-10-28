@@ -7,7 +7,7 @@
         <div class="max-w-screen-xl mx-auto my-9 px-5">
             <div class="bg-[#F4F4F4] rounded-lg grid grid-cols-3 py-12 px-20 gap-x-12  place-items-center">
                 <img class="rounded-full w-full aspect-square"
-                    src="{{ $expert->getFirstMedia('experts_avatars') ?? asset('images/placeholder.webp') }}">
+                    src="{{ $expert->getFirstMediaUrl('experts_avatars') ? $expert->getFirstMediaUrl('experts_avatars') : asset('images/placeholder.webp') }}">
                 <div class="flex flex-col gap-y-4">
                     @if ($expert->label == LabelType::PV)
                         <span class="text-white rounded py-0.5 px-3 bg-[#8DBE22] w-fit">@lang('general.PV')</span>
@@ -28,19 +28,23 @@
                             {{ $expert->number_of_projects ?? __('general.not_specified') }} </span>
                     </div>
                 </div>
-                <div class="bg-white rounded-md border border-[#ECECEC]  h-fit py-4 px-10 hover:cursor-pointer">
+                <div class="bg-white rounded-md border border-[#ECECEC]  h-fit py-4 px-10">
                     <ul class="flex flex-col gap-3">
                         <li class="flex items-center gap-4">
                             <img class="size-6" src="{{ asset('images/pdf.svg') }}" alt="">
-                            <span class="text-primary">@lang('general.resumee')</span>
+                            @if($expert->getFirstMediaUrl('experts_resumees'))
+                            <a href="{{$expert->getFirstMediaUrl('experts_resumees') ?? ''}}" target="_blank" class="text-primary text-sm">@lang('general.resumee')</a>
+                            @else
+                            <span class="text-sm">@lang('general.not_specified')</span>
+                            @endif
                         </li>
                         <li class="flex items-center gap-4 text-sm text-gray-800">
                             <img class="size-7" src="{{ asset('images/location.svg') }}" alt="Map icon">
-                            {{ $expert->address }}
+                            <span>{{ $expert->address ?? __('general.not_specified') }}</span>
                         </li>
                         <li class="flex items-center gap-4 text-sm text-gray-800">
                             <img class="size-7" src="{{ asset('images/call.svg') }}" alt="Phone icon">
-                            {{ $expert->phone }}
+                            <span class="text-sm">{{ $expert->phone ?? __('general.not_specified') }}</span>
                         </li>
                     </ul>
                 </div>

@@ -39,7 +39,7 @@
                         <div class="p-3 shadow-xl rounded-xl flex flex-col justify-between items-center">
                             <div class="flex gap-4 items-center mb-3.5">
                                 <img class="size-16 rounded-full"
-                                    src="{{ $expert->getFirstMedia('experts_avatars') ?? asset('images/placeholder.webp') }}">
+                                    src="{{ $expert->getFirstMediaUrl('experts_avatars') ? $expert->getFirstMediaUrl('experts_avatars') : asset('images/placeholder.webp') }}">
                                 <div class="flex flex-col">
                                     @if ($expert->label == LabelType::PV)
                                         <span class="text-xs text-white rounded p-0.5 bg-[#8DBE22] w-fit">@lang('general.PV')</span>

@@ -100,6 +100,7 @@ class PagesController extends Controller
         $experts = Expert::query()
             ->with('wilaya')
             ->whereRelation('certificate', 'status', LabelStatus::Accepted)
+            ->whereRelation('certificate', 'expires_on', '>', today())
             ->when($request->query('search'), fn ($query) => $query->where(fn ($query) => $query->whereRaw("LOWER(fname) like '%".strtolower($request->query('search'))."%'")->orWhereRaw("LOWER(lname) like '%".strtolower($request->query('search'))."%'")))
             ->when($request->query('wilaya'), fn ($query) => $query->where('wilaya_id', $request->query('wilaya')))
             ->when($request->query('label') && LabelType::tryFrom($request->query('label')), fn ($query) => $query->where('label', LabelType::from($request->query('label'))))
