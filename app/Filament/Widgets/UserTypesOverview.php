@@ -17,7 +17,7 @@ class UserTypesOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Nombre d\'experts', Expert::query()->whereNotNull('company_id')->count()),
+            Stat::make('Nombre d\'experts', Expert::query()->count()),
             Stat::make('Nombre d\'entreprises', Company::query()->count()),
             Stat::make('Nombre de fournisseurs', Provider::query()->count()),
         ];
