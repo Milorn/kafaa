@@ -48,8 +48,10 @@ class PagesController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 
-        $relatedPosts = Post::where('slug', '!=', $slug)
-            ->where('type', '!=', PostType::Documents)
+        $relatedPosts = Post::query()
+            ->where('slug', '!=', $slug)
+            ->when($post->type == PostType::Documents, fn($query) => $query->where('type', PostType::Documents))
+            ->when($post->type != PostType::Documents, fn($query) => $query->where('type', '!=', PostType::Documents))
             ->latest()->limit(2)->get();
 
         return view('pages/blog-single')
