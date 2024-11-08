@@ -8,7 +8,7 @@
                 <div class="grid grid-cols-2 content-center h-full">
                     <div class="pb-20 px-5 xl:px-0">
                         <h1 class="text-white font-extrabold text-6xl">@lang('general.context')</h1>
-                        <p class="text-white text-2xl mt-3 mb-16 pl-1 w-[80%]">
+                        <p class="text-white text-2xl mt-3 mb-16 pl-1 w-[80%] text-justify">
                             @lang('general.home.hero_text')
                         </p>
                         <a href="{{ route('about-us') }}" class="btn btn-icon inline-flex bg-white text-primary">
@@ -21,7 +21,7 @@
             <img class="objet-cover w-full" src="{{ LaravelLocalization::getCurrentLocale() == 'ar' ? asset('images/home/hero-ar.png') : asset('images/home/hero.png')}}" >
         </div>
 
-        <div class="bg-white flex justify-center">
+        <div class="bg-white flex justify-center py-20 px-36">
             <iframe class="w-full" width="1280" height="725" src="https://www.youtube.com/embed/O7JFxMaNvno" title="Vidéo label kafa&#39;a pv" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
 

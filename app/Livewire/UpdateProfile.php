@@ -41,19 +41,19 @@ class UpdateProfile extends MyProfileComponent
                         TextInput::make('name')
                             ->label('Nom')
                             ->placeholder('Nom')
-                            ->visible(fn($record) => $record->type == UserType::Admin)
+                            ->visible(fn ($record) => $record->type == UserType::Admin)
                             ->required(),
                         TextInput::make('email')
                             ->label('Email')
                             ->placeholder('email@example.com')
                             ->required()
-                            ->unique(ignorable: fn($record) => $record),
+                            ->unique(ignorable: fn ($record) => $record),
                     ]),
                 Section::make('Informations Professionnelles')
                     ->relationship('userable')
-                    ->visible(fn($record) => $record->type != UserType::Admin)
+                    ->visible(fn ($record) => $record->type != UserType::Admin)
                     ->columns(2)
-                    ->schema(fn($record) => match ($record->type) {
+                    ->schema(fn ($record) => match ($record->type) {
                         UserType::Expert => [
                             SpatieMediaLibraryFileUpload::make('image')
                                 ->label('Image')
@@ -83,7 +83,7 @@ class UpdateProfile extends MyProfileComponent
                                 ->placeholder('Diplôme'),
                             Select::make('wilaya_id')
                                 ->label('Wilaya')
-                                ->getOptionLabelFromRecordUsing(fn($record) => $record->id . '-' . $record->name)
+                                ->getOptionLabelFromRecordUsing(fn ($record) => $record->id.'-'.$record->name)
                                 ->relationship('wilaya', 'name'),
                             TextInput::make('address')
                                 ->label('Adresse')
@@ -117,7 +117,7 @@ class UpdateProfile extends MyProfileComponent
                                         ->placeholder(0)
                                         ->minValue(0),
                                     TextInput::make('number_of_projects')
-                                        ->label(fn($get) => match ($get('label')) {
+                                        ->label(fn ($get) => match ($get('label')) {
                                             LabelType::PV->value => 'Nombre de projets solaires photovoltaïques',
                                             LabelType::PV => 'Nombre de projets solaires photovoltaïques',
                                             LabelType::EPE->value => "Nombre de projets d'EP conventionnel",
@@ -128,7 +128,7 @@ class UpdateProfile extends MyProfileComponent
                                         ->placeholder(0)
                                         ->minValue(0),
                                     TextInput::make('number_of_metric')
-                                        ->label(fn($get) => match ($get('label')) {
+                                        ->label(fn ($get) => match ($get('label')) {
                                             LabelType::PV->value => 'Nombre de kWc installées',
                                             LabelType::PV => 'Nombre de kWc installées',
                                             LabelType::EPE->value => "Nombre de projets d'EP solaire",

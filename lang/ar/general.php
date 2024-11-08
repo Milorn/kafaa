@@ -139,5 +139,5 @@ return [
     'resumee' => 'السيرة الذاتية',
     'description' => 'الوصف',
     'donwnload' => 'تحميل',
-    'files' => 'ملفات'
+    'files' => 'ملفات',
 ];

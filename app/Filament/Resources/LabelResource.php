@@ -9,6 +9,7 @@ use App\Models\Label;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -57,6 +58,14 @@ class LabelResource extends Resource
                             ->options(LabelStatus::class)
                             ->default(LabelStatus::Accepted)
                             ->required(),
+                        SpatieMediaLibraryFileUpload::make('file')
+                            ->label('Document')
+                            ->disk('public')
+                            ->collection('labels_certificates')
+                            ->downloadable()
+                            ->acceptedFileTypes(['application/pdf', 'image/*'])
+                            ->maxSize(1024 * 12)
+                            ->columnSpanFull(),
                     ]),
             ]);
     }

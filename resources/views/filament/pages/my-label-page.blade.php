@@ -11,6 +11,7 @@
         $statusText = null;
         $statusColor = null;
         $canRenew = false;
+        $hasCertificateFile = $record->certificate->getFirstMedia('labels_certificates');
 
         if ($record->certificate->status == LabelStatus::Accepted) {
             if ($expiryDate->lte(today())) {
@@ -60,14 +61,20 @@
                             {{ $statusText }}
                         </x-filament::badge>
                     </div>
-                    @if ($canRenew)
-                        <div class="mt-4">
+                    <div class="mt-4">
+                        @if ($hasCertificateFile)
+                            <x-filament::button color="success" tooltip="Télécharger" size="xs"
+                                wire:click="download">
+                                Télécharger
+                            </x-filament::button>
+                        @endif
+                        @if ($canRenew)
                             <x-filament::button color="info" tooltip="Demander un renouvellement" size="xs"
                                 wire:click="renew">
                                 Renouveler
                             </x-filament::button>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </x-filament::section>
         @else

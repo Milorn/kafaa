@@ -130,7 +130,7 @@ class PagesController extends Controller
     {
         return view('pages/charter');
     }
-    
+
     public function downloadEquipment($slug)
     {
         $equipment = Equipment::query()
@@ -139,6 +139,7 @@ class PagesController extends Controller
             ->firstOrFail();
 
         $downloads = $equipment->getMedia('equipments');
+
         return MediaStream::create('fiches.zip')->addMedia($downloads);
     }
 }
