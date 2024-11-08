@@ -38,7 +38,7 @@ class PagesController extends Controller
     {
         $posts = Post::query()
             ->where('type', '!=', PostType::Documents)
-            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
+            ->when($request->search, fn($query) => $query->whereRaw("LOWER(title) like '%" . strtolower($request->search) . "%'"))
             ->simplePaginate(9);
 
         return view('pages/blog')->with('posts', $posts);
@@ -48,7 +48,11 @@ class PagesController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 
-        $relatedPosts = Post::where('slug', '!=', $slug)->latest()->limit(2)->get();
+        $relatedPosts = Post::query()
+            ->where('slug', '!=', $slug)
+            ->when($post->type == PostType::Documents, fn($query) => $query->where('type', PostType::Documents))
+            ->when($post->type != PostType::Documents, fn($query) => $query->where('type', '!=', PostType::Documents))
+            ->latest()->limit(2)->get();
 
         return view('pages/blog-single')
             ->with('post', $post)
@@ -59,7 +63,7 @@ class PagesController extends Controller
     {
         $documents = Post::query()
             ->where('type', PostType::Documents)
-            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(title) like '%".strtolower($request->search)."%'"))
+            ->when($request->search, fn($query) => $query->whereRaw("LOWER(title) like '%" . strtolower($request->search) . "%'"))
             ->simplePaginate(9);
 
         return view('pages/documents')->with('documents', $documents);
@@ -69,7 +73,7 @@ class PagesController extends Controller
     {
         $equipments = Equipment::query()
             ->where('status', EquipmentStatus::Compliant)
-            ->when($request->search, fn ($query) => $query->whereRaw("LOWER(name) like '%".strtolower($request->search)."%'"))
+            ->when($request->search, fn($query) => $query->whereRaw("LOWER(name) like '%" . strtolower($request->search) . "%'"))
             ->simplePaginate(8);
 
         return view('pages/equipments')->with('equipments', $equipments);
@@ -101,9 +105,9 @@ class PagesController extends Controller
             ->with('wilaya')
             ->whereRelation('certificate', 'status', LabelStatus::Accepted)
             ->whereRelation('certificate', 'expires_on', '>', today())
-            ->when($request->query('search'), fn ($query) => $query->where(fn ($query) => $query->whereRaw("LOWER(fname) like '%".strtolower($request->query('search'))."%'")->orWhereRaw("LOWER(lname) like '%".strtolower($request->query('search'))."%'")))
-            ->when($request->query('wilaya'), fn ($query) => $query->where('wilaya_id', $request->query('wilaya')))
-            ->when($request->query('label') && LabelType::tryFrom($request->query('label')), fn ($query) => $query->where('label', LabelType::from($request->query('label'))))
+            ->when($request->query('search'), fn($query) => $query->where(fn($query) => $query->whereRaw("LOWER(fname) like '%" . strtolower($request->query('search')) . "%'")->orWhereRaw("LOWER(lname) like '%" . strtolower($request->query('search')) . "%'")))
+            ->when($request->query('wilaya'), fn($query) => $query->where('wilaya_id', $request->query('wilaya')))
+            ->when($request->query('label') && LabelType::tryFrom($request->query('label')), fn($query) => $query->where('label', LabelType::from($request->query('label'))))
             ->simplePaginate(18);
 
         $wilayas = Wilaya::query()
