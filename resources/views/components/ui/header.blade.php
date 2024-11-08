@@ -7,7 +7,6 @@
             </a>
             <img class="h-14" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
             <img class="h-14" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
-            <img class="h-10" src="{{asset('images/giz.png')}}">
         </div>
         <ul class="flex flex-wrap items-center gap-4">
             <li class="pb-3 @if (request()->routeIs('home')) link-active @else font-medium text-trivial @endif">

@@ -1,9 +1,8 @@
 <footer>
-    <div class="bg-white pb-16 pt-12 mx-auto max-w-screen-xl flex justify-between items-end px-5">
+    <div class="bg-white pb-10 pt-12 mx-auto max-w-screen-xl flex justify-between items-end px-5">
         <div class="flex flex-col gap-10">
             <img class="h-20 p-1 object-contain" src="{{ asset('images/cerefe_logo.png') }}" alt="Logo Cerefe">
-            <div class="flex items-center justify-end gap-10">
-                <img class="h-20" src="{{ asset('images/giz.png') }}" alt="Logo Label PV">
+            <div class="flex items-center justify-center gap-10">
                 <img class="h-28" src="{{ asset('images/logo_pv.svg') }}" alt="Logo Label PV">
                 <img class="h-28" src="{{ asset('images/logo_epe.svg') }}" alt="Logo Label EPE">
             </div>
@@ -43,6 +42,10 @@
                 <p>@lang('general.footer.address')</p>
             </li>
         </ul>
+    </div>
+    <div class="flex justify-center gap-36 my-10">
+        <img class="h-24" src="{{asset('/images/de.svg')}}">
+        <img class="h-24" src="{{asset('/images/giz.svg')}}">
     </div>
     <div class="bg-primary text-center py-4">
         <span class="text-white opacity-60 text-sm">Kafaa designed by Educe-IT {{ today()->year }}@</span>
