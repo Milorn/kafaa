@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\LabelType;
 use App\Enums\ProfessionalStatus;
 use Cesargb\Database\Support\CascadeDelete;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -26,6 +27,13 @@ class Expert extends Model implements HasMedia
         'professional_status' => ProfessionalStatus::class,
         'label' => LabelType::class,
     ];
+
+    protected function fullname(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->fname.' '.$this->lname
+        );
+    }
 
     protected static function booted(): void
     {
@@ -57,5 +65,10 @@ class Expert extends Model implements HasMedia
     public function wilaya()
     {
         return $this->belongsTo(Wilaya::class);
+    }
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
     }
 }

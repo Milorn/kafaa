@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\RegistrationStatus;
 use App\Filament\Resources\TrainingResource\Pages;
-use App\Filament\Resources\TrainingResource\RelationManagers;
+use App\Filament\Resources\TrainingResource\RelationManagers\RegistrationsRelationManager;
+use App\Models\Registration;
 use App\Models\Training;
-use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class TrainingResource extends Resource
 {
@@ -67,7 +68,7 @@ class TrainingResource extends Resource
                             ->previewable(false)
                             ->maxSize(1024 * 12)
                             ->columnSpanFull(), // 12mb
-                    ])->columns(2)
+                    ])->columns(2),
             ]);
     }
 
@@ -75,6 +76,10 @@ class TrainingResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('objective')
+                    ->label('Objectif')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('starts_on')
                     ->label('Date de début')
                     ->date()
@@ -85,10 +90,6 @@ class TrainingResource extends Resource
                     ->date()
                     ->badge()
                     ->sortable(),
-                TextColumn::make('objective')
-                    ->label('Objectif')
-                    ->sortable()
-                    ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->datetime()
@@ -98,12 +99,31 @@ class TrainingResource extends Resource
                     ->label('Modifié le')
                     ->datetime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->extraModalFooterActions([
+                        Tables\Actions\Action::make('register')
+                            ->visible(Auth::user()->isExpert())
+                            ->label(fn ($record) => Registration::query()->where(['expert_id' => Auth::id(), 'training_id' => $record->id])->first() ? 'Déja inscris' : 'M\'inscrire')
+                            ->disabled(fn ($record) => Registration::query()->where(['expert_id' => Auth::id(), 'training_id' => $record->id])->first())
+                            ->action(function ($record) {
+                                Registration::create([
+                                    'expert_id' => Auth::id(),
+                                    'training_id' => $record->id,
+                                    'status' => RegistrationStatus::Pending,
+                                ]);
+
+                                return Notification::make()
+                                    ->success()
+                                    ->body('Inscris avec succés')
+                                    ->send();
+                            }),
+                    ]),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -117,7 +137,7 @@ class TrainingResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RegistrationsRelationManager::class,
         ];
     }
 

@@ -15,6 +15,11 @@ class Training extends Model implements HasMedia
 
     protected $casts = [
         'starts_on' => 'date',
-        'ends_on' => 'date'
+        'ends_on' => 'date',
     ];
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
 }
