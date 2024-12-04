@@ -19,6 +19,7 @@ Route::group(
             Route::get('/', 'home')->name('home');
             Route::get('/about-us', 'aboutUs')->name('about-us');
             Route::get('/pro', 'pro')->name('pro');
+            Route::get('/memberships', 'memberships')->name('memberships');
             Route::get('/blog', 'blog')->name('blog');
             Route::get('/blog/{slug}', 'singleBlog')->name('blog.single');
             Route::get('/documents', 'documents')->name('documents');

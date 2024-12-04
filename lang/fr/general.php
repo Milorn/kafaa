@@ -15,6 +15,7 @@ return [
     'header.register' => 'S\'enregistrer',
     'header.already_registered' => 'Déja inscrit ?',
     'header.login' => 'Se connecter',
+    'header.memberships' => 'Abonnements',
 
     'footer.legal_mentions' => 'Mentions légales',
     'footer.confidentiality' => 'Politique de confidentialité',
@@ -148,6 +149,16 @@ return [
     'providers.view_product' => 'Voir produit',
     'providers.other_products' => 'Autres produits',
 
+    'memberships' => 'Abonnements',
+    'memberships.title' => 'Nos Abonnements',
+    'memberships.free' => 'Grauit',
+    'memberships.business' => 'Business',
+    'memberships.vip' => 'VIP',
+    'memberships.feature1' => 'Accés aux formations',
+    'memberships.feature2' => 'Labélisation',
+    'memberships.feature3' => 'Visibilité',
+    'memberships.feature4' => 'Equipements',
+
     // Globals
     'search' => 'Rechercher',
     'know_more' => 'En savoir plus',
@@ -163,4 +174,6 @@ return [
     'description' => 'Description',
     'download' => 'Télécharger',
     'files' => 'Fiches',
+    'price' => ':price DZD',
+    'consult' => 'Consulter',
 ];

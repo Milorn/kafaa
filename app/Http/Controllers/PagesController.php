@@ -34,6 +34,11 @@ class PagesController extends Controller
         return view('pages/pro');
     }
 
+    public function memberships()
+    {
+        return view('pages/memberships');
+    }
+
     public function blog(Request $request)
     {
         $posts = Post::query()

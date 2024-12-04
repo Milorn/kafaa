@@ -10,7 +10,7 @@
             <div class="flex flex-col gap-2 items-center mb-4">
                 <x-filament::icon icon="heroicon-o-user" class="size-10"></x-filament::icon>
                 <h2 class="text-center font-semibold text-2xl">Gratuit</h2>
-                <h3 class="text-xl">39€</h3>
+                <h3 class="text-xl">39DZD</h3>
                 <hr class="bg-blackborder-2 w-full mt-5 mb-3">
             </div>
             <ul class="text-center space-y-3">
@@ -29,7 +29,7 @@
             <div class="flex flex-col gap-2 items-center mb-4">
                 <x-filament::icon icon="heroicon-o-user" class="size-10"></x-filament::icon>
                 <h2 class="text-center font-semibold text-2xl">Business</h2>
-                <h3 class="text-xl">99€</h3>
+                <h3 class="text-xl">99DZD</h3>
                 <hr class="bg-blackborder-2 w-full mt-5 mb-3">
             </div>
             <ul class="text-center space-y-3">
@@ -48,7 +48,7 @@
             <div class="flex flex-col gap-2 items-center mb-4">
                 <x-filament::icon icon="heroicon-o-user" class="size-10"></x-filament::icon>
                 <h2 class="text-center font-semibold text-2xl">VIP</h2>
-                <h3 class="text-xl">199€</h3>
+                <h3 class="text-xl">199DZD</h3>
                 <hr class="bg-blackborder-2 w-full mt-5 mb-3">
             </div>
             <ul class="text-center space-y-3">

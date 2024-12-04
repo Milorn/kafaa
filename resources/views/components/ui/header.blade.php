@@ -45,6 +45,10 @@
                 <a href="{{ LaravelLocalization::localizeUrl('equipments') }}"
                     class="hover:text-primary">@lang('general.header.providers')</a>
             </li>
+            <li class="pb-3 @if (request()->routeIs('memberships')) link-active @else font-medium text-trivial @endif">
+                <a href="{{ LaravelLocalization::localizeUrl('memberships') }}"
+                    class="hover:text-primary">@lang('general.header.memberships')</a>
+            </li>
             <li
                 class="group pb-3 hover:cursor-pointer relative">
                 <span class="flex items-center gap-0.5">

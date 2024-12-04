@@ -15,6 +15,7 @@ return [
     'header.register' => 'التسجيل',
     'header.already_registered' => 'مسجل بالفعل؟',
     'header.login' => 'تسجيل الدخول',
+    'header.memberships' => 'الاشتراكات',
 
     'footer.legal_mentions' => 'الإشعارات القانونية',
     'footer.confidentiality' => 'سياسة الخصوصية',
@@ -125,6 +126,16 @@ return [
     'providers.view_product' => 'عرض المنتج',
     'providers.other_products' => 'منتجات أخرى',
 
+    'memberships' => 'الاشتراكات',
+    'memberships.title' => 'اشتراكاتنا',
+    'memberships.free' => 'مجاني',
+    'memberships.business' => 'الأعمال',
+    'memberships.vip' => 'احترافي',
+    'memberships.feature1' => 'الوصول إلى الدورات التدريبية',
+    'memberships.feature2' => 'التصنيف',
+    'memberships.feature3' => 'الظهور',
+    'memberships.feature4' => 'المعدات',
+
     // Globals
     'search' => 'بحث',
     'know_more' => 'معرفة المزيد',
@@ -140,4 +151,6 @@ return [
     'description' => 'الوصف',
     'donwnload' => 'تحميل',
     'files' => 'ملفات',
+    'price' => 'دج :price',
+    'consult' => 'الإطلاع',
 ];
