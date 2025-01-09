@@ -121,12 +121,6 @@ class AppPanelProvider extends PanelProvider
             FilamentEditProfilePlugin::make()
                 ->shouldRegisterNavigation(false)
                 ->shouldShowDeleteAccountForm(false),
-            FilamentDeveloperLoginsPlugin::make()
-                ->enabled()
-                ->switchable(false)
-                ->users([
-                    'Admin' => 'admin@kafaa.com',
-                ]),
             FilamentTranslateFieldPlugin::make()
                 ->defaultLocales(['fr', 'ar']),
             BreezyCore::make()
